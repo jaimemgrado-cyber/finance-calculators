@@ -248,9 +248,6 @@ function renderContact() {
     bodyHtml: `
 <p>If you have a question about ${C.esc(site.siteName)}, have found an error in one of our calculators, or would like to suggest a calculator or improvement, you can contact us using the information below.</p>
 
-<h2>Email</h2>
-<p><strong>${C.esc(site.legal.contactEmail)}</strong></p>
-
 <h2>Mailing Address</h2>
 <p>${C.esc(site.legal.mailingAddress)}</p>
 
@@ -299,7 +296,7 @@ function renderPrivacyPolicy() {
 <p>This Privacy Policy may be updated from time to time to reflect changes to the website, the services we use, or applicable legal requirements. The updated version will be published on this page with a revised update date.</p>
 
 <h2>Contact</h2>
-<p>If you have questions about this Privacy Policy or the way information is handled on this website, please contact us at <strong>${C.esc(site.legal.contactEmail)}</strong>.</p>`
+<p>If you have questions about this Privacy Policy or the way information is handled on this website, please use the Contact page.</p>`
   });
 }
 
@@ -343,7 +340,7 @@ function renderTerms() {
 <p>These Terms of Service may be updated from time to time. Changes will become effective when the revised terms are published on this page. Your continued use of the website after changes are published constitutes acceptance of the updated terms to the extent permitted by applicable law.</p>
 
 <h2>Contact</h2>
-<p>Questions about these Terms of Service can be sent to <strong>${C.esc(site.legal.contactEmail)}</strong>.</p>`
+<p>For questions about these Terms of Service, please use the Contact page.</p>`
   });
 }
 
