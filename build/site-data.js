@@ -53,7 +53,7 @@ module.exports = {
 
   legal: {
     legalEntityName: "ClearSum",
-    contactEmail: "contact@finance-calculators-sooty.vercel.app",
+    contactEmail: "",
     mailingAddress: "United States",
     lastUpdated: "August 24, 2026"
   }
