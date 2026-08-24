@@ -199,9 +199,10 @@ ${disclaimer}
 function legalPage({ title, description, canonicalPath, h1, bodyHtml }) {
   const body = `<div class="container legal-article">
   <h1>${C.esc(h1)}</h1>
-  <p class="legal-updated">Last updated: <span class="placeholder">${C.esc(site.legal.lastUpdated)}</span></p>
+  <p class="legal-updated">Last updated: ${C.esc(site.legal.lastUpdated)}</p>
   ${bodyHtml}
 </div>`;
+
   return C.pageShell({
     title,
     description,
@@ -218,10 +219,17 @@ function renderAbout() {
     canonicalPath: "/about/",
     h1: "About",
     bodyHtml: `
-<p>${C.esc(site.siteName)} builds free, straightforward calculators for common financial questions — mortgages, loans, savings, debt payoff, and everyday money math. Every calculator uses standard, publicly documented formulas, which are shown on each calculator's page alongside a worked example.</p>
-<p>We don't offer personalized financial, tax, or legal advice, and we don't claim any results are guaranteed. Each calculator page explains what its formula does and doesn't account for, so you can judge how well it fits your situation.</p>
-<p><strong>Company:</strong> <span class="placeholder">${C.esc(site.legal.legalEntityName)}</span></p>
-<p><em>This page is a placeholder. Replace this text with real information about your company before launch.</em></p>`
+<p>${C.esc(site.siteName)} provides free financial calculators designed to help users estimate common financial figures quickly and understand the calculations behind them.</p>
+
+<p>Our calculators cover topics such as mortgages, loans, savings, debt payoff, salary, taxes, and other everyday financial calculations. Each calculator is designed around established mathematical or financial formulas and provides an explanation of how the calculation works.</p>
+
+<p>The results produced by our calculators are estimates for informational and educational purposes. Actual financial results can vary depending on individual circumstances, financial products, tax rules, fees, rates, and other factors.</p>
+
+<p>${C.esc(site.siteName)} does not provide personalized financial, investment, tax, or legal advice. Users should consult an appropriately qualified professional when they need advice specific to their circumstances.</p>
+
+<p><strong>Company:</strong> ${C.esc(site.legal.legalEntityName)}</p>
+
+<p>For questions, corrections, suggestions, or other inquiries, please use the contact information provided on our Contact page.</p>`
   });
 }
 
@@ -232,10 +240,17 @@ function renderContact() {
     canonicalPath: "/contact/",
     h1: "Contact",
     bodyHtml: `
-<p>Have a question, spotted an error, or want to suggest a new calculator? We'd like to hear from you.</p>
-<p><strong>Email:</strong> <span class="placeholder">${C.esc(site.legal.contactEmail)}</span></p>
-<p><strong>Mailing address:</strong> <span class="placeholder">${C.esc(site.legal.mailingAddress)}</span></p>
-<p><em>This page is a placeholder. Replace the bracketed details with your real contact information before launch.</em></p>`
+<p>If you have a question about ${C.esc(site.siteName)}, have found an error in one of our calculators, or would like to suggest a calculator or improvement, you can contact us using the information below.</p>
+
+<h2>Email</h2>
+<p><strong>${C.esc(site.legal.contactEmail)}</strong></p>
+
+<h2>Mailing Address</h2>
+<p>${C.esc(site.legal.mailingAddress)}</p>
+
+<p>When contacting us about a calculator, including the name or URL of the calculator can help us understand and respond to your request more efficiently.</p>
+
+<p>We aim to use information provided through our contact channels only for responding to the relevant inquiry and for maintaining and improving the website.</p>`
   });
 }
 
@@ -246,17 +261,39 @@ function renderPrivacyPolicy() {
     canonicalPath: "/privacy-policy/",
     h1: "Privacy Policy",
     bodyHtml: `
-<p><em>This is a placeholder privacy policy. Replace it with a policy reviewed for your business before launch — the sections below outline what a site like this typically needs to cover, but are not legal advice.</em></p>
-<h2>Information we collect</h2>
-<p><span class="placeholder">[Describe what you collect: analytics, cookies, form submissions, etc.]</span> The calculators on this site run entirely in your browser — the numbers you enter into a calculator are not sent to our servers to produce a result.</p>
+<p>This Privacy Policy explains how ${C.esc(site.siteName)} handles information when you visit and use this website.</p>
+
+<h2>Information We Collect</h2>
+<p>The financial calculators on this website are designed to perform calculations in your web browser. The numerical values you enter into a calculator are not required to be submitted to our servers in order for the calculator to produce its result.</p>
+
+<p>Depending on how the website is operated and which services are enabled, limited technical information may be processed automatically, such as your IP address, browser type, device information, approximate location, referring page, and information about how the website is accessed. This information may be used for security, technical operation, performance measurement, and website improvement.</p>
+
+<h2>Cookies and Similar Technologies</h2>
+<p>${C.esc(site.siteName)} may use cookies and similar technologies that are necessary for the operation of the website, to remember preferences, measure website usage, or support advertising services.</p>
+
+<p>Cookies may be placed by third-party services used by the website. You can control or delete cookies through your browser settings. Disabling certain cookies may affect some website functionality.</p>
+
 <h2>Advertising</h2>
-<p>This site is designed to display advertising, which may use cookies or similar technologies to personalize ads. <span class="placeholder">[Add specifics once an ad provider, such as Google AdSense, is integrated, including a link to that provider's own privacy disclosures.]</span></p>
-<h2>Cookies</h2>
-<p><span class="placeholder">[Describe cookie usage once analytics/ad providers are integrated.]</span></p>
-<h2>Your choices</h2>
-<p><span class="placeholder">[Describe opt-out options, e.g. browser settings, ad personalization controls.]</span></p>
+<p>This website may display advertising provided by third-party advertising services, including Google AdSense. Advertising providers may use cookies or similar technologies to deliver, measure, and personalize advertisements in accordance with their own policies and applicable privacy requirements.</p>
+
+<p>Where required by applicable law, the website may request your consent before using certain cookies or similar technologies for personalized advertising or other purposes that require consent.</p>
+
+<h2>Third-Party Services</h2>
+<p>Third-party services used by this website may process information in accordance with their own privacy policies. These services may include hosting, analytics, advertising, security, and other technical providers necessary to operate the website.</p>
+
+<h2>Your Privacy Choices</h2>
+<p>You may manage cookies through your browser settings. Where applicable, you may also use the privacy or consent controls provided on the website to manage your choices regarding cookies and personalized advertising.</p>
+
+<p>You may also have additional privacy rights under the laws applicable to you, depending on your location. These rights may include rights to access, correct, delete, restrict, or object to certain processing of personal information.</p>
+
+<h2>Children's Privacy</h2>
+<p>This website is not intended to knowingly collect personal information from children. If you believe that a child has provided personal information to us, please contact us so that the information can be reviewed and, where appropriate, removed.</p>
+
+<h2>Changes to This Privacy Policy</h2>
+<p>This Privacy Policy may be updated from time to time to reflect changes to the website, the services we use, or applicable legal requirements. The updated version will be published on this page with a revised update date.</p>
+
 <h2>Contact</h2>
-<p>Questions about this policy can be sent to <span class="placeholder">${C.esc(site.legal.contactEmail)}</span>.</p>`
+<p>If you have questions about this Privacy Policy or the way information is handled on this website, please contact us at <strong>${C.esc(site.legal.contactEmail)}</strong>.</p>`
   });
 }
 
@@ -267,15 +304,40 @@ function renderTerms() {
     canonicalPath: "/terms-of-service/",
     h1: "Terms of Service",
     bodyHtml: `
-<p><em>This is a placeholder terms of service document. Replace it with terms reviewed for your business before launch — this is not legal advice.</em></p>
-<h2>Use of this site</h2>
-<p>The calculators on this site are provided for informational purposes only. By using this site, you agree that results are estimates, not guarantees, and not a substitute for professional financial, tax, or legal advice.</p>
-<h2>No warranty</h2>
-<p>This site and its calculators are provided "as is," without warranties of any kind, express or implied. <span class="placeholder">[Add your business's specific liability limitations here.]</span></p>
-<h2>Changes to these terms</h2>
-<p><span class="placeholder">[Describe how and when these terms may be updated.]</span></p>
+<p>These Terms of Service govern your use of ${C.esc(site.siteName)}. By accessing or using this website, you agree to these terms.</p>
+
+<h2>Use of This Site</h2>
+<p>${C.esc(site.siteName)} provides financial calculators and related information for general informational and educational purposes.</p>
+
+<p>You may use the calculators for lawful personal or informational purposes. You are responsible for reviewing the information produced by the calculators and determining whether it is appropriate for your circumstances.</p>
+
+<h2>Calculator Results</h2>
+<p>The calculators provide estimates based on the information entered by the user and the formulas implemented by the website. Results are not guarantees of actual financial outcomes.</p>
+
+<p>Actual results may differ because of factors including, but not limited to, interest rates, fees, taxes, credit terms, lender requirements, market conditions, individual financial circumstances, and changes in applicable laws or regulations.</p>
+
+<h2>No Professional Advice</h2>
+<p>The information and calculations provided by this website are not financial, investment, tax, accounting, or legal advice. Nothing on this website creates a professional advisory relationship between ${C.esc(site.siteName)} and the user.</p>
+
+<p>For decisions involving significant financial, tax, investment, or legal consequences, you should consider consulting an appropriately qualified professional.</p>
+
+<h2>Accuracy and Availability</h2>
+<p>We aim to keep the website and its calculators useful and accurate, but we do not guarantee that all information, calculations, content, or services will always be complete, current, accurate, or available without interruption.</p>
+
+<h2>Third-Party Services and Advertising</h2>
+<p>The website may contain advertisements, links, or services provided by third parties. Third-party services operate under their own terms and privacy policies. ${C.esc(site.siteName)} is not responsible for the content, availability, or practices of third-party websites or services.</p>
+
+<h2>Intellectual Property</h2>
+<p>Unless otherwise stated, the content, design, branding, graphics, and original materials on this website are owned by or licensed to ${C.esc(site.siteName)} and may not be reproduced, distributed, or modified without appropriate permission, except where permitted by applicable law.</p>
+
+<h2>Limitation of Liability</h2>
+<p>To the extent permitted by applicable law, ${C.esc(site.siteName)} will not be responsible for losses or damages arising from reliance on calculator results, website content, temporary unavailability of the website, or the use of third-party services accessed through the website.</p>
+
+<h2>Changes to These Terms</h2>
+<p>These Terms of Service may be updated from time to time. Changes will become effective when the revised terms are published on this page. Your continued use of the website after changes are published constitutes acceptance of the updated terms to the extent permitted by applicable law.</p>
+
 <h2>Contact</h2>
-<p>Questions about these terms can be sent to <span class="placeholder">${C.esc(site.legal.contactEmail)}</span>.</p>`
+<p>Questions about these Terms of Service can be sent to <strong>${C.esc(site.legal.contactEmail)}</strong>.</p>`
   });
 }
 
