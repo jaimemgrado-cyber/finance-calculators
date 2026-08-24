@@ -25,6 +25,7 @@ function pageShell({ title, description, canonicalPath, bodyHtml, activePath, br
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canonical}">
