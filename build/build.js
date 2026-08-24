@@ -1,3 +1,4 @@
+```js
 const fs = require("fs");
 const path = require("path");
 const C = require("./components.js");
@@ -227,8 +228,6 @@ function renderAbout() {
 
 <p>${C.esc(site.siteName)} does not provide personalized financial, investment, tax, or legal advice. Users should consult an appropriately qualified professional when they need advice specific to their circumstances.</p>
 
-<p><strong>Company:</strong> ${C.esc(site.legal.legalEntityName)}</p>
-
 <p>For questions, corrections, suggestions, or other inquiries, please use the contact information provided on our Contact page.</p>`
   });
 }
@@ -429,3 +428,4 @@ function build() {
 }
 
 build();
+```
