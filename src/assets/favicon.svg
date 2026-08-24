@@ -1,0 +1,6 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csFaviconTitle">
+  <title id="csFaviconTitle">ClearSum</title>
+  <rect x="0" y="0" width="40" height="40" rx="9" fill="#14213D"/>
+  <rect x="8" y="13" width="17" height="7" rx="3.5" fill="#FAFAF8"/>
+  <rect x="8" y="22" width="24" height="7" rx="3.5" fill="#7FD9C7"/>
+</svg>
