@@ -1,8 +1,12 @@
 module.exports = {
   siteName: "ClearSum",
   tagline: "Free Financial Calculators",
-  description: "Free, accurate financial calculators for mortgages, loans, savings, debt payoff, salary, sales tax, and everyday money math. Built for U.S. users.",
+  description:
+    "Free, accurate financial calculators for mortgages, loans, savings, debt payoff, salary, sales tax, and everyday money math. Built for U.S. users.",
+
+  // Production domain
   domain: "https://finance-calculators-sooty.vercel.app",
+
   themeColor: "#14213D",
 
   logo: {
