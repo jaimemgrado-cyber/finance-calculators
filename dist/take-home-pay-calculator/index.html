@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Take-Home Pay Calculator — Estimate Your Net Pay</title>
+<meta name="description" content="Estimate your net take-home pay after federal income tax, Social Security, Medicare, and state tax, using current 2026 federal tax figures.">
+<link rel="canonical" href="https://www.clearsum-example.com/take-home-pay-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Take-Home Pay Calculator — Estimate Your Net Pay">
+<meta property="og:description" content="Estimate your net take-home pay after federal income tax, Social Security, Medicare, and state tax, using current 2026 federal tax figures.">
+<meta property="og:url" content="https://www.clearsum-example.com/take-home-pay-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Take-Home Pay Calculator — Estimate Your Net Pay">
+<meta name="twitter:description" content="Estimate your net take-home pay after federal income tax, Social Security, Medicare, and state tax, using current 2026 federal tax figures.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is my actual paycheck different from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Real paycheck withholding depends on your W-4 elections, actual state and local tax rules, health insurance and other benefit deductions, and how your employer calculates withholding — all of which this simplified calculator doesn't fully model."}},{"@type":"Question","name":"What if my state has no income tax?","acceptedAnswer":{"@type":"Answer","text":"Enter 0 for the state tax rate."}},{"@type":"Question","name":"Where do the federal tax figures come from?","acceptedAnswer":{"@type":"Answer","text":"The 2026 IRS standard deduction and tax brackets (IRS Revenue Procedure 2025-32) and the 2026 Social Security wage base published by the Social Security Administration. These figures update annually — recheck them for future tax years."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#income">Income</a><span aria-hidden="true">/</span> Take-Home Pay Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Take-Home Pay Calculator</h1>
+  <p class="lede">Estimate your net take-home pay after federal income tax, Social Security, Medicare, and state income tax, using 2026 federal tax figures.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="annualGrossIncome">Annual gross income</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="annualGrossIncome"
+      name="annualGrossIncome"
+      class=""
+      value="80000"
+      min="0"
+      
+      step="500"
+      inputmode="decimal"
+      aria-describedby="annualGrossIncome-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="annualGrossIncome-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="filingStatus">Filing status</label>
+  
+  <select id="filingStatus" name="filingStatus" data-type="select">
+      <option value="single" selected>Single</option>
+      <option value="mfj">Married filing jointly</option>
+      <option value="hoh">Head of household</option>
+  </select>
+  <span class="field-error" id="filingStatus-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="preTaxDeductions">Pre-tax deductions (401k, etc.)</label>
+  <span class="hint">Optional — annual amount</span>
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="preTaxDeductions"
+      name="preTaxDeductions"
+      class=""
+      value="0"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="preTaxDeductions-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="preTaxDeductions-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="stateTaxRate">State income tax rate</label>
+  <span class="hint">Optional — enter 0 for no-income-tax states</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="stateTaxRate"
+      name="stateTaxRate"
+      class="has-suffix"
+      value="5"
+      min="0"
+      max="15"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="stateTaxRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="stateTaxRate-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/income-tax-calculator/">Income Tax Calculator — Estimate Your Federal Tax (2026)</a></li>
+      <li><a href="/salary-calculator/">Salary Calculator — Convert Hourly Wage to Annual Salary</a></li>
+      <li><a href="/salary-to-hourly-calculator/">Salary to Hourly Calculator — Convert Annual Pay to Hourly Rate</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator estimates federal income tax using the 2026 IRS standard deduction and marginal tax brackets, then adds Social Security tax (6.2%, up to the 2026 wage base of $184,500) and Medicare tax (1.45%, plus an additional 0.9% above $200,000 single / $250,000 joint).</p>
+<p>State income tax is calculated using the flat rate you enter, since actual state tax systems vary widely — some states have no income tax, others have their own brackets. This is a simplification, not a substitute for your actual state's rules.</p>
+<div class="callout"><strong>Not included:</strong> Uses 2026 federal brackets, standard deduction, and Social Security/Medicare rates for Single, Married Filing Jointly, and Head of Household — Married Filing Separately isn't covered. State tax uses a flat rate you provide, not your actual state's bracket structure. Doesn't include local taxes, W-4 elections, or benefits like health insurance premiums.</div>
+<h2>Formula</h2>
+<div class="formula-box">Take-home = Gross − Pre-tax deductions − Federal tax − Social Security − Medicare − State tax</div>
+<ul>
+      <li><strong>Federal tax</strong> — 2026 IRS brackets applied to (gross − deductions − standard deduction)</li>
+      <li><strong>Social Security</strong> — 6.2% of gross, up to the $184,500 wage base</li>
+      <li><strong>Medicare</strong> — 1.45% of gross, plus 0.9% above the threshold for your filing status</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Annual gross income $80,000, single, no pre-tax deductions, 5% state tax rate.</p>
+  <p><strong>Result:</strong> Federal income tax: $8,770.00. Social Security: $4,960.00. Medicare: $1,160.00. State tax: $4,000.00. Estimated take-home pay: $61,110.00.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>Why is my actual paycheck different from this estimate?</summary>
+    <p>Real paycheck withholding depends on your W-4 elections, actual state and local tax rules, health insurance and other benefit deductions, and how your employer calculates withholding — all of which this simplified calculator doesn't fully model.</p>
+  </details>
+  <details class="faq-item">
+    <summary>What if my state has no income tax?</summary>
+    <p>Enter 0 for the state tax rate.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Where do the federal tax figures come from?</summary>
+    <p>The 2026 IRS standard deduction and tax brackets (IRS Revenue Procedure 2025-32) and the 2026 Social Security wage base published by the Social Security Administration. These figures update annually — recheck them for future tax years.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/_tax-data.js"></script>
+<script src="/js/calculators/take-home-pay-calculator.js"></script>
+</body>
+</html>

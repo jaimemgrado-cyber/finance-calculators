@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Savings Goal Calculator — Monthly Contribution Needed</title>
+<meta name="description" content="Find out how much you need to save each month to reach a savings goal, based on your timeline, starting balance, and expected interest rate.">
+<link rel="canonical" href="https://www.clearsum-example.com/savings-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Savings Goal Calculator — Monthly Contribution Needed">
+<meta property="og:description" content="Find out how much you need to save each month to reach a savings goal, based on your timeline, starting balance, and expected interest rate.">
+<meta property="og:url" content="https://www.clearsum-example.com/savings-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Savings Goal Calculator — Monthly Contribution Needed">
+<meta name="twitter:description" content="Find out how much you need to save each month to reach a savings goal, based on your timeline, starting balance, and expected interest rate.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What if I can't contribute the required amount?","acceptedAnswer":{"@type":"Answer","text":"Try a longer timeline or a lower goal amount in the calculator — extending the time period reduces the required monthly contribution, since your money has more time to grow and you're spreading contributions further apart."}},{"@type":"Question","name":"Does this account for taxes on interest?","acceptedAnswer":{"@type":"Answer","text":"No — this is a pre-tax projection of growth. Interest or investment gains may be taxable depending on the type of account, which would reduce your real accumulated total."}},{"@type":"Question","name":"Why is the required contribution not just the goal divided by months?","acceptedAnswer":{"@type":"Answer","text":"Because any interest your account earns along the way contributes toward the goal too, so the required monthly amount is typically a bit lower than a simple division would suggest — the gap shrinks as your rate and timeline increase."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> Savings Goal Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Savings Goal Calculator</h1>
+  <p class="lede">Find the monthly contribution needed to reach a savings goal by a target date, based on your starting balance and an estimated interest rate.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="goalAmount">Savings goal</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="goalAmount"
+      name="goalAmount"
+      class=""
+      value="15000"
+      min="0.01"
+      
+      step="500"
+      inputmode="decimal"
+      aria-describedby="goalAmount-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="goalAmount-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="currentSavings">Current savings</label>
+  <span class="hint">Optional — enter 0 if starting from zero</span>
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="currentSavings"
+      name="currentSavings"
+      class=""
+      value="2000"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="currentSavings-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="currentSavings-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="annualInterestRate">Estimated annual return</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="annualInterestRate"
+      name="annualInterestRate"
+      class="has-suffix"
+      value="4"
+      min="0"
+      max="30"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="annualInterestRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="annualInterestRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="years">Time to reach goal</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="years"
+      name="years"
+      class="has-suffix"
+      value="3"
+      min="1"
+      max="50"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="years-error"
+      required>
+    <span class="affix affix--suffix">years</span>
+  </div>
+  <span class="field-error" id="years-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/compound-interest-calculator/">Compound Interest Calculator — Future Value of Savings</a></li>
+      <li><a href="/retirement-calculator/">Retirement Calculator — Projected Savings at Retirement Age</a></li>
+      <li><a href="/debt-payoff-calculator/">Debt Payoff Calculator — Payoff Time &amp; Extra Payment Savings</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator first projects what your current savings will grow to on its own over your timeline. It then solves for the fixed monthly contribution needed to close the remaining gap to your goal, assuming monthly compounding.</p>
+<p>If your current savings are already projected to reach (or exceed) your goal through growth alone, the required monthly contribution will show as $0.</p>
+<div class="callout"><strong>Not included:</strong> This assumes a constant rate of return and contributions made consistently every month — real accounts and market returns vary.</div>
+<h2>Formula</h2>
+<div class="formula-box">Required monthly = [ Goal − P(1 + r)ⁿ ] ÷ [ ((1 + r)ⁿ − 1) / r ]</div>
+<ul>
+      <li><strong>Goal</strong> — Target savings amount</li>
+      <li><strong>P</strong> — Current savings</li>
+      <li><strong>r</strong> — Monthly interest rate (annual rate ÷ 12)</li>
+      <li><strong>n</strong> — Number of months until the goal date</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Goal $15,000, current savings $2,000, 4% estimated annual return, 3-year timeline.</p>
+  <p><strong>Result:</strong> Starting savings grows to: $2,254.54. Required monthly contribution: $333.81. Total you'll contribute: $12,017.22.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What if I can&#39;t contribute the required amount?</summary>
+    <p>Try a longer timeline or a lower goal amount in the calculator — extending the time period reduces the required monthly contribution, since your money has more time to grow and you're spreading contributions further apart.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Does this account for taxes on interest?</summary>
+    <p>No — this is a pre-tax projection of growth. Interest or investment gains may be taxable depending on the type of account, which would reduce your real accumulated total.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Why is the required contribution not just the goal divided by months?</summary>
+    <p>Because any interest your account earns along the way contributes toward the goal too, so the required monthly amount is typically a bit lower than a simple division would suggest — the gap shrinks as your rate and timeline increase.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/savings-calculator.js"></script>
+</body>
+</html>

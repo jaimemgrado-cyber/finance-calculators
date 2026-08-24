@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discount Calculator — Calculate Sale Price and Savings</title>
+<meta name="description" content="Calculate how much you&#39;ll save and what you&#39;ll pay after a percentage-off discount is applied to any price.">
+<link rel="canonical" href="https://www.clearsum-example.com/discount-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Discount Calculator — Calculate Sale Price and Savings">
+<meta property="og:description" content="Calculate how much you&#39;ll save and what you&#39;ll pay after a percentage-off discount is applied to any price.">
+<meta property="og:url" content="https://www.clearsum-example.com/discount-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Discount Calculator — Calculate Sale Price and Savings">
+<meta name="twitter:description" content="Calculate how much you&#39;ll save and what you&#39;ll pay after a percentage-off discount is applied to any price.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this include sales tax?","acceptedAnswer":{"@type":"Answer","text":"No — this shows the discounted price only. Use the Sales Tax Calculator afterward if you want to add tax to the final price."}},{"@type":"Question","name":"How do I stack two discounts, like 20% off plus an extra 10% off?","acceptedAnswer":{"@type":"Answer","text":"Apply them one at a time rather than adding the percentages together: run this calculator with the first discount, then use that result as the starting price for the second discount. Two 10% discounts stacked equal about 19% off total, not 20%."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#everyday">Everyday Finance</a><span aria-hidden="true">/</span> Discount Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Discount Calculator</h1>
+  <p class="lede">Calculate how much you&#39;ll save and what you&#39;ll actually pay after a percentage-off discount.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="originalPrice">Original price</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="originalPrice"
+      name="originalPrice"
+      class=""
+      value="120"
+      min="0"
+      
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="originalPrice-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="originalPrice-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="discountPercent">Discount</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="discountPercent"
+      name="discountPercent"
+      class="has-suffix"
+      value="25"
+      min="0"
+      max="100"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="discountPercent-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="discountPercent-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/sales-tax-calculator/">Sales Tax Calculator — Add Tax to Any Price</a></li>
+      <li><a href="/percentage-calculator/">Percentage Calculator — Find a Percentage of Any Number</a></li>
+      <li><a href="/tip-calculator/">Tip Calculator — Calculate Tip and Split the Bill</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator multiplies the original price by the discount percentage to find your savings, then subtracts that from the original price for the final amount you'd pay — before any sales tax.</p>
+
+<h2>Formula</h2>
+<div class="formula-box">Savings = Price × (Discount % ÷ 100);  Final price = Price − Savings</div>
+<ul>
+      <li><strong>Price</strong> — Original price before the discount</li>
+      <li><strong>Discount %</strong> — The percentage taken off</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Original price $120, 25% discount.</p>
+  <p><strong>Result:</strong> You save: $30.00. Final price: $90.00.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>Does this include sales tax?</summary>
+    <p>No — this shows the discounted price only. Use the Sales Tax Calculator afterward if you want to add tax to the final price.</p>
+  </details>
+  <details class="faq-item">
+    <summary>How do I stack two discounts, like 20% off plus an extra 10% off?</summary>
+    <p>Apply them one at a time rather than adding the percentages together: run this calculator with the first discount, then use that result as the starting price for the second discount. Two 10% discounts stacked equal about 19% off total, not 20%.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/discount-calculator.js"></script>
+</body>
+</html>

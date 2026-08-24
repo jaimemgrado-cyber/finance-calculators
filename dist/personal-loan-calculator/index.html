@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Loan Calculator — Payment, Fees &amp; Total Cost</title>
+<meta name="description" content="Estimate your personal loan&#39;s monthly payment, origination fee, and total interest — see what you&#39;ll actually receive versus what you&#39;ll repay.">
+<link rel="canonical" href="https://www.clearsum-example.com/personal-loan-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Personal Loan Calculator — Payment, Fees &amp; Total Cost">
+<meta property="og:description" content="Estimate your personal loan&#39;s monthly payment, origination fee, and total interest — see what you&#39;ll actually receive versus what you&#39;ll repay.">
+<meta property="og:url" content="https://www.clearsum-example.com/personal-loan-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Personal Loan Calculator — Payment, Fees &amp; Total Cost">
+<meta name="twitter:description" content="Estimate your personal loan&#39;s monthly payment, origination fee, and total interest — see what you&#39;ll actually receive versus what you&#39;ll repay.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is my payment based on $10,000 if I only received $9,700?","acceptedAnswer":{"@type":"Answer","text":"The origination fee is taken out of your disbursement, not off your obligation — you still owe and repay the full amount you were approved for, so the fee effectively raises your real cost of borrowing beyond the stated interest rate."}},{"@type":"Question","name":"Do all personal loans charge an origination fee?","acceptedAnswer":{"@type":"Answer","text":"No — it varies by lender. Enter 0 if your loan doesn't have one. Comparing loans by APR (which factors in fees) rather than just the interest rate gives a more apples-to-apples comparison."}},{"@type":"Question","name":"Is a personal loan different from the generic Loan Calculator?","acceptedAnswer":{"@type":"Answer","text":"The math is the same amortization formula — this version adds the origination fee, which is common on personal loans specifically and worth seeing separately from the payment itself."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#loans">Loans</a><span aria-hidden="true">/</span> Personal Loan Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Personal Loan Calculator</h1>
+  <p class="lede">Estimate your monthly payment on a personal loan, and see how an origination fee affects the amount you actually receive versus what you repay.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="loanAmount">Loan amount</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="loanAmount"
+      name="loanAmount"
+      class=""
+      value="10000"
+      min="0.01"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="loanAmount-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="loanAmount-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="originationFeePercent">Origination fee</label>
+  <span class="hint">Optional — enter 0 if none</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="originationFeePercent"
+      name="originationFeePercent"
+      class="has-suffix"
+      value="3"
+      min="0"
+      max="15"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="originationFeePercent-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="originationFeePercent-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="interestRate">Interest rate (APR)</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="interestRate"
+      name="interestRate"
+      class="has-suffix"
+      value="11.5"
+      min="0"
+      max="60"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="interestRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="interestRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="loanTermMonths">Loan term</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="loanTermMonths"
+      name="loanTermMonths"
+      class="has-suffix"
+      value="36"
+      min="1"
+      max="84"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="loanTermMonths-error"
+      required>
+    <span class="affix affix--suffix">months</span>
+  </div>
+  <span class="field-error" id="loanTermMonths-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/loan-calculator/">Loan Calculator — Monthly Payment for Any Fixed-Rate Loan</a></li>
+      <li><a href="/credit-card-payoff-calculator/">Credit Card Payoff Calculator — How Long to Pay Off Debt</a></li>
+      <li><a href="/debt-payoff-calculator/">Debt Payoff Calculator — Payoff Time &amp; Extra Payment Savings</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>Many personal loans deduct an origination fee from the loan amount before disbursing it — so if you're approved for $10,000 with a 3% fee, you receive $9,700, but you still repay the full $10,000 plus interest.</p>
+<p>This calculator applies the standard amortization formula to the full loan amount to find your monthly payment, and separately shows the fee's effect on what you actually receive.</p>
+<div class="callout"><strong>Not included:</strong> This assumes a single upfront origination fee and no other fees (like late fees or prepayment penalties), and a fixed rate for the full term.</div>
+<h2>Formula</h2>
+<div class="formula-box">M = P × [ i(1 + i)ⁿ ] / [ (1 + i)ⁿ − 1 ];  Received = P − (P × fee%)</div>
+<ul>
+      <li><strong>M</strong> — Monthly payment</li>
+      <li><strong>P</strong> — Loan amount (what you repay, before the fee is subtracted)</li>
+      <li><strong>i</strong> — Monthly interest rate (annual rate ÷ 12)</li>
+      <li><strong>n</strong> — Loan term in months</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Loan amount $10,000, 3% origination fee, 11.5% APR, 36-month term.</p>
+  <p><strong>Result:</strong> Amount received: $9,700.00. Monthly payment: $329.76. Total interest paid: $1,871.36.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>Why is my payment based on $10,000 if I only received $9,700?</summary>
+    <p>The origination fee is taken out of your disbursement, not off your obligation — you still owe and repay the full amount you were approved for, so the fee effectively raises your real cost of borrowing beyond the stated interest rate.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Do all personal loans charge an origination fee?</summary>
+    <p>No — it varies by lender. Enter 0 if your loan doesn't have one. Comparing loans by APR (which factors in fees) rather than just the interest rate gives a more apples-to-apples comparison.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Is a personal loan different from the generic Loan Calculator?</summary>
+    <p>The math is the same amortization formula — this version adds the origination fee, which is common on personal loans specifically and worth seeing separately from the payment itself.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/personal-loan-calculator.js"></script>
+</body>
+</html>

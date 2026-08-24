@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loan Calculator — Monthly Payment for Any Fixed-Rate Loan</title>
+<meta name="description" content="Calculate the monthly payment, total interest, and total cost for any fixed-rate loan — personal, mortgage, or other installment loans.">
+<link rel="canonical" href="https://www.clearsum-example.com/loan-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Loan Calculator — Monthly Payment for Any Fixed-Rate Loan">
+<meta property="og:description" content="Calculate the monthly payment, total interest, and total cost for any fixed-rate loan — personal, mortgage, or other installment loans.">
+<meta property="og:url" content="https://www.clearsum-example.com/loan-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Loan Calculator — Monthly Payment for Any Fixed-Rate Loan">
+<meta name="twitter:description" content="Calculate the monthly payment, total interest, and total cost for any fixed-rate loan — personal, mortgage, or other installment loans.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What kinds of loans can I use this for?","acceptedAnswer":{"@type":"Answer","text":"Any fixed-rate, fixed-term loan where you borrow a lump sum and repay it in equal monthly installments — personal loans, debt consolidation loans, and similar installment loans. For a mortgage or auto loan, the dedicated calculators add relevant extras like taxes or trade-in value."}},{"@type":"Question","name":"Does this include fees?","acceptedAnswer":{"@type":"Answer","text":"No. Some personal loans include an origination fee deducted from the amount you receive, which effectively raises your real borrowing cost. Check your loan's APR (not just the interest rate) for a fuller picture, and add any fees separately."}},{"@type":"Question","name":"What happens if I pay more than the required monthly payment?","acceptedAnswer":{"@type":"Answer","text":"Extra payments reduce your principal faster, which lowers the total interest you'll pay and can shorten the loan term — though this calculator shows the standard fixed-payment schedule, not an accelerated one."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#loans">Loans</a><span aria-hidden="true">/</span> Loan Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Loan Calculator</h1>
+  <p class="lede">Find the monthly payment, total interest, and total repayment amount for any fixed-rate installment loan — useful for personal loans and any other lump-sum loan with a set term.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="loanAmount">Loan amount</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="loanAmount"
+      name="loanAmount"
+      class=""
+      value="15000"
+      min="0.01"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="loanAmount-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="loanAmount-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="interestRate">Interest rate (APR)</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="interestRate"
+      name="interestRate"
+      class="has-suffix"
+      value="9.5"
+      min="0"
+      max="60"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="interestRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="interestRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="loanTermMonths">Loan term</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="loanTermMonths"
+      name="loanTermMonths"
+      class="has-suffix"
+      value="48"
+      min="1"
+      max="480"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="loanTermMonths-error"
+      required>
+    <span class="affix affix--suffix">months</span>
+  </div>
+  <span class="field-error" id="loanTermMonths-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/personal-loan-calculator/">Personal Loan Calculator — Payment, Fees &amp; Total Cost</a></li>
+      <li><a href="/mortgage-calculator/">Mortgage Calculator — Estimate Your Monthly Payment</a></li>
+      <li><a href="/auto-loan-calculator/">Auto Loan Calculator — Monthly Car Payment Estimate</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator uses the same fixed-rate amortization formula lenders use to set equal monthly payments for the life of a loan: each payment covers that month's interest, with the remainder reducing the principal balance.</p>
+<p>It works for any loan with a lump-sum amount, a fixed rate, and a fixed term — personal loans, debt consolidation loans, or similar installment loans.</p>
+<div class="callout"><strong>Not included:</strong> This estimate assumes a fixed rate and equal monthly payments (a standard amortizing loan). It doesn't include origination fees or other lender charges.</div>
+<h2>Formula</h2>
+<div class="formula-box">M = P × [ i(1 + i)ⁿ ] / [ (1 + i)ⁿ − 1 ]</div>
+<ul>
+      <li><strong>M</strong> — Monthly payment</li>
+      <li><strong>P</strong> — Loan amount (principal)</li>
+      <li><strong>i</strong> — Monthly interest rate (annual rate ÷ 12)</li>
+      <li><strong>n</strong> — Number of monthly payments</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Loan amount $15,000, interest rate 9.5% APR, 48-month term.</p>
+  <p><strong>Result:</strong> Monthly payment: $376.85. Total interest paid: $3,088.66. Total of all payments: $18,088.66.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What kinds of loans can I use this for?</summary>
+    <p>Any fixed-rate, fixed-term loan where you borrow a lump sum and repay it in equal monthly installments — personal loans, debt consolidation loans, and similar installment loans. For a mortgage or auto loan, the dedicated calculators add relevant extras like taxes or trade-in value.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Does this include fees?</summary>
+    <p>No. Some personal loans include an origination fee deducted from the amount you receive, which effectively raises your real borrowing cost. Check your loan's APR (not just the interest rate) for a fuller picture, and add any fees separately.</p>
+  </details>
+  <details class="faq-item">
+    <summary>What happens if I pay more than the required monthly payment?</summary>
+    <p>Extra payments reduce your principal faster, which lowers the total interest you'll pay and can shorten the loan term — though this calculator shows the standard fixed-payment schedule, not an accelerated one.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/loan-calculator.js"></script>
+</body>
+</html>

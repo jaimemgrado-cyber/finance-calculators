@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inflation Calculator — Future Cost of Today&#39;s Money</title>
+<meta name="description" content="See what a dollar amount today could cost in the future, based on an inflation rate you choose.">
+<link rel="canonical" href="https://www.clearsum-example.com/inflation-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inflation Calculator — Future Cost of Today&#39;s Money">
+<meta property="og:description" content="See what a dollar amount today could cost in the future, based on an inflation rate you choose.">
+<meta property="og:url" content="https://www.clearsum-example.com/inflation-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inflation Calculator — Future Cost of Today&#39;s Money">
+<meta name="twitter:description" content="See what a dollar amount today could cost in the future, based on an inflation rate you choose.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What inflation rate should I use?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't recommend one. You might use a recent CPI figure from the Bureau of Labor Statistics, the Federal Reserve's long-run target (commonly cited as 2%), or your own assumption — the result is only as reliable as the rate you choose."}},{"@type":"Question","name":"Why doesn't this use real historical inflation data?","acceptedAnswer":{"@type":"Answer","text":"Historical CPI data is real, published data, but hardcoding it here would go stale and wouldn't reflect future inflation anyway. Letting you enter the rate keeps the calculator honest about being a projection, not a lookup of the past."}},{"@type":"Question","name":"Can I use this to see what a past price would cost today?","acceptedAnswer":{"@type":"Answer","text":"This calculator projects forward from today. To adjust a past amount into today's dollars, you'd need historical CPI data for the specific years involved — the BLS inflation calculator is built for that specific use case."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#everyday">Everyday Finance</a><span aria-hidden="true">/</span> Inflation Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Inflation Calculator</h1>
+  <p class="lede">See what a dollar amount today could cost in the future, based on an inflation rate you choose.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="amount">Amount today</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="amount"
+      name="amount"
+      class=""
+      value="10000"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="amount-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="amount-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="annualInflationRate">Annual inflation rate</label>
+  <span class="hint">Your assumption — see “How It Works” below</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="annualInflationRate"
+      name="annualInflationRate"
+      class="has-suffix"
+      value="3"
+      min="0"
+      max="30"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="annualInflationRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="annualInflationRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="years">Time period</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="years"
+      name="years"
+      class="has-suffix"
+      value="10"
+      min="1"
+      max="60"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="years-error"
+      required>
+    <span class="affix affix--suffix">years</span>
+  </div>
+  <span class="field-error" id="years-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/compound-interest-calculator/">Compound Interest Calculator — Future Value of Savings</a></li>
+      <li><a href="/investment-calculator/">Investment Calculator — Future Value &amp; Real Purchasing Power</a></li>
+      <li><a href="/percentage-calculator/">Percentage Calculator — Find a Percentage of Any Number</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator compounds an amount forward at the inflation rate you enter, showing what an equivalent purchase might cost in the future — the same math as compound interest, applied to rising prices instead of growing savings.</p>
+<p>We intentionally don't hardcode a specific inflation rate or historical CPI data here, since actual inflation changes over time and by category of spending. For historical U.S. inflation data, the Bureau of Labor Statistics publishes the Consumer Price Index (CPI), which you can use to inform the rate you enter.</p>
+<div class="callout"><strong>Not included:</strong> This calculator uses an inflation rate you provide, not historical Consumer Price Index (CPI) data — actual inflation varies year to year and isn't predictable over long periods.</div>
+<h2>Formula</h2>
+<div class="formula-box">Future cost = Amount × (1 + Inflation rate ÷ 100)ⁿ</div>
+<ul>
+      <li><strong>Amount</strong> — Today&#39;s dollar amount</li>
+      <li><strong>Inflation rate</strong> — Your assumed annual inflation rate</li>
+      <li><strong>n</strong> — Number of years</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> $10,000 today, 3% assumed annual inflation, 10 years.</p>
+  <p><strong>Result:</strong> Additional cost from inflation: $3,439.16. Equivalent cost in 10 years: $13,439.16 — a 34.39% total increase.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What inflation rate should I use?</summary>
+    <p>This calculator doesn't recommend one. You might use a recent CPI figure from the Bureau of Labor Statistics, the Federal Reserve's long-run target (commonly cited as 2%), or your own assumption — the result is only as reliable as the rate you choose.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Why doesn&#39;t this use real historical inflation data?</summary>
+    <p>Historical CPI data is real, published data, but hardcoding it here would go stale and wouldn't reflect future inflation anyway. Letting you enter the rate keeps the calculator honest about being a projection, not a lookup of the past.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Can I use this to see what a past price would cost today?</summary>
+    <p>This calculator projects forward from today. To adjust a past amount into today's dollars, you'd need historical CPI data for the specific years involved — the BLS inflation calculator is built for that specific use case.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/inflation-calculator.js"></script>
+</body>
+</html>

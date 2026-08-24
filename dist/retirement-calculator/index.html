@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retirement Calculator — Projected Savings at Retirement Age</title>
+<meta name="description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
+<link rel="canonical" href="https://www.clearsum-example.com/retirement-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Retirement Calculator — Projected Savings at Retirement Age">
+<meta property="og:description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
+<meta property="og:url" content="https://www.clearsum-example.com/retirement-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Retirement Calculator — Projected Savings at Retirement Age">
+<meta name="twitter:description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the 4% rule?","acceptedAnswer":{"@type":"Answer","text":"It's a widely referenced guideline from retirement research suggesting that withdrawing about 4% of a portfolio in the first year of retirement, then adjusting for inflation each year after, has historically had a reasonable chance of lasting 30 years. It's a starting point for discussion, not a guarantee or personalized advice — actual sustainable withdrawal rates depend on markets, spending, and how long retirement lasts."}},{"@type":"Question","name":"Does this include Social Security?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator only projects your own contributions and savings growth. Social Security, pensions, or other income sources would be additional."}},{"@type":"Question","name":"What if I don't know what return to expect?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't recommend a rate — try a few different assumptions to see how sensitive your projection is to the return you use."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> Retirement Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Retirement Calculator</h1>
+  <p class="lede">Estimate what your retirement savings could grow to by your target retirement age, based on your current age, savings, monthly contributions, and expected return.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="currentAge">Current age</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="currentAge"
+      name="currentAge"
+      class=""
+      value="30"
+      min="1"
+      max="100"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="currentAge-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="currentAge-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="retirementAge">Retirement age</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="retirementAge"
+      name="retirementAge"
+      class=""
+      value="65"
+      min="1"
+      max="100"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="retirementAge-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="retirementAge-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="currentSavings">Current retirement savings</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="currentSavings"
+      name="currentSavings"
+      class=""
+      value="15000"
+      min="0"
+      
+      step="500"
+      inputmode="decimal"
+      aria-describedby="currentSavings-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="currentSavings-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="monthlyContribution">Monthly contribution</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="monthlyContribution"
+      name="monthlyContribution"
+      class=""
+      value="400"
+      min="0"
+      
+      step="25"
+      inputmode="decimal"
+      aria-describedby="monthlyContribution-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="monthlyContribution-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="expectedAnnualReturn">Expected annual return</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="expectedAnnualReturn"
+      name="expectedAnnualReturn"
+      class="has-suffix"
+      value="7"
+      min="0"
+      max="30"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="expectedAnnualReturn-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="expectedAnnualReturn-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/compound-interest-calculator/">Compound Interest Calculator — Future Value of Savings</a></li>
+      <li><a href="/savings-calculator/">Savings Goal Calculator — Monthly Contribution Needed</a></li>
+      <li><a href="/investment-calculator/">Investment Calculator — Future Value &amp; Real Purchasing Power</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator projects your retirement balance the same way the Compound Interest Calculator does — monthly compounding, with monthly contributions — but uses your current and target retirement age to determine the time period instead of asking for a raw number of years.</p>
+<p>It also shows what that projected balance could support annually using the 4% rule, a commonly cited starting point from retirement research (not personalized advice, and not a guarantee that any balance will last a specific number of years).</p>
+<div class="callout"><strong>Not included:</strong> This is a projection based on a constant return you enter — not a guarantee. It doesn't include Social Security, employer matching, taxes, or fees.</div>
+<h2>Formula</h2>
+<div class="formula-box">Balance = P(1 + r)ⁿ + C × [ ((1 + r)ⁿ − 1) / r ];  Est. income = Balance × 4%</div>
+<ul>
+      <li><strong>P</strong> — Current retirement savings</li>
+      <li><strong>C</strong> — Monthly contribution</li>
+      <li><strong>r</strong> — Monthly interest rate (annual return ÷ 12)</li>
+      <li><strong>n</strong> — Months until retirement (years × 12)</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Current age 30, retirement age 65, $15,000 current savings, $400/month contribution, 7% expected annual return.</p>
+  <p><strong>Result:</strong> Projected balance at retirement: $893,014.12. Estimated annual income (4% rule): $35,720.56.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What is the 4% rule?</summary>
+    <p>It's a widely referenced guideline from retirement research suggesting that withdrawing about 4% of a portfolio in the first year of retirement, then adjusting for inflation each year after, has historically had a reasonable chance of lasting 30 years. It's a starting point for discussion, not a guarantee or personalized advice — actual sustainable withdrawal rates depend on markets, spending, and how long retirement lasts.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Does this include Social Security?</summary>
+    <p>No. This calculator only projects your own contributions and savings growth. Social Security, pensions, or other income sources would be additional.</p>
+  </details>
+  <details class="faq-item">
+    <summary>What if I don&#39;t know what return to expect?</summary>
+    <p>This calculator doesn't recommend a rate — try a few different assumptions to see how sensitive your projection is to the return you use.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/retirement-calculator.js"></script>
+</body>
+</html>

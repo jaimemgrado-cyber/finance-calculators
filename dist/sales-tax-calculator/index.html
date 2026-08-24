@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Tax Calculator — Add Tax to Any Price</title>
+<meta name="description" content="Calculate the sales tax and total price for a purchase using any tax rate you enter. Works for any U.S. state, county, or city rate.">
+<link rel="canonical" href="https://www.clearsum-example.com/sales-tax-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sales Tax Calculator — Add Tax to Any Price">
+<meta property="og:description" content="Calculate the sales tax and total price for a purchase using any tax rate you enter. Works for any U.S. state, county, or city rate.">
+<meta property="og:url" content="https://www.clearsum-example.com/sales-tax-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sales Tax Calculator — Add Tax to Any Price">
+<meta name="twitter:description" content="Calculate the sales tax and total price for a purchase using any tax rate you enter. Works for any U.S. state, county, or city rate.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What tax rate should I use?","acceptedAnswer":{"@type":"Answer","text":"Use the combined state, county, and city rate that applies at the point of sale. Rates vary across the U.S. and change periodically — check your state or local tax authority's website for the current rate in your area."}},{"@type":"Question","name":"Are all purchases taxed the same way?","acceptedAnswer":{"@type":"Answer","text":"No. Many states exempt or reduce tax on categories like groceries, prescription medication, or clothing, and some apply different rates to services versus goods. This calculator applies a single flat rate to the full price you enter."}},{"@type":"Question","name":"Can I use this to back into a pre-tax price from a total?","acceptedAnswer":{"@type":"Answer","text":"Not directly — this calculator adds tax to a pre-tax price. To reverse it, divide your total by (1 + rate/100) to estimate the pre-tax price."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#taxes">Taxes</a><span aria-hidden="true">/</span> Sales Tax Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Sales Tax Calculator</h1>
+  <p class="lede">Calculate the sales tax amount and total price for a purchase, using whatever combined state and local tax rate applies where you&#39;re shopping.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="price">Price before tax</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="price"
+      name="price"
+      class=""
+      value="249.99"
+      min="0"
+      
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="price-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="price-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="taxRate">Sales tax rate</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="taxRate"
+      name="taxRate"
+      class="has-suffix"
+      value="7.25"
+      min="0"
+      max="20"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="taxRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="taxRate-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/tip-calculator/">Tip Calculator — Calculate Tip and Split the Bill</a></li>
+      <li><a href="/discount-calculator/">Discount Calculator — Calculate Sale Price and Savings</a></li>
+      <li><a href="/income-tax-calculator/">Income Tax Calculator — Estimate Your Federal Tax (2026)</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>Enter the price before tax and the combined sales tax rate that applies to your purchase. The calculator multiplies the price by the tax rate to find the tax amount, then adds it to the price for your total.</p>
+<div class="callout"><strong>Not included:</strong> This calculator does not look up tax rates for you — U.S. sales tax rates vary by state, county, and city, and some categories of goods are taxed differently or exempt.</div>
+<h2>Formula</h2>
+<div class="formula-box">Tax = Price × (Rate ÷ 100);  Total = Price + Tax</div>
+<ul>
+      <li><strong>Price</strong> — Price before tax</li>
+      <li><strong>Rate</strong> — Combined sales tax rate, as a percentage</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Price $249.99, tax rate 7.25%.</p>
+  <p><strong>Result:</strong> Sales tax amount: $18.12. Total price: $268.11.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What tax rate should I use?</summary>
+    <p>Use the combined state, county, and city rate that applies at the point of sale. Rates vary across the U.S. and change periodically — check your state or local tax authority's website for the current rate in your area.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Are all purchases taxed the same way?</summary>
+    <p>No. Many states exempt or reduce tax on categories like groceries, prescription medication, or clothing, and some apply different rates to services versus goods. This calculator applies a single flat rate to the full price you enter.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Can I use this to back into a pre-tax price from a total?</summary>
+    <p>Not directly — this calculator adds tax to a pre-tax price. To reverse it, divide your total by (1 + rate/100) to estimate the pre-tax price.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/sales-tax-calculator.js"></script>
+</body>
+</html>

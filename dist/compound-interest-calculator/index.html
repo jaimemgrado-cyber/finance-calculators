@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compound Interest Calculator — Future Value of Savings</title>
+<meta name="description" content="See how a starting balance and monthly contributions could grow over time with compound interest. Free compound interest calculator for U.S. savers.">
+<link rel="canonical" href="https://www.clearsum-example.com/compound-interest-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compound Interest Calculator — Future Value of Savings">
+<meta property="og:description" content="See how a starting balance and monthly contributions could grow over time with compound interest. Free compound interest calculator for U.S. savers.">
+<meta property="og:url" content="https://www.clearsum-example.com/compound-interest-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compound Interest Calculator — Future Value of Savings">
+<meta name="twitter:description" content="See how a starting balance and monthly contributions could grow over time with compound interest. Free compound interest calculator for U.S. savers.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What return rate should I use?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't recommend a rate — enter whatever assumption is relevant to your situation, such as a savings account's stated APY or a rate you're modeling for a hypothetical investment. We don't provide or endorse any specific rate of return."}},{"@type":"Question","name":"Is compound interest guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. This tool projects growth assuming a constant rate, which is a simplification. Savings accounts and CDs may offer fixed rates, but investment returns fluctuate and can lose value, including the possibility of loss of principal."}},{"@type":"Question","name":"What's the difference between this and the Savings Goal Calculator?","acceptedAnswer":{"@type":"Answer","text":"This calculator shows what a given contribution grows into. The Savings Goal Calculator works backward from a target amount to tell you the monthly contribution needed to reach it."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> Compound Interest Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Compound Interest Calculator</h1>
+  <p class="lede">See how a starting amount and optional monthly contributions could grow over time, assuming a steady annual return that compounds monthly.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="initialAmount">Starting amount</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="initialAmount"
+      name="initialAmount"
+      class=""
+      value="5000"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="initialAmount-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="initialAmount-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="monthlyContribution">Monthly contribution</label>
+  <span class="hint">Optional — enter 0 for none</span>
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="monthlyContribution"
+      name="monthlyContribution"
+      class=""
+      value="200"
+      min="0"
+      
+      step="25"
+      inputmode="decimal"
+      aria-describedby="monthlyContribution-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="monthlyContribution-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="annualInterestRate">Estimated annual return</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="annualInterestRate"
+      name="annualInterestRate"
+      class="has-suffix"
+      value="7"
+      min="0"
+      max="30"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="annualInterestRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="annualInterestRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="years">Time period</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="years"
+      name="years"
+      class="has-suffix"
+      value="20"
+      min="1"
+      max="60"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="years-error"
+      required>
+    <span class="affix affix--suffix">years</span>
+  </div>
+  <span class="field-error" id="years-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/savings-calculator/">Savings Goal Calculator — Monthly Contribution Needed</a></li>
+      <li><a href="/investment-calculator/">Investment Calculator — Future Value &amp; Real Purchasing Power</a></li>
+      <li><a href="/retirement-calculator/">Retirement Calculator — Projected Savings at Retirement Age</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator assumes your balance compounds monthly at the rate you enter, and that any monthly contribution is added at the end of each month. It combines the growth of your starting amount with the growth of your ongoing contributions to show a projected future value.</p>
+<p>A constant annual return is a simplification used to illustrate the mechanics of compounding — actual markets and interest rates fluctuate, sometimes significantly.</p>
+<div class="callout"><strong>Not included:</strong> This is a projection based on a constant rate of return you enter — it is not a guarantee. Real investment returns vary year to year and can be negative.</div>
+<h2>Formula</h2>
+<div class="formula-box">FV = P(1 + r)ⁿ + C × [ ((1 + r)ⁿ − 1) / r ]</div>
+<ul>
+      <li><strong>FV</strong> — Future value</li>
+      <li><strong>P</strong> — Starting principal</li>
+      <li><strong>C</strong> — Monthly contribution</li>
+      <li><strong>r</strong> — Monthly interest rate (annual rate ÷ 12)</li>
+      <li><strong>n</strong> — Number of months</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Starting amount $5,000, $200/month contribution, 7% estimated annual return, 20 years.</p>
+  <p><strong>Result:</strong> Total contributions: $48,000.00. Total interest earned: $71,379.03. Future value: $124,379.03.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What return rate should I use?</summary>
+    <p>This calculator doesn't recommend a rate — enter whatever assumption is relevant to your situation, such as a savings account's stated APY or a rate you're modeling for a hypothetical investment. We don't provide or endorse any specific rate of return.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Is compound interest guaranteed?</summary>
+    <p>No. This tool projects growth assuming a constant rate, which is a simplification. Savings accounts and CDs may offer fixed rates, but investment returns fluctuate and can lose value, including the possibility of loss of principal.</p>
+  </details>
+  <details class="faq-item">
+    <summary>What&#39;s the difference between this and the Savings Goal Calculator?</summary>
+    <p>This calculator shows what a given contribution grows into. The Savings Goal Calculator works backward from a target amount to tell you the monthly contribution needed to reach it.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/compound-interest-calculator.js"></script>
+</body>
+</html>

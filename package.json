@@ -1,0 +1,10 @@
+{
+  "name": "clearsum-financial-calculators",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free U.S. financial calculators — static, framework-free site. See README.md.",
+  "scripts": {
+    "build": "node build/build.js",
+    "test": "node tests/run-all.js"
+  }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investment Calculator — Future Value &amp; Real Purchasing Power</title>
+<meta name="description" content="Project the future value of a lump-sum investment, and see what it&#39;s worth in today&#39;s purchasing power after accounting for inflation.">
+<link rel="canonical" href="https://www.clearsum-example.com/investment-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Investment Calculator — Future Value &amp; Real Purchasing Power">
+<meta property="og:description" content="Project the future value of a lump-sum investment, and see what it&#39;s worth in today&#39;s purchasing power after accounting for inflation.">
+<meta property="og:url" content="https://www.clearsum-example.com/investment-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Investment Calculator — Future Value &amp; Real Purchasing Power">
+<meta name="twitter:description" content="Project the future value of a lump-sum investment, and see what it&#39;s worth in today&#39;s purchasing power after accounting for inflation.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What return rate should I use?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't recommend a rate — enter whatever assumption fits what you're modeling. We don't endorse or predict any specific rate of return."}},{"@type":"Question","name":"Why show a 'today's dollars' figure at all?","acceptedAnswer":{"@type":"Answer","text":"A dollar amount decades from now buys less than the same amount today, because prices rise over time. Showing the inflation-adjusted figure gives a more realistic sense of the purchasing power your investment could provide."}},{"@type":"Question","name":"How is this different from the Compound Interest Calculator?","acceptedAnswer":{"@type":"Answer","text":"Compound Interest focuses on monthly contributions building up over time with monthly compounding. This calculator focuses on a single lump sum with annual compounding, and adds an inflation-adjusted view."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> Investment Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Investment Calculator</h1>
+  <p class="lede">Project what a lump-sum investment could grow to, and see that amount in today&#39;s purchasing power after accounting for inflation.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="initialInvestment">Initial investment</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="initialInvestment"
+      name="initialInvestment"
+      class=""
+      value="20000"
+      min="0.01"
+      
+      step="500"
+      inputmode="decimal"
+      aria-describedby="initialInvestment-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="initialInvestment-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="expectedAnnualReturn">Expected annual return</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="expectedAnnualReturn"
+      name="expectedAnnualReturn"
+      class="has-suffix"
+      value="8"
+      min="0"
+      max="30"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="expectedAnnualReturn-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="expectedAnnualReturn-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="expectedInflationRate">Expected inflation rate</label>
+  <span class="hint">Optional — enter 0 to ignore inflation</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="expectedInflationRate"
+      name="expectedInflationRate"
+      class="has-suffix"
+      value="3"
+      min="0"
+      max="20"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="expectedInflationRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="expectedInflationRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="years">Time period</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="years"
+      name="years"
+      class="has-suffix"
+      value="15"
+      min="1"
+      max="60"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="years-error"
+      required>
+    <span class="affix affix--suffix">years</span>
+  </div>
+  <span class="field-error" id="years-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/compound-interest-calculator/">Compound Interest Calculator — Future Value of Savings</a></li>
+      <li><a href="/retirement-calculator/">Retirement Calculator — Projected Savings at Retirement Age</a></li>
+      <li><a href="/roi-calculator/">ROI Calculator — Return on Investment &amp; Annualized Return</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator compounds your initial investment annually at the return rate you enter. It also shows that future amount in 'today's dollars' by dividing it by the effect of inflation over the same period — a way of estimating real purchasing power, not just the nominal dollar figure.</p>
+<p>If your expected return equals your expected inflation rate, the real (inflation-adjusted) value will show no growth, since the investment is only keeping pace with rising prices.</p>
+<div class="callout"><strong>Not included:</strong> This is a projection based on constant rates you enter, not a guarantee. It doesn't include taxes on investment gains, fees, or additional contributions.</div>
+<h2>Formula</h2>
+<div class="formula-box">Nominal FV = P(1 + r)ⁿ;  Real FV = Nominal FV ÷ (1 + i)ⁿ</div>
+<ul>
+      <li><strong>P</strong> — Initial investment</li>
+      <li><strong>r</strong> — Expected annual return</li>
+      <li><strong>i</strong> — Expected annual inflation rate</li>
+      <li><strong>n</strong> — Number of years</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Initial investment $20,000, 8% expected annual return, 3% expected inflation, 15 years.</p>
+  <p><strong>Result:</strong> Future value (nominal): $63,443.38. Future value in today's dollars: $40,721.89.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What return rate should I use?</summary>
+    <p>This calculator doesn't recommend a rate — enter whatever assumption fits what you're modeling. We don't endorse or predict any specific rate of return.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Why show a &#39;today&#39;s dollars&#39; figure at all?</summary>
+    <p>A dollar amount decades from now buys less than the same amount today, because prices rise over time. Showing the inflation-adjusted figure gives a more realistic sense of the purchasing power your investment could provide.</p>
+  </details>
+  <details class="faq-item">
+    <summary>How is this different from the Compound Interest Calculator?</summary>
+    <p>Compound Interest focuses on monthly contributions building up over time with monthly compounding. This calculator focuses on a single lump sum with annual compounding, and adds an inflation-adjusted view.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/investment-calculator.js"></script>
+</body>
+</html>

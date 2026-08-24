@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Income Tax Calculator — Estimate Your Federal Tax (2026)</title>
+<meta name="description" content="Estimate your federal income tax liability, marginal tax bracket, and effective tax rate using 2026 IRS tax brackets and the standard deduction.">
+<link rel="canonical" href="https://www.clearsum-example.com/income-tax-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Income Tax Calculator — Estimate Your Federal Tax (2026)">
+<meta property="og:description" content="Estimate your federal income tax liability, marginal tax bracket, and effective tax rate using 2026 IRS tax brackets and the standard deduction.">
+<meta property="og:url" content="https://www.clearsum-example.com/income-tax-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Income Tax Calculator — Estimate Your Federal Tax (2026)">
+<meta name="twitter:description" content="Estimate your federal income tax liability, marginal tax bracket, and effective tax rate using 2026 IRS tax brackets and the standard deduction.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where do these tax brackets come from?","acceptedAnswer":{"@type":"Answer","text":"The 2026 tax year brackets and standard deduction published by the IRS in Revenue Procedure 2025-32 (announced October 2025). Tax brackets are adjusted for inflation annually, so these figures are specific to income earned in 2026."}},{"@type":"Question","name":"What's the difference between my marginal and effective tax rate?","acceptedAnswer":{"@type":"Answer","text":"Your marginal rate is the rate on your last dollar of taxable income — the top bracket you reach. Your effective rate is your total tax divided by your income, which is always lower, since earlier dollars are taxed at lower bracket rates first."}},{"@type":"Question","name":"Does this include state income tax?","acceptedAnswer":{"@type":"Answer","text":"No — this calculator only estimates federal income tax. Use the Take-Home Pay Calculator to include an estimated state tax rate alongside federal tax and FICA."}},{"@type":"Question","name":"Why isn't Married Filing Separately included?","acceptedAnswer":{"@type":"Answer","text":"We only publish figures we've directly verified against a primary source, and we haven't yet confirmed the exact Married Filing Separately thresholds against one. We'll add that status once we have."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#taxes">Taxes</a><span aria-hidden="true">/</span> Income Tax Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Income Tax Calculator</h1>
+  <p class="lede">Estimate your federal income tax liability, marginal tax bracket, and effective tax rate, using 2026 IRS tax brackets and the standard deduction.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="grossIncome">Annual gross income</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="grossIncome"
+      name="grossIncome"
+      class=""
+      value="80000"
+      min="0"
+      
+      step="500"
+      inputmode="decimal"
+      aria-describedby="grossIncome-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="grossIncome-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="filingStatus">Filing status</label>
+  
+  <select id="filingStatus" name="filingStatus" data-type="select">
+      <option value="single" selected>Single</option>
+      <option value="mfj">Married filing jointly</option>
+      <option value="hoh">Head of household</option>
+  </select>
+  <span class="field-error" id="filingStatus-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="otherDeductions">Other deductions</label>
+  <span class="hint">Optional — beyond the standard deduction</span>
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="otherDeductions"
+      name="otherDeductions"
+      class=""
+      value="0"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="otherDeductions-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="otherDeductions-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/take-home-pay-calculator/">Take-Home Pay Calculator — Estimate Your Net Pay</a></li>
+      <li><a href="/sales-tax-calculator/">Sales Tax Calculator — Add Tax to Any Price</a></li>
+      <li><a href="/salary-calculator/">Salary Calculator — Convert Hourly Wage to Annual Salary</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator subtracts the 2026 IRS standard deduction (and any other deductions you enter) from your gross income to find taxable income, then applies the 2026 marginal tax brackets to that amount.</p>
+<p>Marginal brackets are progressive: only the income within each bracket is taxed at that bracket's rate, not your entire income. Your effective tax rate — total tax divided by gross income — is always lower than your marginal (top) bracket rate.</p>
+<div class="callout"><strong>Not included:</strong> Covers Single, Married Filing Jointly, and Head of Household — Married Filing Separately isn't included. Uses the standard deduction (not itemized deductions), and doesn't include tax credits, self-employment tax, or state tax.</div>
+<h2>Formula</h2>
+<div class="formula-box">Taxable income = Gross income − Standard deduction − Other deductions; Tax = sum of (income in each bracket × that bracket&#39;s rate)</div>
+<ul>
+      <li><strong>Standard deduction (2026)</strong> — $16,100 single / $32,200 married filing jointly</li>
+      <li><strong>Brackets (2026)</strong> — 10%, 12%, 22%, 24%, 32%, 35%, 37% — see the table below</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Annual gross income $80,000, single filer, no additional deductions.</p>
+  <p><strong>Result:</strong> Taxable income: $63,900.00. Marginal tax bracket: 22%. Effective tax rate: 10.96%. Estimated federal tax owed: $8,770.00.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>Where do these tax brackets come from?</summary>
+    <p>The 2026 tax year brackets and standard deduction published by the IRS in Revenue Procedure 2025-32 (announced October 2025). Tax brackets are adjusted for inflation annually, so these figures are specific to income earned in 2026.</p>
+  </details>
+  <details class="faq-item">
+    <summary>What&#39;s the difference between my marginal and effective tax rate?</summary>
+    <p>Your marginal rate is the rate on your last dollar of taxable income — the top bracket you reach. Your effective rate is your total tax divided by your income, which is always lower, since earlier dollars are taxed at lower bracket rates first.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Does this include state income tax?</summary>
+    <p>No — this calculator only estimates federal income tax. Use the Take-Home Pay Calculator to include an estimated state tax rate alongside federal tax and FICA.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Why isn&#39;t Married Filing Separately included?</summary>
+    <p>We only publish figures we've directly verified against a primary source, and we haven't yet confirmed the exact Married Filing Separately thresholds against one. We'll add that status once we have.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/_tax-data.js"></script>
+<script src="/js/calculators/income-tax-calculator.js"></script>
+</body>
+</html>

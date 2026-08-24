@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credit Card Payoff Calculator — How Long to Pay Off Debt</title>
+<meta name="description" content="Find out how long it will take to pay off a credit card balance and how much interest you&#39;ll pay, based on your balance, APR, and monthly payment.">
+<link rel="canonical" href="https://www.clearsum-example.com/credit-card-payoff-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Credit Card Payoff Calculator — How Long to Pay Off Debt">
+<meta property="og:description" content="Find out how long it will take to pay off a credit card balance and how much interest you&#39;ll pay, based on your balance, APR, and monthly payment.">
+<meta property="og:url" content="https://www.clearsum-example.com/credit-card-payoff-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Credit Card Payoff Calculator — How Long to Pay Off Debt">
+<meta name="twitter:description" content="Find out how long it will take to pay off a credit card balance and how much interest you&#39;ll pay, based on your balance, APR, and monthly payment.">
+<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What if my payment is too low?","acceptedAnswer":{"@type":"Answer","text":"If your monthly payment doesn't cover that month's interest, the balance would grow instead of shrink, so this calculator will tell you the payment is too low rather than show a misleading payoff time."}},{"@type":"Question","name":"Does this include new purchases I might make?","acceptedAnswer":{"@type":"Answer","text":"No — it assumes the balance only goes down, with no new charges added. Continuing to use the card while paying it off will extend the actual payoff time."}},{"@type":"Question","name":"Would paying more than the minimum help?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paying more than the minimum required amount reduces the principal faster, which lowers both the payoff time and the total interest paid — try entering a higher monthly payment to compare."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#debt">Debt</a><span aria-hidden="true">/</span> Credit Card Payoff Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Credit Card Payoff Calculator</h1>
+  <p class="lede">See how long it will take to pay off a credit card balance, and how much interest you&#39;ll pay in total, based on your APR and a fixed monthly payment.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="currentBalance">Current balance</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="currentBalance"
+      name="currentBalance"
+      class=""
+      value="6000"
+      min="0.01"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="currentBalance-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="currentBalance-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="apr">Interest rate (APR)</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="apr"
+      name="apr"
+      class="has-suffix"
+      value="22"
+      min="0"
+      max="60"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="apr-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  <span class="field-error" id="apr-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="monthlyPayment">Monthly payment</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="monthlyPayment"
+      name="monthlyPayment"
+      class=""
+      value="250"
+      min="0.01"
+      
+      step="10"
+      inputmode="decimal"
+      aria-describedby="monthlyPayment-error"
+      required>
+    
+  </div>
+  <span class="field-error" id="monthlyPayment-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/debt-payoff-calculator/">Debt Payoff Calculator — Payoff Time &amp; Extra Payment Savings</a></li>
+      <li><a href="/loan-calculator/">Loan Calculator — Monthly Payment for Any Fixed-Rate Loan</a></li>
+      <li><a href="/savings-calculator/">Savings Goal Calculator — Monthly Contribution Needed</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>This calculator simulates your balance month by month: each month, interest accrues on the remaining balance at your card's rate, and then your payment is applied — first covering that month's interest, with the rest reducing the balance.</p>
+<p>If your monthly payment doesn't exceed the interest charged that month, the balance would never go down, so the calculator will show a message asking you to increase the payment in that case.</p>
+<div class="callout"><strong>Not included:</strong> This assumes no new charges are added to the card and that the same payment is made every month without missed payments.</div>
+<h2>Formula</h2>
+<div class="formula-box">Each month: interest = balance × (APR ÷ 12); balance = balance + interest − payment</div>
+<ul>
+      <li><strong>balance</strong> — Remaining card balance</li>
+      <li><strong>APR</strong> — Annual percentage rate on the card</li>
+      <li><strong>payment</strong> — Fixed monthly payment</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> Balance $6,000, 22% APR, $250/month payment.</p>
+  <p><strong>Result:</strong> Time to pay off: 2 years, 8 months (32 payments). Total interest paid: $1,979.05. Total paid: $7,979.05.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What if my payment is too low?</summary>
+    <p>If your monthly payment doesn't cover that month's interest, the balance would grow instead of shrink, so this calculator will tell you the payment is too low rather than show a misleading payoff time.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Does this include new purchases I might make?</summary>
+    <p>No — it assumes the balance only goes down, with no new charges added. Continuing to use the card while paying it off will extend the actual payoff time.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Would paying more than the minimum help?</summary>
+    <p>Yes. Paying more than the minimum required amount reduces the principal faster, which lowers both the payoff time and the total interest paid — try entering a higher monthly payment to compare.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/credit-card-payoff-calculator.js"></script>
+</body>
+</html>
