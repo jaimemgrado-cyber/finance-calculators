@@ -1,4 +1,3 @@
-```js
 const fs = require("fs");
 const path = require("path");
 const C = require("./components.js");
@@ -124,6 +123,7 @@ function renderHome() {
 // ---------------------------------------------------------------------
 function renderCalculatorPage(calc) {
   const cat = site.categories.find((c) => c.slug === calc.category);
+
   const breadcrumb = [
     { label: "Home", href: "/" },
     { label: cat.name, href: "/#" + cat.slug },
@@ -180,7 +180,11 @@ ${disclaimer}
   const body = head + shell + article;
 
   const scripts = [`/js/calculators/_lib.js`];
-  if (calc.extraTaxData) scripts.push(`/js/calculators/_tax-data.js`);
+
+  if (calc.extraTaxData) {
+    scripts.push(`/js/calculators/_tax-data.js`);
+  }
+
   scripts.push(`/js/calculators/${calc.jsFile}`);
 
   return C.pageShell({
@@ -209,7 +213,10 @@ function legalPage({ title, description, canonicalPath, h1, bodyHtml }) {
     description,
     canonicalPath,
     bodyHtml: body,
-    breadcrumb: [{ label: "Home", href: "/" }, { label: h1 }]
+    breadcrumb: [
+      { label: "Home", href: "/" },
+      { label: h1 }
+    ]
   });
 }
 
@@ -348,7 +355,9 @@ function renderDisclaimer() {
     h1: "Disclaimer",
     bodyHtml: `
 <p>The calculators on ${C.esc(site.siteName)} are for informational and educational purposes only. They are not financial, tax, legal, or investment advice, and results should not be relied on as the sole basis for any financial decision.</p>
+
 <p>Every calculator's page describes the formula it uses and what it does not account for. Real-world outcomes depend on factors these calculators can't know — your credit profile, exact loan terms, tax situation, and market conditions among them.</p>
+
 <p>We do not guarantee the accuracy of any result and are not liable for decisions made based on this site. Consider speaking with a qualified financial professional for advice specific to your situation.</p>`
   });
 }
@@ -357,12 +366,22 @@ function renderDisclaimer() {
 // Sitemap & robots
 // ---------------------------------------------------------------------
 function renderSitemap() {
-  const staticPaths = ["/", "/about/", "/contact/", "/privacy-policy/", "/terms-of-service/", "/disclaimer/"];
+  const staticPaths = [
+    "/",
+    "/about/",
+    "/contact/",
+    "/privacy-policy/",
+    "/terms-of-service/",
+    "/disclaimer/"
+  ];
+
   const calcPaths = calculators.map((c) => `/${c.slug}/`);
   const all = [...staticPaths, ...calcPaths];
+
   const urls = all
     .map((p) => `  <url>\n    <loc>${site.domain}${p}</loc>\n  </url>`)
     .join("\n");
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
@@ -381,8 +400,16 @@ function renderManifest() {
       background_color: "#FAFAF8",
       theme_color: site.themeColor,
       icons: [
-        { src: site.logo.androidChrome192, sizes: "192x192", type: "image/png" },
-        { src: site.logo.androidChrome512, sizes: "512x512", type: "image/png" }
+        {
+          src: site.logo.androidChrome192,
+          sizes: "192x192",
+          type: "image/png"
+        },
+        {
+          src: site.logo.androidChrome512,
+          sizes: "512x512",
+          type: "image/png"
+        }
       ]
     },
     null,
@@ -395,11 +422,16 @@ function renderManifest() {
 // ---------------------------------------------------------------------
 function copyDir(from, to) {
   fs.mkdirSync(to, { recursive: true });
+
   for (const entry of fs.readdirSync(from, { withFileTypes: true })) {
     const src = path.join(from, entry.name);
     const dest = path.join(to, entry.name);
-    if (entry.isDirectory()) copyDir(src, dest);
-    else fs.copyFileSync(src, dest);
+
+    if (entry.isDirectory()) {
+      copyDir(src, dest);
+    } else {
+      fs.copyFileSync(src, dest);
+    }
   }
 }
 
@@ -412,7 +444,10 @@ function build() {
   copyDir(path.join(SRC, "assets"), path.join(DIST, "assets"));
 
   write("index.html", renderHome());
-  calculators.forEach((calc) => write(`${calc.slug}/index.html`, renderCalculatorPage(calc)));
+
+  calculators.forEach((calc) => {
+    write(`${calc.slug}/index.html`, renderCalculatorPage(calc));
+  });
 
   write("about/index.html", renderAbout());
   write("contact/index.html", renderContact());
@@ -424,8 +459,9 @@ function build() {
   write("robots.txt", renderRobots());
   write("site.webmanifest", renderManifest());
 
-  console.log(`Built ${calculators.length} calculator pages + 6 static pages to dist/`);
+  console.log(
+    `Built ${calculators.length} calculator pages + 6 static pages to dist/`
+  );
 }
 
 build();
-```
