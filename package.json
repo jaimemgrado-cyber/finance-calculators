@@ -4,7 +4,7 @@
   "private": true,
   "description": "Free U.S. financial calculators — static, framework-free site. See README.md.",
   "scripts": {
-    "build": "node build/build.js",
+    "build": "node build/build.js && ls -la dist",
     "test": "node tests/run-all.js"
   }
 }
