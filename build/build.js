@@ -3,6 +3,7 @@ const path = require("path");
 const C = require("./components.js");
 const site = require("./site-data.js");
 const calculators = require("./data/calculators.js");
+const seoPages = require("./data/seo-pages.js");
 
 const SRC = path.join(__dirname, "..", "src");
 const DIST = path.join(__dirname, "..", "dist");
@@ -13,7 +14,10 @@ function write(relPath, content) {
   fs.writeFileSync(full, content, "utf8");
 }
 
-const calculatorsBySlug = Object.fromEntries(calculators.map((c) => [c.slug, c]));
+const calculatorsBySlug = Object.fromEntries(
+  calculators.map((c) => [c.slug, c])
+);
+
 const categoriesWithCalcs = site.categories.map((cat) => ({
   ...cat,
   calcs: calculators.filter((c) => c.category === cat.slug)
@@ -31,7 +35,7 @@ function renderHome() {
   <p class="hero__sub">Fast, accurate tools for mortgages, loans, savings, debt payoff, taxes, and everyday money math — built for U.S. dollars and U.S. users.</p>
   <form class="search-form" role="search" aria-label="Search calculators">
     <label class="visually-hidden" for="calc-search">Search calculators</label>
-    <input type="search" id="calc-search" placeholder="Search calculators, e.g. \u2018mortgage\u2019" data-calc-search>
+    <input type="search" id="calc-search" placeholder="Search calculators, e.g. ‘mortgage’" data-calc-search>
     <button type="submit">Search</button>
   </form>
   <p class="search-empty" data-search-empty>No calculators match your search yet.</p>
@@ -93,9 +97,13 @@ function renderHome() {
   </div>
 </section>`;
 
-  const adHtml = `<div class="container">${C.renderAdSlot("leaderboard", "Ad space (leaderboard)")}</div>`;
+  const adHtml = `<div class="container">${C.renderAdSlot(
+    "leaderboard",
+    "Ad space (leaderboard)"
+  )}</div>`;
 
-  const body = heroHtml + adHtml + categorySectionsHtml + popularHtml + directoryHtml;
+  const body =
+    heroHtml + adHtml + categorySectionsHtml + popularHtml + directoryHtml;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -111,7 +119,8 @@ function renderHome() {
 
   return C.pageShell({
     title: `${site.siteName} — Free U.S. Financial Calculators`,
-    description: "Free, accurate financial calculators for mortgages, loans, savings, debt payoff, salary, sales tax, and everyday money math. Built for U.S. users.",
+    description:
+      "Free, accurate financial calculators for mortgages, loans, savings, debt payoff, salary, sales tax, and everyday money math. Built for U.S. users.",
     canonicalPath: "/",
     bodyHtml: body,
     jsonLd
@@ -149,7 +158,10 @@ ${calc.howItWorks.map((p) => `<p>${p}</p>`).join("\n")}
 ${notIncluded}`;
 
   const formulaVarsHtml = calc.formula.vars
-    .map(([sym, desc]) => `<li><strong>${C.esc(sym)}</strong> — ${C.esc(desc)}</li>`)
+    .map(
+      ([sym, desc]) =>
+        `<li><strong>${C.esc(sym)}</strong> — ${C.esc(desc)}</li>`
+    )
     .join("\n      ");
 
   const formula = `<h2>Formula</h2>
@@ -175,7 +187,10 @@ ${example}
 ${faq}
 ${disclaimer}
 </article></div>
-<div class="container">${C.renderAdSlot("inline", "Ad space (in-content)")}</div>`;
+<div class="container">${C.renderAdSlot(
+    "inline",
+    "Ad space (in-content)"
+  )}</div>`;
 
   const body = head + shell + article;
 
@@ -199,12 +214,112 @@ ${disclaimer}
 }
 
 // ---------------------------------------------------------------------
+// SEO content pages
+// ---------------------------------------------------------------------
+function renderSeoPage(page) {
+  const relatedCalculator = page.relatedCalculator
+    ? calculatorsBySlug[page.relatedCalculator]
+    : null;
+
+  const breadcrumb = [
+    { label: "Home", href: "/" },
+    { label: page.h1 }
+  ];
+
+  const sectionsHtml = (page.sections || [])
+    .map(
+      (section) => `
+<h2>${C.esc(section.heading)}</h2>
+${(section.paragraphs || [])
+  .map((paragraph) => `<p>${C.esc(paragraph)}</p>`)
+  .join("\n")}
+`
+    )
+    .join("\n");
+
+  const relatedHtml = relatedCalculator
+    ? `
+<section class="section">
+  <div class="container">
+    <div class="cat-card">
+      <span class="cat-card__label">Related Calculator</span>
+      <h2>${C.esc(relatedCalculator.h1)}</h2>
+      <p>${C.esc(
+        page.ctaDescription || relatedCalculator.lede
+      )}</p>
+      <p>
+        <a class="button" href="/${relatedCalculator.slug}/">
+          ${C.esc(
+            page.ctaText || `Use the ${relatedCalculator.h1}`
+          )}
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+`
+    : "";
+
+  const adHtml = `<div class="container">${C.renderAdSlot(
+    "inline",
+    "Ad space (in-content)"
+  )}</div>`;
+
+  const body = `
+<div class="container calc-page-head">
+  <h1>${C.esc(page.h1)}</h1>
+  <p class="lede">${C.esc(page.intro)}</p>
+</div>
+
+${adHtml}
+
+<div class="container">
+  <article class="article">
+    ${sectionsHtml}
+  </article>
+</div>
+
+${relatedHtml}
+
+<div class="container">
+  <p class="disclaimer-note">
+    This content is provided for informational and educational purposes only.
+    It is not financial, tax, legal, or investment advice.
+  </p>
+</div>
+`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: page.h1,
+    description: page.metaDescription,
+    url: `${site.domain}/${page.slug}/`,
+    publisher: {
+      "@type": "Organization",
+      name: site.siteName
+    }
+  };
+
+  return C.pageShell({
+    title: page.title,
+    description: page.metaDescription,
+    canonicalPath: `/${page.slug}/`,
+    bodyHtml: body,
+    breadcrumb,
+    jsonLd
+  });
+}
+
+// ---------------------------------------------------------------------
 // Legal / static pages
 // ---------------------------------------------------------------------
 function legalPage({ title, description, canonicalPath, h1, bodyHtml }) {
   const body = `<div class="container legal-article">
   <h1>${C.esc(h1)}</h1>
-  <p class="legal-updated">Last updated: ${C.esc(site.legal.lastUpdated)}</p>
+  <p class="legal-updated">Last updated: ${C.esc(
+    site.legal.lastUpdated
+  )}</p>
   ${bodyHtml}
 </div>`;
 
@@ -246,7 +361,9 @@ function renderContact() {
     canonicalPath: "/contact/",
     h1: "Contact",
     bodyHtml: `
-<p>If you have a question about ${C.esc(site.siteName)}, have found an error in one of our calculators, or would like to suggest a calculator or improvement, you can contact us using the information below.</p>
+<p>If you have a question about ${C.esc(
+      site.siteName
+    )}, have found an error in one of our calculators, or would like to suggest a calculator or improvement, you can contact us using the information below.</p>
 
 <h2>Mailing Address</h2>
 <p>${C.esc(site.legal.mailingAddress)}</p>
@@ -264,7 +381,9 @@ function renderPrivacyPolicy() {
     canonicalPath: "/privacy-policy/",
     h1: "Privacy Policy",
     bodyHtml: `
-<p>This Privacy Policy explains how ${C.esc(site.siteName)} handles information when you visit and use this website.</p>
+<p>This Privacy Policy explains how ${C.esc(
+      site.siteName
+    )} handles information when you visit and use this website.</p>
 
 <h2>Information We Collect</h2>
 <p>The financial calculators on this website are designed to perform calculations in your web browser. The numerical values you enter into a calculator are not required to be submitted to our servers in order for the calculator to produce its result.</p>
@@ -272,7 +391,9 @@ function renderPrivacyPolicy() {
 <p>Depending on how the website is operated and which services are enabled, limited technical information may be processed automatically, such as your IP address, browser type, device information, approximate location, referring page, and information about how the website is accessed. This information may be used for security, technical operation, performance measurement, and website improvement.</p>
 
 <h2>Cookies and Similar Technologies</h2>
-<p>${C.esc(site.siteName)} may use cookies and similar technologies that are necessary for the operation of the website, to remember preferences, measure website usage, or support advertising services.</p>
+<p>${C.esc(
+      site.siteName
+    )} may use cookies and similar technologies that are necessary for the operation of the website, to remember preferences, measure website usage, or support advertising services.</p>
 
 <p>Cookies may be placed by third-party services used by the website. You can control or delete cookies through your browser settings. Disabling certain cookies may affect some website functionality.</p>
 
@@ -307,10 +428,14 @@ function renderTerms() {
     canonicalPath: "/terms-of-service/",
     h1: "Terms of Service",
     bodyHtml: `
-<p>These Terms of Service govern your use of ${C.esc(site.siteName)}. By accessing or using this website, you agree to these terms.</p>
+<p>These Terms of Service govern your use of ${C.esc(
+      site.siteName
+    )}. By accessing or using this website, you agree to these terms.</p>
 
 <h2>Use of This Site</h2>
-<p>${C.esc(site.siteName)} provides financial calculators and related information for general informational and educational purposes.</p>
+<p>${C.esc(
+      site.siteName
+    )} provides financial calculators and related information for general informational and educational purposes.</p>
 
 <p>You may use the calculators for lawful personal or informational purposes. You are responsible for reviewing the information produced by the calculators and determining whether it is appropriate for your circumstances.</p>
 
@@ -320,7 +445,9 @@ function renderTerms() {
 <p>Actual results may differ because of factors including, but not limited to, interest rates, fees, taxes, credit terms, lender requirements, market conditions, individual financial circumstances, and changes in applicable laws or regulations.</p>
 
 <h2>No Professional Advice</h2>
-<p>The information and calculations provided by this website are not financial, investment, tax, accounting, or legal advice. Nothing on this website creates a professional advisory relationship between ${C.esc(site.siteName)} and the user.</p>
+<p>The information and calculations provided by this website are not financial, investment, tax, accounting, or legal advice. Nothing on this website creates a professional advisory relationship between ${C.esc(
+      site.siteName
+    )} and the user.</p>
 
 <p>For decisions involving significant financial, tax, investment, or legal consequences, you should consider consulting an appropriately qualified professional.</p>
 
@@ -328,13 +455,19 @@ function renderTerms() {
 <p>We aim to keep the website and its calculators useful and accurate, but we do not guarantee that all information, calculations, content, or services will always be complete, current, accurate, or available without interruption.</p>
 
 <h2>Third-Party Services and Advertising</h2>
-<p>The website may contain advertisements, links, or services provided by third parties. Third-party services operate under their own terms and privacy policies. ${C.esc(site.siteName)} is not responsible for the content, availability, or practices of third-party websites or services.</p>
+<p>The website may contain advertisements, links, or services provided by third parties. Third-party services operate under their own terms and privacy policies. ${C.esc(
+      site.siteName
+    )} is not responsible for the content, availability, or practices of third-party websites or services.</p>
 
 <h2>Intellectual Property</h2>
-<p>Unless otherwise stated, the content, design, branding, graphics, and original materials on this website are owned by or licensed to ${C.esc(site.siteName)} and may not be reproduced, distributed, or modified without appropriate permission, except where permitted by applicable law.</p>
+<p>Unless otherwise stated, the content, design, branding, graphics, and original materials on this website are owned by or licensed to ${C.esc(
+      site.siteName
+    )} and may not be reproduced, distributed, or modified without appropriate permission, except where permitted by applicable law.</p>
 
 <h2>Limitation of Liability</h2>
-<p>To the extent permitted by applicable law, ${C.esc(site.siteName)} will not be responsible for losses or damages arising from reliance on calculator results, website content, temporary unavailability of the website, or the use of third-party services accessed through the website.</p>
+<p>To the extent permitted by applicable law, ${C.esc(
+      site.siteName
+    )} will not be responsible for losses or damages arising from reliance on calculator results, website content, temporary unavailability of the website, or the use of third-party services accessed through the website.</p>
 
 <h2>Changes to These Terms</h2>
 <p>These Terms of Service may be updated from time to time. Changes will become effective when the revised terms are published on this page. Your continued use of the website after changes are published constitutes acceptance of the updated terms to the extent permitted by applicable law.</p>
@@ -351,7 +484,9 @@ function renderDisclaimer() {
     canonicalPath: "/disclaimer/",
     h1: "Disclaimer",
     bodyHtml: `
-<p>The calculators on ${C.esc(site.siteName)} are for informational and educational purposes only. They are not financial, tax, legal, or investment advice, and results should not be relied on as the sole basis for any financial decision.</p>
+<p>The calculators on ${C.esc(
+      site.siteName
+    )} are for informational and educational purposes only. They are not financial, tax, legal, or investment advice, and results should not be relied on as the sole basis for any financial decision.</p>
 
 <p>Every calculator's page describes the formula it uses and what it does not account for. Real-world outcomes depend on factors these calculators can't know — your credit profile, exact loan terms, tax situation, and market conditions among them.</p>
 
@@ -373,10 +508,18 @@ function renderSitemap() {
   ];
 
   const calcPaths = calculators.map((c) => `/${c.slug}/`);
-  const all = [...staticPaths, ...calcPaths];
 
-  const urls = all
-    .map((p) => `  <url>\n    <loc>${site.domain}${p}</loc>\n  </url>`)
+  const seoPaths = seoPages.map((page) => `/${page.slug}/`);
+
+  const all = [...staticPaths, ...calcPaths, ...seoPaths];
+
+  const unique = [...new Set(all)];
+
+  const urls = unique
+    .map(
+      (p) =>
+        `  <url>\n    <loc>${site.domain}${p}</loc>\n  </url>`
+    )
     .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -446,6 +589,10 @@ function build() {
     write(`${calc.slug}/index.html`, renderCalculatorPage(calc));
   });
 
+  seoPages.forEach((page) => {
+    write(`${page.slug}/index.html`, renderSeoPage(page));
+  });
+
   write("about/index.html", renderAbout());
   write("contact/index.html", renderContact());
   write("privacy-policy/index.html", renderPrivacyPolicy());
@@ -457,7 +604,7 @@ function build() {
   write("site.webmanifest", renderManifest());
 
   console.log(
-    `Built ${calculators.length} calculator pages + 6 static pages to dist/`
+    `Built ${calculators.length} calculator pages + ${seoPages.length} SEO pages + 6 static pages to dist/`
   );
 }
 
