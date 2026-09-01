@@ -4,6 +4,7 @@ const C = require("./components.js");
 const site = require("./site-data.js");
 const calculators = require("./data/calculators.js");
 const seoPages = require("./data/seo-pages.js");
+const { renderCategoryIcon } = require("./icons.js");
 
 const SRC = path.join(__dirname, "..", "src");
 const DIST = path.join(__dirname, "..", "dist");
@@ -27,18 +28,65 @@ const categoriesWithCalcs = site.categories.map((cat) => ({
 // Home page
 // ---------------------------------------------------------------------
 function renderHome() {
-  const popular = calculators.slice(0, 6);
+  // "Popular" is a curated, honest pick of one flagship calculator per
+  // category (not an unverifiable traffic ranking) so every category is
+  // represented from the very first screen.
+  const popular = categoriesWithCalcs
+    .map((cat) => cat.calcs[0])
+    .filter(Boolean);
 
   const heroHtml = `<section class="hero container">
-  <p class="hero__eyebrow">100% Free &middot; No Sign-Up</p>
-  <h1>Free Financial Calculators</h1>
-  <p class="hero__sub">Fast, accurate tools for mortgages, loans, savings, debt payoff, taxes, and everyday money math — built for U.S. dollars and U.S. users.</p>
+  <p class="hero__eyebrow">100% Free &middot; No Sign-Up &middot; Runs in Your Browser</p>
+  <h1>Clear numbers for every money decision</h1>
+  <p class="hero__sub">${calculators.length} free calculators for mortgages, loans, investing, debt payoff, income, and taxes — with visual results and plain-English explanations, not just a number.</p>
   <form class="search-form" role="search" aria-label="Search calculators">
     <label class="visually-hidden" for="calc-search">Search calculators</label>
-    <input type="search" id="calc-search" placeholder="Search calculators, e.g. ‘mortgage’" data-calc-search>
+    <input type="search" id="calc-search" placeholder="Search calculators, e.g. \u2018mortgage\u2019" data-calc-search>
     <button type="submit">Search</button>
   </form>
   <p class="search-empty" data-search-empty>No calculators match your search yet.</p>
+  <div class="hero-stats">
+    <div class="hero-stats__item"><span class="hero-stats__num">${calculators.length}</span><span class="hero-stats__label">Calculators</span></div>
+    <div class="hero-stats__item"><span class="hero-stats__num">${site.categories.length}</span><span class="hero-stats__label">Categories</span></div>
+    <div class="hero-stats__item"><span class="hero-stats__num">$0</span><span class="hero-stats__label">Cost, ever</span></div>
+  </div>
+</section>`;
+
+  const popularHtml = `<section class="section">
+  <div class="container">
+    <div class="section__head"><h2>Popular calculators</h2></div>
+    <div class="cat-grid">
+      ${popular
+        .map(
+          (calc) => `<a class="cat-card" href="/${calc.slug}/">
+        <span class="cat-card__label">${C.esc(site.categories.find((c) => c.slug === calc.category).name)}</span>
+        <h3>${C.esc(calc.h1)}</h3>
+        <p>${C.esc(calc.lede)}</p>
+      </a>`
+        )
+        .join("\n      ")}
+    </div>
+  </div>
+</section>`;
+
+  const categoryIconGridHtml = `<section class="section" aria-label="Browse by category">
+  <div class="container">
+    <div class="section__head"><h2>Browse by category</h2></div>
+    <div class="cat-icon-grid">
+      ${categoriesWithCalcs
+        .map(
+          (cat) => `<a class="cat-icon-card" href="#${cat.slug}">
+        <span class="cat-icon cat-icon--${cat.accent}" aria-hidden="true">${renderCategoryIcon(cat.icon)}</span>
+        <span>
+          <h3>${C.esc(cat.name)}</h3>
+          <p>${C.esc(cat.desc)}</p>
+          <span class="cat-icon-card__count">${cat.calcs.length} calculator${cat.calcs.length === 1 ? "" : "s"}</span>
+        </span>
+      </a>`
+        )
+        .join("\n      ")}
+    </div>
+  </div>
 </section>`;
 
   const categorySectionsHtml = categoriesWithCalcs
@@ -46,7 +94,8 @@ function renderHome() {
       (cat) => `<section class="section" id="${cat.slug}">
   <div class="container">
     <div class="section__head">
-      <h2>${C.esc(cat.name)}</h2>
+      <span class="cat-icon cat-icon--${cat.accent}" aria-hidden="true" style="width:36px;height:36px;">${renderCategoryIcon(cat.icon)}</span>
+      <h2 style="margin-left:10px;">${C.esc(cat.name)}</h2>
     </div>
     <div class="calc-grid">
       ${cat.calcs
@@ -64,26 +113,9 @@ function renderHome() {
     )
     .join("\n");
 
-  const popularHtml = `<section class="section">
-  <div class="container">
-    <div class="section__head"><h2>Popular Calculators</h2></div>
-    <div class="cat-grid">
-      ${popular
-        .map(
-          (calc) => `<a class="cat-card" href="/${calc.slug}/">
-        <span class="cat-card__label">${C.esc(site.categories.find((c) => c.slug === calc.category).name)}</span>
-        <h3>${C.esc(calc.h1)}</h3>
-        <p>${C.esc(calc.lede)}</p>
-      </a>`
-        )
-        .join("\n      ")}
-    </div>
-  </div>
-</section>`;
-
   const directoryHtml = `<section class="section">
   <div class="container">
-    <div class="section__head"><h2>All Calculators</h2></div>
+    <div class="section__head"><h2>All calculators</h2></div>
     ${categoriesWithCalcs
       .map(
         (cat) => `<div class="directory-group">
@@ -103,7 +135,12 @@ function renderHome() {
   )}</div>`;
 
   const body =
-    heroHtml + adHtml + categorySectionsHtml + popularHtml + directoryHtml;
+    heroHtml +
+    popularHtml +
+    categoryIconGridHtml +
+    adHtml +
+    categorySectionsHtml +
+    directoryHtml;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -208,7 +245,7 @@ ${disclaimer}
     canonicalPath: `/${calc.slug}/`,
     bodyHtml: body,
     breadcrumb,
-    jsonLd: C.faqJsonLd(calc.faq),
+    jsonLd: [C.faqJsonLd(calc.faq), C.breadcrumbJsonLd(breadcrumb)],
     extraScripts: scripts
   });
 }
@@ -307,7 +344,7 @@ ${relatedHtml}
     canonicalPath: `/${page.slug}/`,
     bodyHtml: body,
     breadcrumb,
-    jsonLd
+    jsonLd: [jsonLd, C.breadcrumbJsonLd(breadcrumb)]
   });
 }
 
@@ -355,22 +392,40 @@ function renderAbout() {
 }
 
 function renderContact() {
+  const hasForm = !!site.legal.contactFormAction;
+  const hasEmail = !!site.legal.contactEmail;
+
+  const formHtml = hasForm
+    ? `<form class="contact-form" action="${C.esc(site.legal.contactFormAction)}" method="POST">
+  <div class="field">
+    <label for="contact-name">Name</label>
+    <div class="field-input-wrap"><input type="text" id="contact-name" name="name" required></div>
+  </div>
+  <div class="field">
+    <label for="contact-email">Your email</label>
+    <div class="field-input-wrap"><input type="email" id="contact-email" name="email" required></div>
+  </div>
+  <div class="field">
+    <label for="contact-message">Message</label>
+    <div class="field-input-wrap"><textarea id="contact-message" name="message" rows="6" required></textarea></div>
+  </div>
+  <div class="calc-actions"><button type="submit" class="btn btn-primary">Send message</button></div>
+</form>`
+    : hasEmail
+    ? `<p><a href="mailto:${C.esc(site.legal.contactEmail)}">${C.esc(site.legal.contactEmail)}</a></p>`
+    : `<div class="callout"><strong>Contact form coming soon.</strong> This site doesn't have a monitored inbox configured yet — check back shortly, or look for an updated contact method on this page.</div>`;
+
   return legalPage({
     title: `Contact — ${site.siteName}`,
     description: `Get in touch with the ${site.siteName} team.`,
     canonicalPath: "/contact/",
     h1: "Contact",
     bodyHtml: `
-<p>If you have a question about ${C.esc(
-      site.siteName
-    )}, have found an error in one of our calculators, or would like to suggest a calculator or improvement, you can contact us using the information below.</p>
+<p>Found an error in a calculator, have a question, or want to suggest a new tool? Send us a message below — we read every one, though we can't guarantee a personal reply to every message.</p>
 
-<h2>Mailing Address</h2>
-<p>${C.esc(site.legal.mailingAddress)}</p>
+${formHtml}
 
-<p>When contacting us about a calculator, including the name or URL of the calculator can help us understand and respond to your request more efficiently.</p>
-
-<p>We aim to use information provided through our contact channels only for responding to the relevant inquiry and for maintaining and improving the website.</p>`
+<p class="result-note">We don't publish a personal mailing address or phone number for privacy reasons. We use messages sent here only to respond to your inquiry and to improve the site.</p>`
   });
 }
 

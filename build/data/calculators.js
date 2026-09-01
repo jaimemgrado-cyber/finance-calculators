@@ -14,7 +14,8 @@ module.exports = [
       { id: "loanTermYears", label: "Loan term", suffix: "years", min: 1, max: 40, step: "1", default: 30 },
       { id: "annualPropertyTax", label: "Property tax (annual)", prefix: "$", min: 0, step: "100", default: 3600, hint: "Optional — enter 0 if unknown" },
       { id: "annualHomeInsurance", label: "Home insurance (annual)", prefix: "$", min: 0, step: "100", default: 1200, hint: "Optional" },
-      { id: "monthlyHOA", label: "HOA fees (monthly)", prefix: "$", min: 0, step: "10", default: 0, hint: "Optional" }
+      { id: "monthlyHOA", label: "HOA fees (monthly)", prefix: "$", min: 0, step: "10", default: 0, hint: "Optional" },
+      { id: "monthlyGrossIncome", label: "Monthly gross income", prefix: "$", min: 0, step: "100", default: 0, hint: "Optional — used only to show your payment against the 28% guideline below" }
     ],
     notIncluded: "This estimate does not include private mortgage insurance (PMI), closing costs, or adjustable-rate changes. It assumes a fixed interest rate for the full loan term.",
     howItWorks: [

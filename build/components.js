@@ -18,7 +18,12 @@ function pageShell({ title, description, canonicalPath, bodyHtml, activePath, br
   const canonical = site.domain + canonicalPath;
   const desc = description || site.description;
   const ogImage = site.domain + site.logo.ogImage;
-  const jsonLdBlock = jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : "";
+  const jsonLdBlock = jsonLd
+    ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd])
+        .filter(Boolean)
+        .map((obj) => `<script type="application/ld+json">${JSON.stringify(obj)}</script>`)
+        .join("\n")
+    : "";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,6 +190,22 @@ function renderCalculator(calc) {
   </form>
   <div class="tape" data-tape aria-live="polite"></div>
   <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
 </div>`;
 }
 
@@ -232,6 +253,23 @@ function faqJsonLd(faq) {
   };
 }
 
+// Builds BreadcrumbList structured data from the same `breadcrumb` array
+// already used to render the visible breadcrumb nav, so the two never
+// drift out of sync.
+function breadcrumbJsonLd(breadcrumb) {
+  if (!breadcrumb || breadcrumb.length < 2) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumb.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.label,
+      item: item.href ? site.domain + item.href : undefined
+    }))
+  };
+}
+
 module.exports = {
   esc,
   pageShell,
@@ -244,5 +282,6 @@ module.exports = {
   renderSidebar,
   renderFAQ,
   faqJsonLd,
+  breadcrumbJsonLd,
   site
 };
