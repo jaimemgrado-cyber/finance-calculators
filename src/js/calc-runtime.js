@@ -238,7 +238,7 @@
     var resetBtn = $("[data-reset]", root);
     var defaults = {};
 
-    $all("input, select", form).forEach(function (input) {
+    $all("input:not([type=range]), select", form).forEach(function (input) {
       defaults[input.name] = input.value;
     });
 
@@ -307,18 +307,42 @@
       runValidationAndMaybeCompute();
     });
 
-    $all("input, select", form).forEach(function (input) {
+    $all("input:not([type=range]), select", form).forEach(function (input) {
       input.addEventListener("blur", function () {
         var field = input.closest(".field");
         setFieldError(field, validateField(input));
       });
     });
 
+    // Sliders: keep the paired number input in sync in both directions,
+    // and recompute live as the slider is dragged (no need to press
+    // Calculate) — this is the one interaction where instant feedback
+    // clearly helps; plain typed inputs still use the Calculate button.
+    $all(".field-slider", form).forEach(function (slider) {
+      var targetId = slider.getAttribute("data-slider-for");
+      var numberInput = form.querySelector('[name="' + targetId + '"]');
+      if (!numberInput) return;
+      slider.addEventListener("input", function () {
+        numberInput.value = slider.value;
+        setFieldError(numberInput.closest(".field"), validateField(numberInput));
+        runValidationAndMaybeCompute();
+      });
+      numberInput.addEventListener("input", function () {
+        var num = Number(numberInput.value);
+        if (isFinite(num)) slider.value = num;
+      });
+    });
+
     if (resetBtn) {
       resetBtn.addEventListener("click", function () {
-        $all("input, select", form).forEach(function (input) {
+        $all("input:not([type=range]), select", form).forEach(function (input) {
           input.value = defaults[input.name];
           setFieldError(input.closest(".field"), null);
+        });
+        $all(".field-slider", form).forEach(function (slider) {
+          var targetId = slider.getAttribute("data-slider-for");
+          var numberInput = form.querySelector('[name="' + targetId + '"]');
+          if (numberInput) slider.value = numberInput.value;
         });
         renderEmptyTape(tape);
         var noteEl = $("[data-result-note]", root);
