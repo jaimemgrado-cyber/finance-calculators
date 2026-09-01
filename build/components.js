@@ -153,7 +153,10 @@ function renderField(f) {
   const prefix = f.prefix ? `<span class="affix">${esc(f.prefix)}</span>` : "";
   const suffix = f.suffix ? `<span class="affix affix--suffix">${esc(f.suffix)}</span>` : "";
   const inputClass = f.suffix ? "has-suffix" : "";
-  return `<div class="field">
+  const sliderHtml = f.slider && f.max !== undefined
+    ? `<input type="range" class="field-slider" id="${f.id}-slider" data-slider-for="${f.id}" min="${f.min}" max="${f.max}" step="${f.step || 1}" value="${f.default}" aria-label="${esc(f.label)} (slider)">`
+    : "";
+  return `<div class="field${f.slider ? " field--slider" : ""}">
   <label for="${f.id}">${esc(f.label)}</label>
   ${f.hint ? `<span class="hint">${esc(f.hint)}</span>` : ""}
   <div class="field-input-wrap">
@@ -172,6 +175,7 @@ function renderField(f) {
       required>
     ${suffix}
   </div>
+  ${sliderHtml}
   <span class="field-error" id="${f.id}-error" role="status"></span>
 </div>`;
 }

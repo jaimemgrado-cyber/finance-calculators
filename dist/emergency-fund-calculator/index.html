@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
+<title>Emergency Fund Calculator — How Much to Save &amp; How Long</title>
+<meta name="description" content="Calculate your target emergency fund based on your essential monthly expenses, and see how long it would take to reach it.">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/emergency-fund-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Emergency Fund Calculator — How Much to Save &amp; How Long">
+<meta property="og:description" content="Calculate your target emergency fund based on your essential monthly expenses, and see how long it would take to reach it.">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/emergency-fund-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Emergency Fund Calculator — How Much to Save &amp; How Long">
+<meta name="twitter:description" content="Calculate your target emergency fund based on your essential monthly expenses, and see how long it would take to reach it.">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#101B33">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why 3-6 months?","acceptedAnswer":{"@type":"Answer","text":"It's a commonly cited range from sources like the CFPB and many financial educators, meant to cover a period of job loss or major unexpected expense — not a rule tailored to your specific situation. Some people target more (e.g. single income, freelance/variable income) or less."}},{"@type":"Question","name":"Where should an emergency fund be kept?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't recommend a specific account, but emergency funds are typically kept somewhere accessible and low-risk, like a high-yield savings account, rather than invested in the market."}},{"@type":"Question","name":"Should I build an emergency fund before investing?","acceptedAnswer":{"@type":"Answer","text":"That's a common personal-finance sequencing question this calculator doesn't answer — it only shows the size of the target and the time to reach it, not how to prioritize it against other goals."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Everyday Finance","item":"https://finance-calculators-sooty.vercel.app/#everyday"},{"@type":"ListItem","position":3,"name":"Emergency Fund Calculator"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#everyday">Everyday Finance</a><span aria-hidden="true">/</span> Emergency Fund Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Emergency Fund Calculator</h1>
+  <p class="lede">Find your emergency fund target based on your essential monthly expenses and a coverage goal, and see how many months it would take to get there.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="monthlyEssentialExpenses">Monthly essential expenses</label>
+  <span class="hint">Housing, food, utilities, insurance, minimum debt payments — not discretionary spending</span>
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="monthlyEssentialExpenses"
+      name="monthlyEssentialExpenses"
+      class=""
+      value="3000"
+      min="0.01"
+      
+      step="50"
+      inputmode="decimal"
+      aria-describedby="monthlyEssentialExpenses-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="monthlyEssentialExpenses-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="currentSavings">Current emergency savings</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="currentSavings"
+      name="currentSavings"
+      class=""
+      value="4000"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="currentSavings-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="currentSavings-error" role="status"></span>
+</div>
+      <div class="field field--slider">
+  <label for="targetMonthsCoverage">Target months of coverage</label>
+  <span class="hint">3-6 months is a commonly cited range</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="targetMonthsCoverage"
+      name="targetMonthsCoverage"
+      class=""
+      value="6"
+      min="1"
+      max="12"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="targetMonthsCoverage-error"
+      required>
+    
+  </div>
+  <input type="range" class="field-slider" id="targetMonthsCoverage-slider" data-slider-for="targetMonthsCoverage" min="1" max="12" step="1" value="6" aria-label="Target months of coverage (slider)">
+  <span class="field-error" id="targetMonthsCoverage-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="monthlySavingsContribution">Monthly savings toward this goal</label>
+  <span class="hint">Optional</span>
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="monthlySavingsContribution"
+      name="monthlySavingsContribution"
+      class=""
+      value="500"
+      min="0"
+      
+      step="50"
+      inputmode="decimal"
+      aria-describedby="monthlySavingsContribution-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="monthlySavingsContribution-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/savings-calculator/">Savings Goal Calculator — Monthly Contribution Needed</a></li>
+      <li><a href="/debt-to-income-calculator/">Debt-to-Income (DTI) Ratio Calculator</a></li>
+      <li><a href="/take-home-pay-calculator/">Take-Home Pay Calculator — Estimate Your Net Pay</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>The target is your monthly essential expenses multiplied by however many months of coverage you're aiming for. If you enter a monthly savings amount, the calculator also estimates how many months it would take to close the gap between your current savings and that target.</p>
+<p>The right number of months to target varies by situation — job stability, whether you have dependents, and whether you have other income sources all matter, which is why this calculator treats the months-of-coverage figure as an adjustable guideline, not a fixed rule.</p>
+<div class="callout"><strong>Not included:</strong> Doesn't include any investment growth on savings (emergency funds are typically kept in cash or a high-yield savings account, not invested) and doesn't account for changes to your expenses over time.</div>
+<h2>Formula</h2>
+<div class="formula-box">Target = MonthlyEssentialExpenses × TargetMonths</div>
+<ul>
+      <li><strong>MonthlyEssentialExpenses</strong> — What you&#39;d need to cover necessities if income stopped</li>
+      <li><strong>TargetMonths</strong> — How many months of coverage you&#39;re aiming for</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> $3,000/mo essential expenses, $4,000 current savings, 6-month target, $500/mo savings contribution.</p>
+  <p><strong>Result:</strong> Target emergency fund: $18,000.00. Amount still needed: $14,000.00 — about 28 months to reach at this savings rate.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>Why 3-6 months?</summary>
+    <p>It's a commonly cited range from sources like the CFPB and many financial educators, meant to cover a period of job loss or major unexpected expense — not a rule tailored to your specific situation. Some people target more (e.g. single income, freelance/variable income) or less.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Where should an emergency fund be kept?</summary>
+    <p>This calculator doesn't recommend a specific account, but emergency funds are typically kept somewhere accessible and low-risk, like a high-yield savings account, rather than invested in the market.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Should I build an emergency fund before investing?</summary>
+    <p>That's a common personal-finance sequencing question this calculator doesn't answer — it only shows the size of the target and the time to reach it, not how to prioritize it against other goals.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/emergency-fund-calculator.js"></script>
+</body>
+</html>

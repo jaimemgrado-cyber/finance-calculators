@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
 <meta name="google-adsense-account" content="ca-pub-5422820182709667">
-<title>Retirement Calculator — Projected Savings at Retirement Age</title>
-<meta name="description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
-<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/retirement-calculator/">
+<title>FIRE Calculator — Financial Independence, Retire Early</title>
+<meta name="description" content="Calculate your FIRE number and estimate how many years it would take to reach financial independence based on your savings rate and expected return.">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/fire-calculator/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Retirement Calculator — Projected Savings at Retirement Age">
-<meta property="og:description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
-<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/retirement-calculator/">
+<meta property="og:title" content="FIRE Calculator — Financial Independence, Retire Early">
+<meta property="og:description" content="Calculate your FIRE number and estimate how many years it would take to reach financial independence based on your savings rate and expected return.">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/fire-calculator/">
 <meta property="og:site_name" content="ClearSum">
 <meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Retirement Calculator — Projected Savings at Retirement Age">
-<meta name="twitter:description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
+<meta name="twitter:title" content="FIRE Calculator — Financial Independence, Retire Early">
+<meta name="twitter:description" content="Calculate your FIRE number and estimate how many years it would take to reach financial independence based on your savings rate and expected return.">
 <meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#101B33">
@@ -30,8 +30,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the 4% rule?","acceptedAnswer":{"@type":"Answer","text":"It's a widely referenced guideline from retirement research suggesting that withdrawing about 4% of a portfolio in the first year of retirement, then adjusting for inflation each year after, has historically had a reasonable chance of lasting 30 years. It's a starting point for discussion, not a guarantee or personalized advice — actual sustainable withdrawal rates depend on markets, spending, and how long retirement lasts."}},{"@type":"Question","name":"Does this include Social Security?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator only projects your own contributions and savings growth. Social Security, pensions, or other income sources would be additional."}},{"@type":"Question","name":"What if I don't know what return to expect?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't recommend a rate — try a few different assumptions to see how sensitive your projection is to the return you use."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Investing","item":"https://finance-calculators-sooty.vercel.app/#investing"},{"@type":"ListItem","position":3,"name":"Retirement Calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is the 4% rule guaranteed to work?","acceptedAnswer":{"@type":"Answer","text":"No. It's a historically-derived guideline from U.S. market data (the Trinity Study), not a guarantee — actual safe withdrawal rates depend on the market conditions you retire into, how long retirement lasts, and your spending flexibility."}},{"@type":"Question","name":"What's Coast FIRE?","acceptedAnswer":{"@type":"Answer","text":"A related concept where you stop contributing once your current savings alone are projected to grow to your FIRE number by a target age, purely through compounding — this calculator shows the standard model where contributions continue throughout."}},{"@type":"Question","name":"Should I use a lower withdrawal rate to be safer?","acceptedAnswer":{"@type":"Answer","text":"Many people planning very long retirements (30+ years) use a more conservative rate like 3-3.5%, which raises the FIRE number and the time needed — you can test that directly by changing the withdrawal rate field."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Investing","item":"https://finance-calculators-sooty.vercel.app/#investing"},{"@type":"ListItem","position":3,"name":"FIRE Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -58,10 +58,10 @@
   </div>
 </header>
 <main id="main">
-<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> Retirement Calculator</nav>
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> FIRE Calculator</nav>
 <div class="container calc-page-head">
-  <h1>Retirement Calculator</h1>
-  <p class="lede">Estimate what your retirement savings could grow to by your target retirement age, based on your current age, savings, monthly contributions, and expected return.</p>
+  <h1>FIRE Calculator</h1>
+  <p class="lede">Find your FIRE number — the portfolio size needed to cover your annual expenses at a sustainable withdrawal rate — and see how many years of saving and investing it could take to get there.</p>
 </div><div class="container calc-shell">
   <div class="calculator" data-calculator-root>
   <h2>Calculator</h2>
@@ -78,7 +78,7 @@
       name="currentAge"
       class=""
       value="30"
-      min="1"
+      min="13"
       max="100"
       step="1"
       inputmode="decimal"
@@ -90,29 +90,7 @@
   <span class="field-error" id="currentAge-error" role="status"></span>
 </div>
       <div class="field">
-  <label for="retirementAge">Retirement age</label>
-  
-  <div class="field-input-wrap">
-    
-    <input
-      type="number"
-      id="retirementAge"
-      name="retirementAge"
-      class=""
-      value="65"
-      min="1"
-      max="100"
-      step="1"
-      inputmode="decimal"
-      aria-describedby="retirementAge-error"
-      required>
-    
-  </div>
-  
-  <span class="field-error" id="retirementAge-error" role="status"></span>
-</div>
-      <div class="field">
-  <label for="currentSavings">Current retirement savings</label>
+  <label for="currentSavings">Current investable savings</label>
   
   <div class="field-input-wrap">
     <span class="affix">$</span>
@@ -121,10 +99,10 @@
       id="currentSavings"
       name="currentSavings"
       class=""
-      value="15000"
+      value="50000"
       min="0"
       
-      step="500"
+      step="1000"
       inputmode="decimal"
       aria-describedby="currentSavings-error"
       required>
@@ -133,7 +111,7 @@
   
   <span class="field-error" id="currentSavings-error" role="status"></span>
 </div>
-      <div class="field">
+      <div class="field field--slider">
   <label for="monthlyContribution">Monthly contribution</label>
   
   <div class="field-input-wrap">
@@ -143,16 +121,16 @@
       id="monthlyContribution"
       name="monthlyContribution"
       class=""
-      value="400"
+      value="2000"
       min="0"
-      
-      step="25"
+      max="10000"
+      step="50"
       inputmode="decimal"
       aria-describedby="monthlyContribution-error"
       required>
     
   </div>
-  
+  <input type="range" class="field-slider" id="monthlyContribution-slider" data-slider-for="monthlyContribution" min="0" max="10000" step="50" value="2000" aria-label="Monthly contribution (slider)">
   <span class="field-error" id="monthlyContribution-error" role="status"></span>
 </div>
       <div class="field">
@@ -167,8 +145,8 @@
       class="has-suffix"
       value="7"
       min="0"
-      max="30"
-      step="0.01"
+      max="15"
+      step="0.1"
       inputmode="decimal"
       aria-describedby="expectedAnnualReturn-error"
       required>
@@ -176,6 +154,50 @@
   </div>
   
   <span class="field-error" id="expectedAnnualReturn-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="annualExpenses">Annual expenses in retirement</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="annualExpenses"
+      name="annualExpenses"
+      class=""
+      value="40000"
+      min="1"
+      
+      step="1000"
+      inputmode="decimal"
+      aria-describedby="annualExpenses-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="annualExpenses-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="withdrawalRatePercent">Withdrawal rate</label>
+  <span class="hint">The 4% figure popularized by the Trinity Study is a common reference point, not a rule</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="withdrawalRatePercent"
+      name="withdrawalRatePercent"
+      class="has-suffix"
+      value="4"
+      min="1"
+      max="10"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="withdrawalRatePercent-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  
+  <span class="field-error" id="withdrawalRatePercent-error" role="status"></span>
 </div>
     </div>
     <div class="calc-actions">
@@ -207,7 +229,7 @@
   <div class="related-box">
     <h3>Related calculators</h3>
     <ul>
-      <li><a href="/fire-calculator/">FIRE Calculator — Financial Independence, Retire Early</a></li>
+      <li><a href="/retirement-calculator/">Retirement Calculator — Projected Savings at Retirement Age</a></li>
       <li><a href="/compound-interest-calculator/">Compound Interest Calculator — Future Value of Savings</a></li>
       <li><a href="/savings-calculator/">Savings Goal Calculator — Monthly Contribution Needed</a></li>
     </ul>
@@ -215,35 +237,33 @@
 </aside>
 </div><div class="container"><article class="article">
 <h2>How It Works</h2>
-<p>This calculator projects your retirement balance the same way the Compound Interest Calculator does — monthly compounding, with monthly contributions — but uses your current and target retirement age to determine the time period instead of asking for a raw number of years.</p>
-<p>It also shows what that projected balance could support annually using the 4% rule, a commonly cited starting point from retirement research (not personalized advice, and not a guarantee that any balance will last a specific number of years).</p>
-<div class="callout"><strong>Not included:</strong> This is a projection based on a constant return you enter — not a guarantee. It doesn't include Social Security, employer matching, taxes, or fees.</div>
+<p>Your FIRE number is your annual expenses divided by your chosen withdrawal rate — mathematically the same as multiplying expenses by 25 at a 4% rate. This is a widely used planning shortcut, not a guarantee that a portfolio of that size will last indefinitely.</p>
+<p>Years to FIRE is found by simulating your savings growing monthly at your expected return, with your contribution added each month, until the projected balance reaches your FIRE number.</p>
+<div class="callout"><strong>Not included:</strong> Assumes a constant annual return with no volatility, which real markets never provide — sequence-of-returns risk (poor returns early in retirement) can meaningfully affect how long a portfolio actually lasts, even at a 'safe' withdrawal rate.</div>
 <h2>Formula</h2>
-<div class="formula-box">Balance = P(1 + r)ⁿ + C × [ ((1 + r)ⁿ − 1) / r ];  Est. income = Balance × 4%</div>
+<div class="formula-box">FIRE Number = Annual Expenses ÷ (Withdrawal Rate ÷ 100)</div>
 <ul>
-      <li><strong>P</strong> — Current retirement savings</li>
-      <li><strong>C</strong> — Monthly contribution</li>
-      <li><strong>r</strong> — Monthly interest rate (annual return ÷ 12)</li>
-      <li><strong>n</strong> — Months until retirement (years × 12)</li>
+      <li><strong>Annual Expenses</strong> — What you expect to spend per year in retirement</li>
+      <li><strong>Withdrawal Rate</strong> — The percentage of the portfolio you plan to withdraw each year</li>
 </ul>
 <h2>Example</h2>
 <div class="example-box">
-  <p><strong>Example inputs:</strong> Current age 30, retirement age 65, $15,000 current savings, $400/month contribution, 7% expected annual return.</p>
-  <p><strong>Result:</strong> Projected balance at retirement: $893,014.12. Estimated annual income (4% rule): $35,720.56.</p>
+  <p><strong>Example inputs:</strong> Age 30, $50,000 saved, $2,000/mo contribution, 7% expected return, $40,000/yr expenses, 4% withdrawal rate.</p>
+  <p><strong>Result:</strong> FIRE number: $1,000,000. Years to reach it: about 17.7 — projected FIRE age of roughly 47.7.</p>
 </div>
 <h2>Frequently Asked Questions</h2>
 <div>
   <details class="faq-item">
-    <summary>What is the 4% rule?</summary>
-    <p>It's a widely referenced guideline from retirement research suggesting that withdrawing about 4% of a portfolio in the first year of retirement, then adjusting for inflation each year after, has historically had a reasonable chance of lasting 30 years. It's a starting point for discussion, not a guarantee or personalized advice — actual sustainable withdrawal rates depend on markets, spending, and how long retirement lasts.</p>
+    <summary>Is the 4% rule guaranteed to work?</summary>
+    <p>No. It's a historically-derived guideline from U.S. market data (the Trinity Study), not a guarantee — actual safe withdrawal rates depend on the market conditions you retire into, how long retirement lasts, and your spending flexibility.</p>
   </details>
   <details class="faq-item">
-    <summary>Does this include Social Security?</summary>
-    <p>No. This calculator only projects your own contributions and savings growth. Social Security, pensions, or other income sources would be additional.</p>
+    <summary>What&#39;s Coast FIRE?</summary>
+    <p>A related concept where you stop contributing once your current savings alone are projected to grow to your FIRE number by a target age, purely through compounding — this calculator shows the standard model where contributions continue throughout.</p>
   </details>
   <details class="faq-item">
-    <summary>What if I don&#39;t know what return to expect?</summary>
-    <p>This calculator doesn't recommend a rate — try a few different assumptions to see how sensitive your projection is to the return you use.</p>
+    <summary>Should I use a lower withdrawal rate to be safer?</summary>
+    <p>Many people planning very long retirements (30+ years) use a more conservative rate like 3-3.5%, which raises the FIRE number and the time needed — you can test that directly by changing the withdrawal rate field.</p>
   </details>
 </div>
 <p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
@@ -284,6 +304,6 @@
 </footer>
 <script src="/js/calc-runtime.js"></script>
 <script src="/js/calculators/_lib.js"></script>
-<script src="/js/calculators/retirement-calculator.js"></script>
+<script src="/js/calculators/fire-calculator.js"></script>
 </body>
 </html>

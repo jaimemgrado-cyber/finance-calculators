@@ -436,6 +436,38 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   min-height: 1.1em;
 }
 
+.field-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  outline: none;
+}
+.field-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--teal-deep);
+  border: 2px solid var(--paper-raised);
+  box-shadow: 0 1px 3px rgba(16, 27, 51, 0.3);
+  cursor: pointer;
+}
+.field-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal-deep);
+  border: 2px solid var(--paper-raised);
+  box-shadow: 0 1px 3px rgba(16, 27, 51, 0.3);
+  cursor: pointer;
+}
+.field-slider:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
 .calc-actions {
   display: flex;
   gap: 10px;

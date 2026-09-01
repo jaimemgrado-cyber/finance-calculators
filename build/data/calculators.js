@@ -41,7 +41,7 @@ module.exports = [
       { q: "How does the down payment affect my payment?", a: "A larger down payment reduces your loan principal directly, which lowers both your monthly principal-and-interest payment and the total interest you'll pay over the life of the loan." },
       { q: "Why does the interest rate matter so much?", a: "Interest compounds on the remaining balance every month, so even a small rate difference changes both the monthly payment and the total interest paid over a 15- or 30-year term substantially." }
     ],
-    related: ["loan-calculator", "auto-loan-calculator", "personal-loan-calculator"]
+    related: ["mortgage-affordability-calculator", "down-payment-calculator", "rent-vs-buy-calculator", "mortgage-payoff-calculator"]
   },
   {
     slug: "loan-calculator",
@@ -159,7 +159,7 @@ module.exports = [
       { q: "Is compound interest guaranteed?", a: "No. This tool projects growth assuming a constant rate, which is a simplification. Savings accounts and CDs may offer fixed rates, but investment returns fluctuate and can lose value, including the possibility of loss of principal." },
       { q: "What's the difference between this and the Savings Goal Calculator?", a: "This calculator shows what a given contribution grows into. The Savings Goal Calculator works backward from a target amount to tell you the monthly contribution needed to reach it." }
     ],
-    related: ["savings-calculator", "investment-calculator", "retirement-calculator"]
+    related: ["dividend-calculator", "cagr-calculator", "fire-calculator"]
   },
   {
     slug: "savings-calculator",
@@ -198,7 +198,7 @@ module.exports = [
       { q: "Does this account for taxes on interest?", a: "No — this is a pre-tax projection of growth. Interest or investment gains may be taxable depending on the type of account, which would reduce your real accumulated total." },
       { q: "Why is the required contribution not just the goal divided by months?", a: "Because any interest your account earns along the way contributes toward the goal too, so the required monthly amount is typically a bit lower than a simple division would suggest — the gap shrinks as your rate and timeline increase." }
     ],
-    related: ["compound-interest-calculator", "retirement-calculator", "debt-payoff-calculator"]
+    related: ["compound-interest-calculator", "emergency-fund-calculator", "retirement-calculator"]
   },
   {
     slug: "credit-card-payoff-calculator",
@@ -454,7 +454,7 @@ module.exports = [
       { q: "Why show a 'today's dollars' figure at all?", a: "A dollar amount decades from now buys less than the same amount today, because prices rise over time. Showing the inflation-adjusted figure gives a more realistic sense of the purchasing power your investment could provide." },
       { q: "How is this different from the Compound Interest Calculator?", a: "Compound Interest focuses on monthly contributions building up over time with monthly compounding. This calculator focuses on a single lump sum with annual compounding, and adds an inflation-adjusted view." }
     ],
-    related: ["compound-interest-calculator", "retirement-calculator", "roi-calculator"]
+    related: ["fire-calculator", "cagr-calculator", "retirement-calculator"]
   },
   {
     slug: "retirement-calculator",
@@ -494,7 +494,7 @@ module.exports = [
       { q: "Does this include Social Security?", a: "No. This calculator only projects your own contributions and savings growth. Social Security, pensions, or other income sources would be additional." },
       { q: "What if I don't know what return to expect?", a: "This calculator doesn't recommend a rate — try a few different assumptions to see how sensitive your projection is to the return you use." }
     ],
-    related: ["compound-interest-calculator", "savings-calculator", "investment-calculator"]
+    related: ["fire-calculator", "compound-interest-calculator", "savings-calculator"]
   },
   {
     slug: "roi-calculator",
@@ -569,7 +569,7 @@ module.exports = [
       { q: "Should I pay off multiple debts with this?", a: "This calculator handles one balance at a time. If you have several debts, common strategies include paying off the highest-rate balance first (saves the most interest) or the smallest balance first (a quick psychological win) — apply this calculator to whichever debt you're focusing extra payments on." },
       { q: "Does extra payment amount matter more early or late in the payoff?", a: "Extra payments made earlier reduce the balance interest accrues on sooner, generally producing more total interest savings than the same extra amount applied later — though this calculator assumes a consistent extra payment every month rather than a one-time lump sum." }
     ],
-    related: ["credit-card-payoff-calculator", "loan-calculator", "savings-calculator"]
+    related: ["credit-card-payoff-calculator", "debt-to-income-calculator", "savings-calculator"]
   },
   {
     slug: "salary-to-hourly-calculator",
@@ -761,5 +761,363 @@ module.exports = [
       { q: "Can I use this to see what a past price would cost today?", a: "This calculator projects forward from today. To adjust a past amount into today's dollars, you'd need historical CPI data for the specific years involved — the BLS inflation calculator is built for that specific use case." }
     ],
     related: ["compound-interest-calculator", "investment-calculator", "percentage-calculator"]
+  },
+  {
+    slug: "mortgage-affordability-calculator",
+    title: "Mortgage Affordability Calculator — How Much House Can You Afford?",
+    metaDescription: "Find the maximum home price you can likely afford based on your income, debts, and down payment, using standard 28%/36% lending guidelines.",
+    h1: "Mortgage Affordability Calculator",
+    category: "loans",
+    jsFile: "mortgage-affordability-calculator.js",
+    lede: "Estimate the maximum home price that fits your budget, based on your gross income, existing debts, and down payment — using the same front-end/back-end guidelines many lenders reference.",
+    fields: [
+      { id: "monthlyGrossIncome", label: "Monthly gross income", prefix: "$", min: 0, step: "100", default: 8000 },
+      { id: "monthlyDebts", label: "Other monthly debt payments", prefix: "$", min: 0, step: "50", default: 400, hint: "Car loans, student loans, credit cards, etc. — not including the new mortgage" },
+      { id: "downPayment", label: "Down payment", prefix: "$", min: 0, step: "1000", default: 40000 },
+      { id: "interestRate", label: "Interest rate (APR)", suffix: "%", min: 0, max: 25, step: "0.01", default: 6.5, slider: true },
+      { id: "loanTermYears", label: "Loan term", suffix: "years", min: 1, max: 40, step: "1", default: 30 },
+      { id: "propertyTaxRate", label: "Property tax rate (annual, % of home value)", suffix: "%", min: 0, max: 5, step: "0.01", default: 1.1, hint: "U.S. average is roughly 1.1% — check your local rate for accuracy" },
+      { id: "annualHomeInsurance", label: "Home insurance (annual)", prefix: "$", min: 0, step: "100", default: 1500 },
+      { id: "monthlyHOA", label: "HOA fees (monthly)", prefix: "$", min: 0, step: "10", default: 0, hint: "Optional" }
+    ],
+    notIncluded: "This is a budgeting guideline, not a mortgage pre-approval. It doesn't account for your credit score, employment history, cash reserves, PMI, or a specific lender's overlays — all of which affect real approval decisions.",
+    howItWorks: [
+      "This calculator finds the highest home price where your total estimated monthly housing payment (principal, interest, property tax, insurance, and HOA) stays within the lower of two commonly used lending guidelines: 28% of your gross monthly income for housing alone (front-end), or 36% of your gross income for housing plus all other debts combined (back-end).",
+      "Because property tax scales with home price, the calculator solves the budget equation algebraically rather than guessing — the monthly principal-and-interest payment and the monthly property tax are both proportional to home price for a fixed rate and term, so there's one exact price where your total payment matches your available budget."
+    ],
+    formula: {
+      text: "Price = (Budget + DownPayment × k − Insurance − HOA) ÷ (k + TaxRate ÷ 1200)",
+      vars: [
+        ["Budget", "The lower of 28% of gross income, or 36% of income minus other debts"],
+        ["k", "The principal-and-interest payment per dollar borrowed, for your rate and term"],
+        ["TaxRate", "Annual property tax rate as a percentage of home value"]
+      ]
+    },
+    example: {
+      inputs: "$8,000/mo gross income, $400/mo other debts, $40,000 down payment, 6.5% rate, 30-year term, 1.1% property tax, $1,500/yr insurance.",
+      result: "Maximum home price: $327,167.85. Estimated monthly payment (PITI): $2,240.00 — set by the 28% front-end guideline."
+    },
+    faq: [
+      { q: "Why does my result use 28%/36% instead of a higher limit?", a: "28%/36% is a conservative, widely used conventional-lending guideline. Some loan programs allow back-end DTI up to 43% or higher, which could mean a higher approved amount — but a higher DTI also leaves less monthly breathing room." },
+      { q: "Does this include PMI?", a: "No. If your down payment is below 20%, many conventional loans require private mortgage insurance, which would reduce the price you can actually afford at this budget. Try the Down Payment Calculator to see the 20% threshold for your target price." },
+      { q: "Is this the same as pre-approval?", a: "No. Pre-approval involves your credit score, verified income and assets, and a specific lender's underwriting rules. This tool only applies a general budgeting guideline to the numbers you enter." }
+    ],
+    related: ["mortgage-calculator", "down-payment-calculator", "debt-to-income-calculator"]
+  },
+  {
+    slug: "rent-vs-buy-calculator",
+    title: "Rent vs. Buy Calculator — Compare the True Cost Over Time",
+    metaDescription: "Compare the net cost of buying a home versus renting over several years, accounting for equity, appreciation, and the opportunity cost of your down payment.",
+    h1: "Rent vs. Buy Calculator",
+    category: "loans",
+    jsFile: "rent-vs-buy-calculator.js",
+    lede: "See which option costs less over time — buying a home or renting and investing the difference — based on the assumptions you provide about rates, growth, and how long you'll stay.",
+    fields: [
+      { id: "homePrice", label: "Home price", prefix: "$", min: 0, step: "1000", default: 400000 },
+      { id: "downPayment", label: "Down payment", prefix: "$", min: 0, step: "1000", default: 80000 },
+      { id: "interestRate", label: "Mortgage interest rate (APR)", suffix: "%", min: 0, max: 25, step: "0.01", default: 6.5 },
+      { id: "loanTermYears", label: "Loan term", suffix: "years", min: 1, max: 40, step: "1", default: 30 },
+      { id: "propertyTaxRate", label: "Property tax rate (annual)", suffix: "%", min: 0, max: 5, step: "0.01", default: 1.1 },
+      { id: "annualHomeInsurance", label: "Home insurance (annual)", prefix: "$", min: 0, step: "100", default: 1500 },
+      { id: "maintenanceRate", label: "Maintenance (annual, % of home value)", suffix: "%", min: 0, max: 5, step: "0.1", default: 1, hint: "Common rule of thumb is 1% of home value per year" },
+      { id: "closingCostRate", label: "Closing costs (% of home price)", suffix: "%", min: 0, max: 10, step: "0.1", default: 2 },
+      { id: "homeAppreciationRate", label: "Expected home appreciation", suffix: "%/yr", min: -5, max: 15, step: "0.1", default: 3, slider: true },
+      { id: "sellingCostRate", label: "Selling costs when you sell (% of sale price)", suffix: "%", min: 0, max: 15, step: "0.5", default: 8, hint: "Agent commission plus closing costs — commonly 6-10%" },
+      { id: "monthlyRent", label: "Comparable monthly rent", prefix: "$", min: 0, step: "50", default: 2200 },
+      { id: "rentIncreaseRate", label: "Expected annual rent increase", suffix: "%/yr", min: 0, max: 15, step: "0.1", default: 3 },
+      { id: "investmentReturnRate", label: "Expected investment return", suffix: "%/yr", min: 0, max: 15, step: "0.1", default: 6, hint: "Used for the cash you'd invest instead of a down payment" },
+      { id: "analysisYears", label: "Years you plan to stay", suffix: "years", min: 1, max: 30, step: "1", default: 7, slider: true }
+    ],
+    notIncluded: "This is a simplified model: it doesn't include mortgage interest tax deductions, PMI, moving costs beyond an estimated selling-cost percentage, or the possibility that rates and growth assumptions change over the period.",
+    howItWorks: [
+      "The net cost of buying adds up your upfront cash (down payment plus closing costs) and every monthly housing cost over the period, then subtracts what you'd net from selling the home at the end — its projected value minus your remaining loan balance minus estimated selling costs.",
+      "The net cost of renting adds up total rent paid, then subtracts the investment growth you'd get from investing the upfront cash you didn't spend on a down payment and closing costs, at the return rate you provide.",
+      "Whichever number is lower is the cheaper option under your assumptions — but the assumptions (appreciation, rent growth, investment return) are estimates you control, not predictions this calculator makes for you."
+    ],
+    formula: {
+      text: "NetCost(buy) = Upfront + ΣMonthlyCosts − (HomeValue − LoanBalance − SellingCosts); NetCost(rent) = ΣRent − OpportunityGain",
+      vars: [
+        ["Upfront", "Down payment + closing costs"],
+        ["ΣMonthlyCosts", "Total P&I, tax, insurance, and maintenance paid over the period"],
+        ["OpportunityGain", "Growth on the upfront cash if invested instead, at your assumed return rate"]
+      ]
+    },
+    example: {
+      inputs: "$400,000 home, $80,000 down, 6.5% rate, 30-year term, $2,200/mo comparable rent, 7-year stay, 3% appreciation, 6% investment return.",
+      result: "Net cost of buying: $169,502.97. Net cost of renting: $157,969.54. Renting is cheaper by $11,533.43 under these assumptions."
+    },
+    faq: [
+      { q: "What if I change the appreciation or investment return rate?", a: "Try it — this comparison is sensitive to both. Higher home appreciation favors buying; a higher achievable investment return on the cash you'd otherwise put down favors renting." },
+      { q: "Does this include the mortgage interest tax deduction?", a: "No. Whether itemizing and deducting mortgage interest helps you depends on your tax situation, so it isn't included here to avoid a false sense of precision." },
+      { q: "Why does buying show 'equity' separately from the cost comparison?", a: "The net cost of buying already accounts for equity (it's subtracted as part of your sale proceeds). The equity row is shown separately just so you can see the raw number." }
+    ],
+    related: ["mortgage-calculator", "mortgage-affordability-calculator", "down-payment-calculator"]
+  },
+  {
+    slug: "down-payment-calculator",
+    title: "Down Payment Calculator — How Much You Need & How Long to Save",
+    metaDescription: "Calculate your down payment amount, the resulting loan size, whether you'd likely need PMI, and how long it would take to save the rest.",
+    h1: "Down Payment Calculator",
+    category: "loans",
+    jsFile: "down-payment-calculator.js",
+    lede: "Find out how much you need for a down payment at any percentage, what loan amount that leaves you with, and how long it could take to save the difference.",
+    fields: [
+      { id: "homePrice", label: "Home price", prefix: "$", min: 0, step: "1000", default: 350000 },
+      { id: "downPaymentPercent", label: "Down payment", suffix: "%", min: 0, max: 100, step: "0.5", default: 10, slider: true },
+      { id: "currentSavings", label: "Current savings toward it", prefix: "$", min: 0, step: "500", default: 10000, hint: "Optional" },
+      { id: "monthlySavings", label: "Monthly savings toward it", prefix: "$", min: 0, step: "50", default: 1000, hint: "Optional — leave at 0 to skip the time-to-save estimate" }
+    ],
+    notIncluded: "Doesn't include investment growth on your savings, closing costs, or a lender's specific PMI rate.",
+    howItWorks: [
+      "The down payment amount is simply the home price multiplied by your chosen percentage; the loan amount is what's left. If you enter current savings and a monthly savings amount, the calculator also estimates how many months it would take to close the gap.",
+      "Down payments below 20% commonly trigger private mortgage insurance (PMI) on conventional loans — an added monthly cost that protects the lender, not you, until you reach 20% equity."
+    ],
+    formula: {
+      text: "DownPayment = HomePrice × (Percent ÷ 100); LoanAmount = HomePrice − DownPayment",
+      vars: [
+        ["HomePrice", "The purchase price of the home"],
+        ["Percent", "Your chosen down payment percentage"]
+      ]
+    },
+    example: {
+      inputs: "$350,000 home price, 10% down payment, $10,000 current savings, $1,000/mo savings.",
+      result: "Down payment amount: $35,000.00. Resulting loan amount: $315,000.00. Still needed: $25,000.00 — about 25 months to save."
+    },
+    faq: [
+      { q: "Is 20% down always required?", a: "No — many loan programs allow much less (some as low as 3-3.5% down), but going below 20% on a conventional loan commonly triggers PMI, an added monthly cost." },
+      { q: "Does a bigger down payment always make sense?", a: "It reduces your loan size, monthly payment, and total interest — but tying up more cash upfront has trade-offs too, like less liquidity for emergencies or other goals. This calculator shows the math, not the trade-off decision." },
+      { q: "How is the time-to-save estimate calculated?", a: "It's the remaining amount divided by your monthly savings, assuming no investment growth on those savings and no change in your monthly amount." }
+    ],
+    related: ["mortgage-calculator", "mortgage-affordability-calculator", "savings-calculator"]
+  },
+  {
+    slug: "mortgage-payoff-calculator",
+    title: "Mortgage Payoff Calculator — See the Impact of Extra Payments",
+    metaDescription: "See how much sooner you'd pay off your mortgage — and how much interest you'd save — by adding an extra monthly payment.",
+    h1: "Mortgage Payoff Calculator",
+    category: "loans",
+    jsFile: "mortgage-payoff-calculator.js",
+    lede: "Enter your current mortgage balance, rate, and remaining term to see your payment, then add an extra monthly amount to see how much sooner you'd be mortgage-free.",
+    fields: [
+      { id: "currentBalance", label: "Current mortgage balance", prefix: "$", min: 0.01, step: "1000", default: 250000 },
+      { id: "interestRate", label: "Interest rate (APR)", suffix: "%", min: 0, max: 25, step: "0.01", default: 6.5 },
+      { id: "remainingTermYears", label: "Remaining term", suffix: "years", min: 1, max: 40, step: "1", default: 27 },
+      { id: "extraMonthlyPayment", label: "Extra monthly payment", prefix: "$", min: 0, step: "50", default: 200, slider: true, max: 2000 }
+    ],
+    notIncluded: "Assumes a fixed rate and that your extra payment is applied to reduce principal every month without interruption. Doesn't include prepayment penalties, which some loans (rarely, for conventional mortgages) may carry.",
+    howItWorks: [
+      "This first derives your standard monthly principal-and-interest payment from your remaining balance, rate, and term using the fixed-rate amortization formula, then simulates the payoff month by month.",
+      "If you add an extra monthly payment, the simulation runs a second time with that amount applied entirely to principal, so you can see the exact difference in payoff time and total interest."
+    ],
+    formula: {
+      text: "M = P × [ i(1 + i)ⁿ ] / [ (1 + i)ⁿ − 1 ]",
+      vars: [
+        ["M", "Monthly principal & interest payment"],
+        ["P", "Current remaining balance"],
+        ["i", "Monthly interest rate (annual rate ÷ 12)"],
+        ["n", "Remaining number of monthly payments"]
+      ]
+    },
+    example: {
+      inputs: "$250,000 balance, 6.5% rate, 27 years remaining, $200/mo extra payment.",
+      result: "Current payment: $1,638.89/mo. Paying $200 extra pays it off 77 months sooner and saves $77,121.46 in interest."
+    },
+    faq: [
+      { q: "Where do I find my current balance and remaining term?", a: "Both are on your mortgage servicer's statement or online account — look for 'principal balance' and either the remaining term or your original payoff date." },
+      { q: "Does extra principal always go directly to the balance?", a: "With most lenders, yes, if you specify it as an extra principal payment — but confirm with your servicer, since some require you to explicitly mark the extra amount to avoid it being held as a partial future payment." },
+      { q: "Is paying off a mortgage early always the best move?", a: "It guarantees a return equal to your mortgage rate on that money, which can be attractive — but it also ties up cash that could go toward other goals, and this calculator doesn't compare that trade-off for you." }
+    ],
+    related: ["mortgage-calculator", "debt-payoff-calculator", "mortgage-affordability-calculator"]
+  },
+  {
+    slug: "cagr-calculator",
+    title: "CAGR Calculator — Compound Annual Growth Rate",
+    metaDescription: "Calculate the compound annual growth rate (CAGR) between a beginning and ending value over any number of years.",
+    h1: "CAGR Calculator",
+    category: "investing",
+    jsFile: "cagr-calculator.js",
+    lede: "Find the smoothed, constant annual growth rate that connects a beginning value to an ending value — useful for comparing investments on an apples-to-apples annual basis.",
+    fields: [
+      { id: "beginningValue", label: "Beginning value", prefix: "$", min: 0.01, step: "100", default: 10000 },
+      { id: "endingValue", label: "Ending value", prefix: "$", min: 0, step: "100", default: 18000 },
+      { id: "years", label: "Number of years", min: 0.1, step: "0.1", default: 5, slider: true, max: 40 }
+    ],
+    notIncluded: "CAGR smooths out volatility — it doesn't tell you anything about how bumpy the actual ride was, or whether the growth was steady, front-loaded, or back-loaded.",
+    howItWorks: [
+      "CAGR answers: 'What single, constant annual rate would have taken the beginning value to the ending value over this many years?' It's the standard way to compare growth rates across investments or time periods of different lengths.",
+      "Because it's a smoothed average, two investments with the same CAGR can have had very different year-to-year experiences — one steady, one volatile."
+    ],
+    formula: {
+      text: "CAGR = (EndingValue ÷ BeginningValue)^(1 ÷ Years) − 1",
+      vars: [
+        ["EndingValue", "The value at the end of the period"],
+        ["BeginningValue", "The value at the start of the period"],
+        ["Years", "The number of years between them"]
+      ]
+    },
+    example: {
+      inputs: "$10,000 beginning value, $18,000 ending value, 5 years.",
+      result: "Total growth: 80%. Compound annual growth rate (CAGR): 12.47%."
+    },
+    faq: [
+      { q: "How is CAGR different from average annual return?", a: "A simple average of yearly percentage returns can overstate real growth when returns are volatile, because it doesn't account for compounding. CAGR always reflects the actual beginning-to-ending change." },
+      { q: "Can CAGR be negative?", a: "Yes — if the ending value is lower than the beginning value, CAGR will be negative, reflecting an average annual loss." },
+      { q: "What's a 'good' CAGR?", a: "This calculator doesn't judge that — it depends heavily on the asset class, time period, and risk taken. Comparing CAGR against a relevant benchmark over the same period is more meaningful than any fixed number." }
+    ],
+    related: ["roi-calculator", "compound-interest-calculator", "investment-calculator"]
+  },
+  {
+    slug: "dividend-calculator",
+    title: "Dividend Calculator — Project Dividend Income & Portfolio Growth",
+    metaDescription: "Project future dividend income and portfolio value from a stock position, with optional dividend reinvestment (DRIP).",
+    h1: "Dividend Calculator",
+    category: "investing",
+    jsFile: "dividend-calculator.js",
+    lede: "Estimate how a dividend-paying position could grow over time, based on the yield, dividend growth rate, and share-price growth you expect — with or without reinvesting the dividends.",
+    fields: [
+      { id: "numberOfShares", label: "Number of shares", min: 0.01, step: "1", default: 100 },
+      { id: "sharePrice", label: "Current share price", prefix: "$", min: 0.01, step: "1", default: 50 },
+      { id: "dividendYieldPercent", label: "Current dividend yield", suffix: "%", min: 0, max: 20, step: "0.1", default: 3 },
+      { id: "dividendGrowthPercent", label: "Expected annual dividend growth", suffix: "%/yr", min: 0, max: 30, step: "0.1", default: 5, slider: true },
+      { id: "priceAppreciationPercent", label: "Expected annual share price growth", suffix: "%/yr", min: -10, max: 30, step: "0.1", default: 6, slider: true },
+      { id: "years", label: "Number of years", min: 1, max: 40, step: "1", default: 15 },
+      { id: "reinvestDividends", label: "Reinvest dividends?", type: "select", default: "yes", options: [{ value: "yes", label: "Yes — reinvest (DRIP)" }, { value: "no", label: "No — take as cash" }] }
+    ],
+    notIncluded: "Assumes the dividend yield, dividend growth, and price growth rates you enter stay constant — real dividends can be cut or grown unevenly, and share prices fluctuate continuously. Doesn't account for dividend taxes.",
+    howItWorks: [
+      "Each year, the position pays a dividend based on the current dividend-per-share amount and your share count. If you choose to reinvest, that cash buys more shares at the current price; either way, the dividend-per-share and the share price then grow by the rates you set for the next year.",
+      "This compounds two effects when reinvesting: more shares each year, and (if you set dividend growth) a larger dividend per share — which is why reinvested dividend growth tends to accelerate over long periods."
+    ],
+    formula: {
+      text: "Year N: Dividend = Shares × DivPerShare; if reinvesting, Shares += Dividend ÷ Price; then Price ×= (1+g), DivPerShare ×= (1+d)",
+      vars: [
+        ["DivPerShare", "Starts at Price × Yield, grows at rate d each year"],
+        ["g", "Assumed annual share-price growth rate"],
+        ["d", "Assumed annual dividend growth rate"]
+      ]
+    },
+    example: {
+      inputs: "100 shares at $50, 3% yield, 5% dividend growth, 6% price growth, 15 years, dividends reinvested.",
+      result: "Total dividends received: $4,077 (before reinvestment effects). Final portfolio value: $18,158.05 from a $5,000 initial investment."
+    },
+    faq: [
+      { q: "Why does reinvesting matter so much?", a: "Reinvested dividends buy additional shares, which then earn their own dividends and price growth — a compounding effect. Over long horizons this can meaningfully outpace taking dividends as cash." },
+      { q: "Is dividend yield the same as total return?", a: "No. Yield only measures dividend income relative to price; total return also includes share-price gains or losses. This calculator projects both together." },
+      { q: "Can I model a real stock's exact history with this?", a: "Not precisely — real dividend cuts, raises, and price moves are uneven. Use recent averages as a starting assumption, and treat the output as one projection, not a forecast." }
+    ],
+    related: ["cagr-calculator", "compound-interest-calculator", "roi-calculator"]
+  },
+  {
+    slug: "fire-calculator",
+    title: "FIRE Calculator — Financial Independence, Retire Early",
+    metaDescription: "Calculate your FIRE number and estimate how many years it would take to reach financial independence based on your savings rate and expected return.",
+    h1: "FIRE Calculator",
+    category: "investing",
+    jsFile: "fire-calculator.js",
+    lede: "Find your FIRE number — the portfolio size needed to cover your annual expenses at a sustainable withdrawal rate — and see how many years of saving and investing it could take to get there.",
+    fields: [
+      { id: "currentAge", label: "Current age", min: 13, max: 100, step: "1", default: 30 },
+      { id: "currentSavings", label: "Current investable savings", prefix: "$", min: 0, step: "1000", default: 50000 },
+      { id: "monthlyContribution", label: "Monthly contribution", prefix: "$", min: 0, step: "50", default: 2000, slider: true, max: 10000 },
+      { id: "expectedAnnualReturn", label: "Expected annual return", suffix: "%", min: 0, max: 15, step: "0.1", default: 7 },
+      { id: "annualExpenses", label: "Annual expenses in retirement", prefix: "$", min: 1, step: "1000", default: 40000 },
+      { id: "withdrawalRatePercent", label: "Withdrawal rate", suffix: "%", min: 1, max: 10, step: "0.1", default: 4, hint: "The 4% figure popularized by the Trinity Study is a common reference point, not a rule" }
+    ],
+    notIncluded: "Assumes a constant annual return with no volatility, which real markets never provide — sequence-of-returns risk (poor returns early in retirement) can meaningfully affect how long a portfolio actually lasts, even at a 'safe' withdrawal rate.",
+    howItWorks: [
+      "Your FIRE number is your annual expenses divided by your chosen withdrawal rate — mathematically the same as multiplying expenses by 25 at a 4% rate. This is a widely used planning shortcut, not a guarantee that a portfolio of that size will last indefinitely.",
+      "Years to FIRE is found by simulating your savings growing monthly at your expected return, with your contribution added each month, until the projected balance reaches your FIRE number."
+    ],
+    formula: {
+      text: "FIRE Number = Annual Expenses ÷ (Withdrawal Rate ÷ 100)",
+      vars: [
+        ["Annual Expenses", "What you expect to spend per year in retirement"],
+        ["Withdrawal Rate", "The percentage of the portfolio you plan to withdraw each year"]
+      ]
+    },
+    example: {
+      inputs: "Age 30, $50,000 saved, $2,000/mo contribution, 7% expected return, $40,000/yr expenses, 4% withdrawal rate.",
+      result: "FIRE number: $1,000,000. Years to reach it: about 17.7 — projected FIRE age of roughly 47.7."
+    },
+    faq: [
+      { q: "Is the 4% rule guaranteed to work?", a: "No. It's a historically-derived guideline from U.S. market data (the Trinity Study), not a guarantee — actual safe withdrawal rates depend on the market conditions you retire into, how long retirement lasts, and your spending flexibility." },
+      { q: "What's Coast FIRE?", a: "A related concept where you stop contributing once your current savings alone are projected to grow to your FIRE number by a target age, purely through compounding — this calculator shows the standard model where contributions continue throughout." },
+      { q: "Should I use a lower withdrawal rate to be safer?", a: "Many people planning very long retirements (30+ years) use a more conservative rate like 3-3.5%, which raises the FIRE number and the time needed — you can test that directly by changing the withdrawal rate field." }
+    ],
+    related: ["retirement-calculator", "compound-interest-calculator", "savings-calculator"]
+  },
+  {
+    slug: "debt-to-income-calculator",
+    title: "Debt-to-Income (DTI) Ratio Calculator",
+    metaDescription: "Calculate your front-end and back-end debt-to-income ratio and see how it compares to common lending guidelines.",
+    h1: "Debt-to-Income (DTI) Ratio Calculator",
+    category: "debt",
+    jsFile: "debt-to-income-calculator.js",
+    lede: "Calculate your front-end (housing-only) and back-end (all debts) debt-to-income ratio — a key number lenders use, and a useful check on your own budget.",
+    fields: [
+      { id: "monthlyGrossIncome", label: "Monthly gross income", prefix: "$", min: 0.01, step: "100", default: 7000 },
+      { id: "monthlyHousingPayment", label: "Monthly housing payment", prefix: "$", min: 0, step: "50", default: 1800, hint: "Rent, or mortgage principal + interest + tax + insurance" },
+      { id: "otherMonthlyDebtPayments", label: "Other monthly debt payments", prefix: "$", min: 0, step: "50", default: 600, hint: "Car loans, student loans, credit card minimums, etc." }
+    ],
+    notIncluded: "Uses gross (pre-tax) income, the standard denominator lenders use — your DTI will look different calculated against take-home pay. Doesn't include utilities, groceries, or other non-debt expenses.",
+    howItWorks: [
+      "Front-end DTI is your housing payment alone divided by your gross monthly income. Back-end DTI adds in all other recurring debt payments. Both are exact division — there's no estimation involved once you enter accurate numbers.",
+      "Lenders use back-end DTI as one factor (among several, including credit score and reserves) when evaluating loan applications, and many people also use it informally to gauge how much of their income is already committed to debt."
+    ],
+    formula: {
+      text: "Front-end DTI = Housing ÷ Income × 100; Back-end DTI = (Housing + OtherDebts) ÷ Income × 100",
+      vars: [
+        ["Housing", "Your monthly rent or total mortgage payment (PITI)"],
+        ["OtherDebts", "All other required monthly debt payments"],
+        ["Income", "Your gross (pre-tax) monthly income"]
+      ]
+    },
+    example: {
+      inputs: "$7,000/mo gross income, $1,800/mo housing, $600/mo other debts.",
+      result: "Front-end DTI: 25.71%. Back-end DTI: 34.29% — at or below the commonly cited 36% comfort benchmark."
+    },
+    faq: [
+      { q: "What's a 'good' DTI?", a: "There's no universal cutoff, but 36% or below back-end is commonly cited as comfortable, and 43% is the standard ceiling for most Qualified Mortgages under CFPB rules. Some loan programs allow higher DTI with compensating factors like strong credit or large reserves." },
+      { q: "Does DTI include groceries, utilities, or insurance?", a: "No — DTI is specifically about debt obligations (loans, minimum credit card payments, housing), not general living expenses, even though those affect your real budget too." },
+      { q: "How can I lower my DTI?", a: "Either increase income, pay down or pay off existing debts, or reduce the housing payment you're targeting — this calculator can show the effect of any of those by changing the inputs." }
+    ],
+    related: ["mortgage-affordability-calculator", "debt-payoff-calculator", "emergency-fund-calculator"]
+  },
+  {
+    slug: "emergency-fund-calculator",
+    title: "Emergency Fund Calculator — How Much to Save & How Long",
+    metaDescription: "Calculate your target emergency fund based on your essential monthly expenses, and see how long it would take to reach it.",
+    h1: "Emergency Fund Calculator",
+    category: "everyday",
+    jsFile: "emergency-fund-calculator.js",
+    lede: "Find your emergency fund target based on your essential monthly expenses and a coverage goal, and see how many months it would take to get there.",
+    fields: [
+      { id: "monthlyEssentialExpenses", label: "Monthly essential expenses", prefix: "$", min: 0.01, step: "50", default: 3000, hint: "Housing, food, utilities, insurance, minimum debt payments — not discretionary spending" },
+      { id: "currentSavings", label: "Current emergency savings", prefix: "$", min: 0, step: "100", default: 4000 },
+      { id: "targetMonthsCoverage", label: "Target months of coverage", min: 1, max: 12, step: "1", default: 6, slider: true, hint: "3-6 months is a commonly cited range" },
+      { id: "monthlySavingsContribution", label: "Monthly savings toward this goal", prefix: "$", min: 0, step: "50", default: 500, hint: "Optional" }
+    ],
+    notIncluded: "Doesn't include any investment growth on savings (emergency funds are typically kept in cash or a high-yield savings account, not invested) and doesn't account for changes to your expenses over time.",
+    howItWorks: [
+      "The target is your monthly essential expenses multiplied by however many months of coverage you're aiming for. If you enter a monthly savings amount, the calculator also estimates how many months it would take to close the gap between your current savings and that target.",
+      "The right number of months to target varies by situation — job stability, whether you have dependents, and whether you have other income sources all matter, which is why this calculator treats the months-of-coverage figure as an adjustable guideline, not a fixed rule."
+    ],
+    formula: {
+      text: "Target = MonthlyEssentialExpenses × TargetMonths",
+      vars: [
+        ["MonthlyEssentialExpenses", "What you'd need to cover necessities if income stopped"],
+        ["TargetMonths", "How many months of coverage you're aiming for"]
+      ]
+    },
+    example: {
+      inputs: "$3,000/mo essential expenses, $4,000 current savings, 6-month target, $500/mo savings contribution.",
+      result: "Target emergency fund: $18,000.00. Amount still needed: $14,000.00 — about 28 months to reach at this savings rate."
+    },
+    faq: [
+      { q: "Why 3-6 months?", a: "It's a commonly cited range from sources like the CFPB and many financial educators, meant to cover a period of job loss or major unexpected expense — not a rule tailored to your specific situation. Some people target more (e.g. single income, freelance/variable income) or less." },
+      { q: "Where should an emergency fund be kept?", a: "This calculator doesn't recommend a specific account, but emergency funds are typically kept somewhere accessible and low-risk, like a high-yield savings account, rather than invested in the market." },
+      { q: "Should I build an emergency fund before investing?", a: "That's a common personal-finance sequencing question this calculator doesn't answer — it only shows the size of the target and the time to reach it, not how to prioritize it against other goals." }
+    ],
+    related: ["savings-calculator", "debt-to-income-calculator", "take-home-pay-calculator"]
   }
 ];

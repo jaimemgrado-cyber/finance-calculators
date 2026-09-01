@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
+<title>Rent vs. Buy Calculator — Compare the True Cost Over Time</title>
+<meta name="description" content="Compare the net cost of buying a home versus renting over several years, accounting for equity, appreciation, and the opportunity cost of your down payment.">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/rent-vs-buy-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rent vs. Buy Calculator — Compare the True Cost Over Time">
+<meta property="og:description" content="Compare the net cost of buying a home versus renting over several years, accounting for equity, appreciation, and the opportunity cost of your down payment.">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/rent-vs-buy-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rent vs. Buy Calculator — Compare the True Cost Over Time">
+<meta name="twitter:description" content="Compare the net cost of buying a home versus renting over several years, accounting for equity, appreciation, and the opportunity cost of your down payment.">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#101B33">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What if I change the appreciation or investment return rate?","acceptedAnswer":{"@type":"Answer","text":"Try it — this comparison is sensitive to both. Higher home appreciation favors buying; a higher achievable investment return on the cash you'd otherwise put down favors renting."}},{"@type":"Question","name":"Does this include the mortgage interest tax deduction?","acceptedAnswer":{"@type":"Answer","text":"No. Whether itemizing and deducting mortgage interest helps you depends on your tax situation, so it isn't included here to avoid a false sense of precision."}},{"@type":"Question","name":"Why does buying show 'equity' separately from the cost comparison?","acceptedAnswer":{"@type":"Answer","text":"The net cost of buying already accounts for equity (it's subtracted as part of your sale proceeds). The equity row is shown separately just so you can see the raw number."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Loans","item":"https://finance-calculators-sooty.vercel.app/#loans"},{"@type":"ListItem","position":3,"name":"Rent vs. Buy Calculator"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#loans">Loans</a><span aria-hidden="true">/</span> Rent vs. Buy Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Rent vs. Buy Calculator</h1>
+  <p class="lede">See which option costs less over time — buying a home or renting and investing the difference — based on the assumptions you provide about rates, growth, and how long you&#39;ll stay.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="homePrice">Home price</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="homePrice"
+      name="homePrice"
+      class=""
+      value="400000"
+      min="0"
+      
+      step="1000"
+      inputmode="decimal"
+      aria-describedby="homePrice-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="homePrice-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="downPayment">Down payment</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="downPayment"
+      name="downPayment"
+      class=""
+      value="80000"
+      min="0"
+      
+      step="1000"
+      inputmode="decimal"
+      aria-describedby="downPayment-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="downPayment-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="interestRate">Mortgage interest rate (APR)</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="interestRate"
+      name="interestRate"
+      class="has-suffix"
+      value="6.5"
+      min="0"
+      max="25"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="interestRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  
+  <span class="field-error" id="interestRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="loanTermYears">Loan term</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="loanTermYears"
+      name="loanTermYears"
+      class="has-suffix"
+      value="30"
+      min="1"
+      max="40"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="loanTermYears-error"
+      required>
+    <span class="affix affix--suffix">years</span>
+  </div>
+  
+  <span class="field-error" id="loanTermYears-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="propertyTaxRate">Property tax rate (annual)</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="propertyTaxRate"
+      name="propertyTaxRate"
+      class="has-suffix"
+      value="1.1"
+      min="0"
+      max="5"
+      step="0.01"
+      inputmode="decimal"
+      aria-describedby="propertyTaxRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  
+  <span class="field-error" id="propertyTaxRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="annualHomeInsurance">Home insurance (annual)</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="annualHomeInsurance"
+      name="annualHomeInsurance"
+      class=""
+      value="1500"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="annualHomeInsurance-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="annualHomeInsurance-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="maintenanceRate">Maintenance (annual, % of home value)</label>
+  <span class="hint">Common rule of thumb is 1% of home value per year</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="maintenanceRate"
+      name="maintenanceRate"
+      class="has-suffix"
+      value="1"
+      min="0"
+      max="5"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="maintenanceRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  
+  <span class="field-error" id="maintenanceRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="closingCostRate">Closing costs (% of home price)</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="closingCostRate"
+      name="closingCostRate"
+      class="has-suffix"
+      value="2"
+      min="0"
+      max="10"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="closingCostRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  
+  <span class="field-error" id="closingCostRate-error" role="status"></span>
+</div>
+      <div class="field field--slider">
+  <label for="homeAppreciationRate">Expected home appreciation</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="homeAppreciationRate"
+      name="homeAppreciationRate"
+      class="has-suffix"
+      value="3"
+      min="-5"
+      max="15"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="homeAppreciationRate-error"
+      required>
+    <span class="affix affix--suffix">%/yr</span>
+  </div>
+  <input type="range" class="field-slider" id="homeAppreciationRate-slider" data-slider-for="homeAppreciationRate" min="-5" max="15" step="0.1" value="3" aria-label="Expected home appreciation (slider)">
+  <span class="field-error" id="homeAppreciationRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="sellingCostRate">Selling costs when you sell (% of sale price)</label>
+  <span class="hint">Agent commission plus closing costs — commonly 6-10%</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="sellingCostRate"
+      name="sellingCostRate"
+      class="has-suffix"
+      value="8"
+      min="0"
+      max="15"
+      step="0.5"
+      inputmode="decimal"
+      aria-describedby="sellingCostRate-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  
+  <span class="field-error" id="sellingCostRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="monthlyRent">Comparable monthly rent</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="monthlyRent"
+      name="monthlyRent"
+      class=""
+      value="2200"
+      min="0"
+      
+      step="50"
+      inputmode="decimal"
+      aria-describedby="monthlyRent-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="monthlyRent-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="rentIncreaseRate">Expected annual rent increase</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="rentIncreaseRate"
+      name="rentIncreaseRate"
+      class="has-suffix"
+      value="3"
+      min="0"
+      max="15"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="rentIncreaseRate-error"
+      required>
+    <span class="affix affix--suffix">%/yr</span>
+  </div>
+  
+  <span class="field-error" id="rentIncreaseRate-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="investmentReturnRate">Expected investment return</label>
+  <span class="hint">Used for the cash you&#39;d invest instead of a down payment</span>
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="investmentReturnRate"
+      name="investmentReturnRate"
+      class="has-suffix"
+      value="6"
+      min="0"
+      max="15"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="investmentReturnRate-error"
+      required>
+    <span class="affix affix--suffix">%/yr</span>
+  </div>
+  
+  <span class="field-error" id="investmentReturnRate-error" role="status"></span>
+</div>
+      <div class="field field--slider">
+  <label for="analysisYears">Years you plan to stay</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="analysisYears"
+      name="analysisYears"
+      class="has-suffix"
+      value="7"
+      min="1"
+      max="30"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="analysisYears-error"
+      required>
+    <span class="affix affix--suffix">years</span>
+  </div>
+  <input type="range" class="field-slider" id="analysisYears-slider" data-slider-for="analysisYears" min="1" max="30" step="1" value="7" aria-label="Years you plan to stay (slider)">
+  <span class="field-error" id="analysisYears-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/mortgage-calculator/">Mortgage Calculator — Estimate Your Monthly Payment</a></li>
+      <li><a href="/mortgage-affordability-calculator/">Mortgage Affordability Calculator — How Much House Can You Afford?</a></li>
+      <li><a href="/down-payment-calculator/">Down Payment Calculator — How Much You Need &amp; How Long to Save</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>The net cost of buying adds up your upfront cash (down payment plus closing costs) and every monthly housing cost over the period, then subtracts what you'd net from selling the home at the end — its projected value minus your remaining loan balance minus estimated selling costs.</p>
+<p>The net cost of renting adds up total rent paid, then subtracts the investment growth you'd get from investing the upfront cash you didn't spend on a down payment and closing costs, at the return rate you provide.</p>
+<p>Whichever number is lower is the cheaper option under your assumptions — but the assumptions (appreciation, rent growth, investment return) are estimates you control, not predictions this calculator makes for you.</p>
+<div class="callout"><strong>Not included:</strong> This is a simplified model: it doesn't include mortgage interest tax deductions, PMI, moving costs beyond an estimated selling-cost percentage, or the possibility that rates and growth assumptions change over the period.</div>
+<h2>Formula</h2>
+<div class="formula-box">NetCost(buy) = Upfront + ΣMonthlyCosts − (HomeValue − LoanBalance − SellingCosts); NetCost(rent) = ΣRent − OpportunityGain</div>
+<ul>
+      <li><strong>Upfront</strong> — Down payment + closing costs</li>
+      <li><strong>ΣMonthlyCosts</strong> — Total P&amp;I, tax, insurance, and maintenance paid over the period</li>
+      <li><strong>OpportunityGain</strong> — Growth on the upfront cash if invested instead, at your assumed return rate</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> $400,000 home, $80,000 down, 6.5% rate, 30-year term, $2,200/mo comparable rent, 7-year stay, 3% appreciation, 6% investment return.</p>
+  <p><strong>Result:</strong> Net cost of buying: $169,502.97. Net cost of renting: $157,969.54. Renting is cheaper by $11,533.43 under these assumptions.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>What if I change the appreciation or investment return rate?</summary>
+    <p>Try it — this comparison is sensitive to both. Higher home appreciation favors buying; a higher achievable investment return on the cash you'd otherwise put down favors renting.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Does this include the mortgage interest tax deduction?</summary>
+    <p>No. Whether itemizing and deducting mortgage interest helps you depends on your tax situation, so it isn't included here to avoid a false sense of precision.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Why does buying show &#39;equity&#39; separately from the cost comparison?</summary>
+    <p>The net cost of buying already accounts for equity (it's subtracted as part of your sale proceeds). The equity row is shown separately just so you can see the raw number.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/rent-vs-buy-calculator.js"></script>
+</body>
+</html>

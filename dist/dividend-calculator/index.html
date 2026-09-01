@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
+<title>Dividend Calculator — Project Dividend Income &amp; Portfolio Growth</title>
+<meta name="description" content="Project future dividend income and portfolio value from a stock position, with optional dividend reinvestment (DRIP).">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/dividend-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dividend Calculator — Project Dividend Income &amp; Portfolio Growth">
+<meta property="og:description" content="Project future dividend income and portfolio value from a stock position, with optional dividend reinvestment (DRIP).">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/dividend-calculator/">
+<meta property="og:site_name" content="ClearSum">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dividend Calculator — Project Dividend Income &amp; Portfolio Growth">
+<meta name="twitter:description" content="Project future dividend income and portfolio value from a stock position, with optional dividend reinvestment (DRIP).">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#101B33">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does reinvesting matter so much?","acceptedAnswer":{"@type":"Answer","text":"Reinvested dividends buy additional shares, which then earn their own dividends and price growth — a compounding effect. Over long horizons this can meaningfully outpace taking dividends as cash."}},{"@type":"Question","name":"Is dividend yield the same as total return?","acceptedAnswer":{"@type":"Answer","text":"No. Yield only measures dividend income relative to price; total return also includes share-price gains or losses. This calculator projects both together."}},{"@type":"Question","name":"Can I model a real stock's exact history with this?","acceptedAnswer":{"@type":"Answer","text":"Not precisely — real dividend cuts, raises, and price moves are uneven. Use recent averages as a starting assumption, and treat the output as one projection, not a forecast."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Investing","item":"https://finance-calculators-sooty.vercel.app/#investing"},{"@type":"ListItem","position":3,"name":"Dividend Calculator"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csMarkTitle">
+  <title id="csMarkTitle">ClearSum</title>
+  <rect x="7" y="12.5" width="17" height="6.4" rx="3.2" fill="#14213D"/>
+  <rect x="7" y="21.1" width="26" height="6.4" rx="3.2" fill="#0F6E64"/>
+</svg>
+</span>ClearSum
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="/#loans">Loans</a>
+      <a href="/#investing">Investing</a>
+      <a href="/#debt">Debt</a>
+      <a href="/#income">Income</a>
+      <a href="/#taxes">Taxes</a>
+      <a href="/#everyday">Everyday Finance</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> Dividend Calculator</nav>
+<div class="container calc-page-head">
+  <h1>Dividend Calculator</h1>
+  <p class="lede">Estimate how a dividend-paying position could grow over time, based on the yield, dividend growth rate, and share-price growth you expect — with or without reinvesting the dividends.</p>
+</div><div class="container calc-shell">
+  <div class="calculator" data-calculator-root>
+  <h2>Calculator</h2>
+  <form id="calculator-form" novalidate>
+    <div class="field-grid">
+      <div class="field">
+  <label for="numberOfShares">Number of shares</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="numberOfShares"
+      name="numberOfShares"
+      class=""
+      value="100"
+      min="0.01"
+      
+      step="1"
+      inputmode="decimal"
+      aria-describedby="numberOfShares-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="numberOfShares-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="sharePrice">Current share price</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="sharePrice"
+      name="sharePrice"
+      class=""
+      value="50"
+      min="0.01"
+      
+      step="1"
+      inputmode="decimal"
+      aria-describedby="sharePrice-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="sharePrice-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="dividendYieldPercent">Current dividend yield</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="dividendYieldPercent"
+      name="dividendYieldPercent"
+      class="has-suffix"
+      value="3"
+      min="0"
+      max="20"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="dividendYieldPercent-error"
+      required>
+    <span class="affix affix--suffix">%</span>
+  </div>
+  
+  <span class="field-error" id="dividendYieldPercent-error" role="status"></span>
+</div>
+      <div class="field field--slider">
+  <label for="dividendGrowthPercent">Expected annual dividend growth</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="dividendGrowthPercent"
+      name="dividendGrowthPercent"
+      class="has-suffix"
+      value="5"
+      min="0"
+      max="30"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="dividendGrowthPercent-error"
+      required>
+    <span class="affix affix--suffix">%/yr</span>
+  </div>
+  <input type="range" class="field-slider" id="dividendGrowthPercent-slider" data-slider-for="dividendGrowthPercent" min="0" max="30" step="0.1" value="5" aria-label="Expected annual dividend growth (slider)">
+  <span class="field-error" id="dividendGrowthPercent-error" role="status"></span>
+</div>
+      <div class="field field--slider">
+  <label for="priceAppreciationPercent">Expected annual share price growth</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="priceAppreciationPercent"
+      name="priceAppreciationPercent"
+      class="has-suffix"
+      value="6"
+      min="-10"
+      max="30"
+      step="0.1"
+      inputmode="decimal"
+      aria-describedby="priceAppreciationPercent-error"
+      required>
+    <span class="affix affix--suffix">%/yr</span>
+  </div>
+  <input type="range" class="field-slider" id="priceAppreciationPercent-slider" data-slider-for="priceAppreciationPercent" min="-10" max="30" step="0.1" value="6" aria-label="Expected annual share price growth (slider)">
+  <span class="field-error" id="priceAppreciationPercent-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="years">Number of years</label>
+  
+  <div class="field-input-wrap">
+    
+    <input
+      type="number"
+      id="years"
+      name="years"
+      class=""
+      value="15"
+      min="1"
+      max="40"
+      step="1"
+      inputmode="decimal"
+      aria-describedby="years-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="years-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="reinvestDividends">Reinvest dividends?</label>
+  
+  <select id="reinvestDividends" name="reinvestDividends" data-type="select">
+      <option value="yes" selected>Yes — reinvest (DRIP)</option>
+      <option value="no">No — take as cash</option>
+  </select>
+  <span class="field-error" id="reinvestDividends-error" role="status"></span>
+</div>
+    </div>
+    <div class="calc-actions">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button type="button" class="btn btn-secondary" data-reset>Reset</button>
+    </div>
+  </form>
+  <div class="tape" data-tape aria-live="polite"></div>
+  <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
+</div>
+  <aside class="sidebar">
+  <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
+  <div class="related-box">
+    <h3>Related calculators</h3>
+    <ul>
+      <li><a href="/cagr-calculator/">CAGR Calculator — Compound Annual Growth Rate</a></li>
+      <li><a href="/compound-interest-calculator/">Compound Interest Calculator — Future Value of Savings</a></li>
+      <li><a href="/roi-calculator/">ROI Calculator — Return on Investment &amp; Annualized Return</a></li>
+    </ul>
+  </div>
+</aside>
+</div><div class="container"><article class="article">
+<h2>How It Works</h2>
+<p>Each year, the position pays a dividend based on the current dividend-per-share amount and your share count. If you choose to reinvest, that cash buys more shares at the current price; either way, the dividend-per-share and the share price then grow by the rates you set for the next year.</p>
+<p>This compounds two effects when reinvesting: more shares each year, and (if you set dividend growth) a larger dividend per share — which is why reinvested dividend growth tends to accelerate over long periods.</p>
+<div class="callout"><strong>Not included:</strong> Assumes the dividend yield, dividend growth, and price growth rates you enter stay constant — real dividends can be cut or grown unevenly, and share prices fluctuate continuously. Doesn't account for dividend taxes.</div>
+<h2>Formula</h2>
+<div class="formula-box">Year N: Dividend = Shares × DivPerShare; if reinvesting, Shares += Dividend ÷ Price; then Price ×= (1+g), DivPerShare ×= (1+d)</div>
+<ul>
+      <li><strong>DivPerShare</strong> — Starts at Price × Yield, grows at rate d each year</li>
+      <li><strong>g</strong> — Assumed annual share-price growth rate</li>
+      <li><strong>d</strong> — Assumed annual dividend growth rate</li>
+</ul>
+<h2>Example</h2>
+<div class="example-box">
+  <p><strong>Example inputs:</strong> 100 shares at $50, 3% yield, 5% dividend growth, 6% price growth, 15 years, dividends reinvested.</p>
+  <p><strong>Result:</strong> Total dividends received: $4,077 (before reinvestment effects). Final portfolio value: $18,158.05 from a $5,000 initial investment.</p>
+</div>
+<h2>Frequently Asked Questions</h2>
+<div>
+  <details class="faq-item">
+    <summary>Why does reinvesting matter so much?</summary>
+    <p>Reinvested dividends buy additional shares, which then earn their own dividends and price growth — a compounding effect. Over long horizons this can meaningfully outpace taking dividends as cash.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Is dividend yield the same as total return?</summary>
+    <p>No. Yield only measures dividend income relative to price; total return also includes share-price gains or losses. This calculator projects both together.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Can I model a real stock&#39;s exact history with this?</summary>
+    <p>Not precisely — real dividend cuts, raises, and price moves are uneven. Use recent averages as a starting assumption, and treat the output as one projection, not a forecast.</p>
+  </details>
+</div>
+<p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
+</article></div>
+<div class="container"><div class="ad-slot ad-slot--inline" aria-hidden="true">Ad space (in-content)</div></div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>ClearSum</h4>
+        <p>Free, ad-supported financial calculators for U.S. households. Estimates only — not financial, tax, or legal advice.</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul><li><a href="/#loans">Loans</a></li><li><a href="/#investing">Investing</a></li><li><a href="/#debt">Debt</a></li></ul>
+      </div>
+      <div>
+        <h4>&nbsp;</h4>
+        <ul><li><a href="/#income">Income</a></li><li><a href="/#taxes">Taxes</a></li><li><a href="/#everyday">Everyday Finance</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ClearSum. All rights reserved.</span>
+      <span>Estimates for informational purposes only.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/calc-runtime.js"></script>
+<script src="/js/calculators/_lib.js"></script>
+<script src="/js/calculators/dividend-calculator.js"></script>
+</body>
+</html>

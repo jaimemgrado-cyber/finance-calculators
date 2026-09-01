@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
 <meta name="google-adsense-account" content="ca-pub-5422820182709667">
-<title>Salary to Hourly Calculator — Convert Annual Pay to Hourly Rate</title>
-<meta name="description" content="Convert an annual salary into an equivalent hourly wage, based on your typical hours per week and weeks worked per year.">
-<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/salary-to-hourly-calculator/">
+<title>CAGR Calculator — Compound Annual Growth Rate</title>
+<meta name="description" content="Calculate the compound annual growth rate (CAGR) between a beginning and ending value over any number of years.">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/cagr-calculator/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Salary to Hourly Calculator — Convert Annual Pay to Hourly Rate">
-<meta property="og:description" content="Convert an annual salary into an equivalent hourly wage, based on your typical hours per week and weeks worked per year.">
-<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/salary-to-hourly-calculator/">
+<meta property="og:title" content="CAGR Calculator — Compound Annual Growth Rate">
+<meta property="og:description" content="Calculate the compound annual growth rate (CAGR) between a beginning and ending value over any number of years.">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/cagr-calculator/">
 <meta property="og:site_name" content="ClearSum">
 <meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Salary to Hourly Calculator — Convert Annual Pay to Hourly Rate">
-<meta name="twitter:description" content="Convert an annual salary into an equivalent hourly wage, based on your typical hours per week and weeks worked per year.">
+<meta name="twitter:title" content="CAGR Calculator — Compound Annual Growth Rate">
+<meta name="twitter:description" content="Calculate the compound annual growth rate (CAGR) between a beginning and ending value over any number of years.">
 <meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#101B33">
@@ -30,8 +30,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does this matter for a salaried job?","acceptedAnswer":{"@type":"Answer","text":"Salaried positions don't pay by the hour, but breaking the salary down this way can help you compare offers, value your time, or estimate what unpaid overtime is actually costing you."}},{"@type":"Question","name":"Should I use 52 weeks or fewer?","acceptedAnswer":{"@type":"Answer","text":"Use 52 if you want the rate based on a full year. If you want to account for unpaid time off, use a lower number — that spreads the same salary over fewer working weeks, raising the calculated hourly rate."}},{"@type":"Question","name":"Is this the inverse of the Salary Calculator?","acceptedAnswer":{"@type":"Answer","text":"Yes — the Salary Calculator converts an hourly wage up to weekly/monthly/annual pay; this one converts an annual salary back down to an hourly rate."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Income","item":"https://finance-calculators-sooty.vercel.app/#income"},{"@type":"ListItem","position":3,"name":"Salary to Hourly Calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is CAGR different from average annual return?","acceptedAnswer":{"@type":"Answer","text":"A simple average of yearly percentage returns can overstate real growth when returns are volatile, because it doesn't account for compounding. CAGR always reflects the actual beginning-to-ending change."}},{"@type":"Question","name":"Can CAGR be negative?","acceptedAnswer":{"@type":"Answer","text":"Yes — if the ending value is lower than the beginning value, CAGR will be negative, reflecting an average annual loss."}},{"@type":"Question","name":"What's a 'good' CAGR?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't judge that — it depends heavily on the asset class, time period, and risk taken. Comparing CAGR against a relevant benchmark over the same period is more meaningful than any fixed number."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Investing","item":"https://finance-calculators-sooty.vercel.app/#investing"},{"@type":"ListItem","position":3,"name":"CAGR Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -58,80 +58,80 @@
   </div>
 </header>
 <main id="main">
-<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#income">Income</a><span aria-hidden="true">/</span> Salary to Hourly Calculator</nav>
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#investing">Investing</a><span aria-hidden="true">/</span> CAGR Calculator</nav>
 <div class="container calc-page-head">
-  <h1>Salary to Hourly Calculator</h1>
-  <p class="lede">Convert an annual salary into an equivalent hourly wage, based on your typical hours per week and weeks worked per year.</p>
+  <h1>CAGR Calculator</h1>
+  <p class="lede">Find the smoothed, constant annual growth rate that connects a beginning value to an ending value — useful for comparing investments on an apples-to-apples annual basis.</p>
 </div><div class="container calc-shell">
   <div class="calculator" data-calculator-root>
   <h2>Calculator</h2>
   <form id="calculator-form" novalidate>
     <div class="field-grid">
       <div class="field">
-  <label for="annualSalary">Annual salary</label>
+  <label for="beginningValue">Beginning value</label>
   
   <div class="field-input-wrap">
     <span class="affix">$</span>
     <input
       type="number"
-      id="annualSalary"
-      name="annualSalary"
+      id="beginningValue"
+      name="beginningValue"
       class=""
-      value="65000"
+      value="10000"
       min="0.01"
       
-      step="500"
+      step="100"
       inputmode="decimal"
-      aria-describedby="annualSalary-error"
+      aria-describedby="beginningValue-error"
       required>
     
   </div>
   
-  <span class="field-error" id="annualSalary-error" role="status"></span>
+  <span class="field-error" id="beginningValue-error" role="status"></span>
 </div>
       <div class="field">
-  <label for="hoursPerWeek">Hours per week</label>
+  <label for="endingValue">Ending value</label>
+  
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="endingValue"
+      name="endingValue"
+      class=""
+      value="18000"
+      min="0"
+      
+      step="100"
+      inputmode="decimal"
+      aria-describedby="endingValue-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="endingValue-error" role="status"></span>
+</div>
+      <div class="field field--slider">
+  <label for="years">Number of years</label>
   
   <div class="field-input-wrap">
     
     <input
       type="number"
-      id="hoursPerWeek"
-      name="hoursPerWeek"
+      id="years"
+      name="years"
       class=""
-      value="40"
-      min="1"
-      max="168"
-      step="1"
+      value="5"
+      min="0.1"
+      max="40"
+      step="0.1"
       inputmode="decimal"
-      aria-describedby="hoursPerWeek-error"
+      aria-describedby="years-error"
       required>
     
   </div>
-  
-  <span class="field-error" id="hoursPerWeek-error" role="status"></span>
-</div>
-      <div class="field">
-  <label for="weeksPerYear">Weeks worked per year</label>
-  
-  <div class="field-input-wrap">
-    
-    <input
-      type="number"
-      id="weeksPerYear"
-      name="weeksPerYear"
-      class=""
-      value="52"
-      min="1"
-      max="52"
-      step="1"
-      inputmode="decimal"
-      aria-describedby="weeksPerYear-error"
-      required>
-    
-  </div>
-  
-  <span class="field-error" id="weeksPerYear-error" role="status"></span>
+  <input type="range" class="field-slider" id="years-slider" data-slider-for="years" min="0.1" max="40" step="0.1" value="5" aria-label="Number of years (slider)">
+  <span class="field-error" id="years-error" role="status"></span>
 </div>
     </div>
     <div class="calc-actions">
@@ -163,41 +163,42 @@
   <div class="related-box">
     <h3>Related calculators</h3>
     <ul>
-      <li><a href="/salary-calculator/">Salary Calculator — Convert Hourly Wage to Annual Salary</a></li>
-      <li><a href="/take-home-pay-calculator/">Take-Home Pay Calculator — Estimate Your Net Pay</a></li>
-      <li><a href="/income-tax-calculator/">Income Tax Calculator — Estimate Your Federal Tax (2026)</a></li>
+      <li><a href="/roi-calculator/">ROI Calculator — Return on Investment &amp; Annualized Return</a></li>
+      <li><a href="/compound-interest-calculator/">Compound Interest Calculator — Future Value of Savings</a></li>
+      <li><a href="/investment-calculator/">Investment Calculator — Future Value &amp; Real Purchasing Power</a></li>
     </ul>
   </div>
 </aside>
 </div><div class="container"><article class="article">
 <h2>How It Works</h2>
-<p>This calculator divides your annual salary by the total number of hours you work in a year (hours per week times weeks per year) to find an equivalent hourly rate — useful for comparing a salaried offer to hourly pay, or estimating the value of your time.</p>
-<div class="callout"><strong>Not included:</strong> These are gross figures — before taxes, benefits, or other withholdings.</div>
+<p>CAGR answers: 'What single, constant annual rate would have taken the beginning value to the ending value over this many years?' It's the standard way to compare growth rates across investments or time periods of different lengths.</p>
+<p>Because it's a smoothed average, two investments with the same CAGR can have had very different year-to-year experiences — one steady, one volatile.</p>
+<div class="callout"><strong>Not included:</strong> CAGR smooths out volatility — it doesn't tell you anything about how bumpy the actual ride was, or whether the growth was steady, front-loaded, or back-loaded.</div>
 <h2>Formula</h2>
-<div class="formula-box">Hourly rate = Annual salary ÷ (Hours/week × Weeks/year)</div>
+<div class="formula-box">CAGR = (EndingValue ÷ BeginningValue)^(1 ÷ Years) − 1</div>
 <ul>
-      <li><strong>Annual salary</strong> — Gross yearly pay</li>
-      <li><strong>Hours/week</strong> — Typical hours worked per week</li>
-      <li><strong>Weeks/year</strong> — Number of paid weeks worked per year</li>
+      <li><strong>EndingValue</strong> — The value at the end of the period</li>
+      <li><strong>BeginningValue</strong> — The value at the start of the period</li>
+      <li><strong>Years</strong> — The number of years between them</li>
 </ul>
 <h2>Example</h2>
 <div class="example-box">
-  <p><strong>Example inputs:</strong> Annual salary $65,000, 40 hours/week, 52 weeks/year.</p>
-  <p><strong>Result:</strong> Total hours worked per year: 2,080. Equivalent hourly rate: $31.25.</p>
+  <p><strong>Example inputs:</strong> $10,000 beginning value, $18,000 ending value, 5 years.</p>
+  <p><strong>Result:</strong> Total growth: 80%. Compound annual growth rate (CAGR): 12.47%.</p>
 </div>
 <h2>Frequently Asked Questions</h2>
 <div>
   <details class="faq-item">
-    <summary>Why does this matter for a salaried job?</summary>
-    <p>Salaried positions don't pay by the hour, but breaking the salary down this way can help you compare offers, value your time, or estimate what unpaid overtime is actually costing you.</p>
+    <summary>How is CAGR different from average annual return?</summary>
+    <p>A simple average of yearly percentage returns can overstate real growth when returns are volatile, because it doesn't account for compounding. CAGR always reflects the actual beginning-to-ending change.</p>
   </details>
   <details class="faq-item">
-    <summary>Should I use 52 weeks or fewer?</summary>
-    <p>Use 52 if you want the rate based on a full year. If you want to account for unpaid time off, use a lower number — that spreads the same salary over fewer working weeks, raising the calculated hourly rate.</p>
+    <summary>Can CAGR be negative?</summary>
+    <p>Yes — if the ending value is lower than the beginning value, CAGR will be negative, reflecting an average annual loss.</p>
   </details>
   <details class="faq-item">
-    <summary>Is this the inverse of the Salary Calculator?</summary>
-    <p>Yes — the Salary Calculator converts an hourly wage up to weekly/monthly/annual pay; this one converts an annual salary back down to an hourly rate.</p>
+    <summary>What&#39;s a &#39;good&#39; CAGR?</summary>
+    <p>This calculator doesn't judge that — it depends heavily on the asset class, time period, and risk taken. Comparing CAGR against a relevant benchmark over the same period is more meaningful than any fixed number.</p>
   </details>
 </div>
 <p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
@@ -238,6 +239,6 @@
 </footer>
 <script src="/js/calc-runtime.js"></script>
 <script src="/js/calculators/_lib.js"></script>
-<script src="/js/calculators/salary-to-hourly-calculator.js"></script>
+<script src="/js/calculators/cagr-calculator.js"></script>
 </body>
 </html>

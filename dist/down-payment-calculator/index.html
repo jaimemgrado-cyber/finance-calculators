@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
 <meta name="google-adsense-account" content="ca-pub-5422820182709667">
-<title>Debt Payoff Calculator — Payoff Time &amp; Extra Payment Savings</title>
-<meta name="description" content="See how long it will take to pay off any debt, and how much time and interest you could save by paying extra each month.">
-<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/debt-payoff-calculator/">
+<title>Down Payment Calculator — How Much You Need &amp; How Long to Save</title>
+<meta name="description" content="Calculate your down payment amount, the resulting loan size, whether you&#39;d likely need PMI, and how long it would take to save the rest.">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/down-payment-calculator/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Debt Payoff Calculator — Payoff Time &amp; Extra Payment Savings">
-<meta property="og:description" content="See how long it will take to pay off any debt, and how much time and interest you could save by paying extra each month.">
-<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/debt-payoff-calculator/">
+<meta property="og:title" content="Down Payment Calculator — How Much You Need &amp; How Long to Save">
+<meta property="og:description" content="Calculate your down payment amount, the resulting loan size, whether you&#39;d likely need PMI, and how long it would take to save the rest.">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/down-payment-calculator/">
 <meta property="og:site_name" content="ClearSum">
 <meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Debt Payoff Calculator — Payoff Time &amp; Extra Payment Savings">
-<meta name="twitter:description" content="See how long it will take to pay off any debt, and how much time and interest you could save by paying extra each month.">
+<meta name="twitter:title" content="Down Payment Calculator — How Much You Need &amp; How Long to Save">
+<meta name="twitter:description" content="Calculate your down payment amount, the resulting loan size, whether you&#39;d likely need PMI, and how long it would take to save the rest.">
 <meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#101B33">
@@ -30,8 +30,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What kinds of debt can I use this for?","acceptedAnswer":{"@type":"Answer","text":"Any debt with a balance, a fixed interest rate, and a regular payment — personal loans, medical debt, or credit cards. For a loan with a truly fixed term (like a mortgage or auto loan), the dedicated loan calculators may be more precise."}},{"@type":"Question","name":"Should I pay off multiple debts with this?","acceptedAnswer":{"@type":"Answer","text":"This calculator handles one balance at a time. If you have several debts, common strategies include paying off the highest-rate balance first (saves the most interest) or the smallest balance first (a quick psychological win) — apply this calculator to whichever debt you're focusing extra payments on."}},{"@type":"Question","name":"Does extra payment amount matter more early or late in the payoff?","acceptedAnswer":{"@type":"Answer","text":"Extra payments made earlier reduce the balance interest accrues on sooner, generally producing more total interest savings than the same extra amount applied later — though this calculator assumes a consistent extra payment every month rather than a one-time lump sum."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Debt","item":"https://finance-calculators-sooty.vercel.app/#debt"},{"@type":"ListItem","position":3,"name":"Debt Payoff Calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is 20% down always required?","acceptedAnswer":{"@type":"Answer","text":"No — many loan programs allow much less (some as low as 3-3.5% down), but going below 20% on a conventional loan commonly triggers PMI, an added monthly cost."}},{"@type":"Question","name":"Does a bigger down payment always make sense?","acceptedAnswer":{"@type":"Answer","text":"It reduces your loan size, monthly payment, and total interest — but tying up more cash upfront has trade-offs too, like less liquidity for emergencies or other goals. This calculator shows the math, not the trade-off decision."}},{"@type":"Question","name":"How is the time-to-save estimate calculated?","acceptedAnswer":{"@type":"Answer","text":"It's the remaining amount divided by your monthly savings, assuming no investment growth on those savings and no change in your monthly amount."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Loans","item":"https://finance-calculators-sooty.vercel.app/#loans"},{"@type":"ListItem","position":3,"name":"Down Payment Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -58,102 +58,102 @@
   </div>
 </header>
 <main id="main">
-<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#debt">Debt</a><span aria-hidden="true">/</span> Debt Payoff Calculator</nav>
+<nav class="container breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span> <a href="/#loans">Loans</a><span aria-hidden="true">/</span> Down Payment Calculator</nav>
 <div class="container calc-page-head">
-  <h1>Debt Payoff Calculator</h1>
-  <p class="lede">See how long it will take to pay off a debt, and how much time and interest you could save by adding an extra amount to your monthly payment.</p>
+  <h1>Down Payment Calculator</h1>
+  <p class="lede">Find out how much you need for a down payment at any percentage, what loan amount that leaves you with, and how long it could take to save the difference.</p>
 </div><div class="container calc-shell">
   <div class="calculator" data-calculator-root>
   <h2>Calculator</h2>
   <form id="calculator-form" novalidate>
     <div class="field-grid">
       <div class="field">
-  <label for="currentBalance">Current balance</label>
+  <label for="homePrice">Home price</label>
   
   <div class="field-input-wrap">
     <span class="affix">$</span>
     <input
       type="number"
-      id="currentBalance"
-      name="currentBalance"
+      id="homePrice"
+      name="homePrice"
       class=""
-      value="8000"
-      min="0.01"
+      value="350000"
+      min="0"
       
-      step="100"
+      step="1000"
       inputmode="decimal"
-      aria-describedby="currentBalance-error"
+      aria-describedby="homePrice-error"
       required>
     
   </div>
   
-  <span class="field-error" id="currentBalance-error" role="status"></span>
+  <span class="field-error" id="homePrice-error" role="status"></span>
 </div>
-      <div class="field">
-  <label for="apr">Interest rate (APR)</label>
+      <div class="field field--slider">
+  <label for="downPaymentPercent">Down payment</label>
   
   <div class="field-input-wrap">
     
     <input
       type="number"
-      id="apr"
-      name="apr"
+      id="downPaymentPercent"
+      name="downPaymentPercent"
       class="has-suffix"
-      value="15"
+      value="10"
       min="0"
-      max="60"
-      step="0.01"
+      max="100"
+      step="0.5"
       inputmode="decimal"
-      aria-describedby="apr-error"
+      aria-describedby="downPaymentPercent-error"
       required>
     <span class="affix affix--suffix">%</span>
   </div>
-  
-  <span class="field-error" id="apr-error" role="status"></span>
+  <input type="range" class="field-slider" id="downPaymentPercent-slider" data-slider-for="downPaymentPercent" min="0" max="100" step="0.5" value="10" aria-label="Down payment (slider)">
+  <span class="field-error" id="downPaymentPercent-error" role="status"></span>
 </div>
       <div class="field">
-  <label for="monthlyPayment">Monthly payment</label>
-  
+  <label for="currentSavings">Current savings toward it</label>
+  <span class="hint">Optional</span>
   <div class="field-input-wrap">
     <span class="affix">$</span>
     <input
       type="number"
-      id="monthlyPayment"
-      name="monthlyPayment"
+      id="currentSavings"
+      name="currentSavings"
       class=""
-      value="250"
-      min="0.01"
-      
-      step="10"
-      inputmode="decimal"
-      aria-describedby="monthlyPayment-error"
-      required>
-    
-  </div>
-  
-  <span class="field-error" id="monthlyPayment-error" role="status"></span>
-</div>
-      <div class="field">
-  <label for="extraPayment">Extra monthly payment</label>
-  <span class="hint">Optional — enter 0 to skip the comparison</span>
-  <div class="field-input-wrap">
-    <span class="affix">$</span>
-    <input
-      type="number"
-      id="extraPayment"
-      name="extraPayment"
-      class=""
-      value="100"
+      value="10000"
       min="0"
       
-      step="10"
+      step="500"
       inputmode="decimal"
-      aria-describedby="extraPayment-error"
+      aria-describedby="currentSavings-error"
       required>
     
   </div>
   
-  <span class="field-error" id="extraPayment-error" role="status"></span>
+  <span class="field-error" id="currentSavings-error" role="status"></span>
+</div>
+      <div class="field">
+  <label for="monthlySavings">Monthly savings toward it</label>
+  <span class="hint">Optional — leave at 0 to skip the time-to-save estimate</span>
+  <div class="field-input-wrap">
+    <span class="affix">$</span>
+    <input
+      type="number"
+      id="monthlySavings"
+      name="monthlySavings"
+      class=""
+      value="1000"
+      min="0"
+      
+      step="50"
+      inputmode="decimal"
+      aria-describedby="monthlySavings-error"
+      required>
+    
+  </div>
+  
+  <span class="field-error" id="monthlySavings-error" role="status"></span>
 </div>
     </div>
     <div class="calc-actions">
@@ -185,42 +185,41 @@
   <div class="related-box">
     <h3>Related calculators</h3>
     <ul>
-      <li><a href="/credit-card-payoff-calculator/">Credit Card Payoff Calculator — How Long to Pay Off Debt</a></li>
-      <li><a href="/debt-to-income-calculator/">Debt-to-Income (DTI) Ratio Calculator</a></li>
+      <li><a href="/mortgage-calculator/">Mortgage Calculator — Estimate Your Monthly Payment</a></li>
+      <li><a href="/mortgage-affordability-calculator/">Mortgage Affordability Calculator — How Much House Can You Afford?</a></li>
       <li><a href="/savings-calculator/">Savings Goal Calculator — Monthly Contribution Needed</a></li>
     </ul>
   </div>
 </aside>
 </div><div class="container"><article class="article">
 <h2>How It Works</h2>
-<p>This calculator simulates your balance month by month, applying interest and then your payment, the same way the Credit Card Payoff Calculator does. It works for any debt with a balance, interest rate, and monthly payment — not just credit cards.</p>
-<p>If you enter an extra monthly payment, it runs the same simulation a second time with that extra amount added, and shows how much sooner you'd be debt-free and how much interest you'd save.</p>
-<div class="callout"><strong>Not included:</strong> Works for any single debt with a fixed rate and payment — it doesn't allocate payments across multiple debts (like a snowball or avalanche strategy across several balances).</div>
+<p>The down payment amount is simply the home price multiplied by your chosen percentage; the loan amount is what's left. If you enter current savings and a monthly savings amount, the calculator also estimates how many months it would take to close the gap.</p>
+<p>Down payments below 20% commonly trigger private mortgage insurance (PMI) on conventional loans — an added monthly cost that protects the lender, not you, until you reach 20% equity.</p>
+<div class="callout"><strong>Not included:</strong> Doesn't include investment growth on your savings, closing costs, or a lender's specific PMI rate.</div>
 <h2>Formula</h2>
-<div class="formula-box">Each month: interest = balance × (APR ÷ 12); balance = balance + interest − payment</div>
+<div class="formula-box">DownPayment = HomePrice × (Percent ÷ 100); LoanAmount = HomePrice − DownPayment</div>
 <ul>
-      <li><strong>balance</strong> — Remaining debt balance</li>
-      <li><strong>APR</strong> — Annual interest rate</li>
-      <li><strong>payment</strong> — Fixed monthly payment</li>
+      <li><strong>HomePrice</strong> — The purchase price of the home</li>
+      <li><strong>Percent</strong> — Your chosen down payment percentage</li>
 </ul>
 <h2>Example</h2>
 <div class="example-box">
-  <p><strong>Example inputs:</strong> Balance $8,000, 15% APR, $250/month payment, plus $100/month extra.</p>
-  <p><strong>Result:</strong> Time to pay off: 42 months. With the extra $100/month: 28 months — 14 months sooner, saving $800.24 in interest.</p>
+  <p><strong>Example inputs:</strong> $350,000 home price, 10% down payment, $10,000 current savings, $1,000/mo savings.</p>
+  <p><strong>Result:</strong> Down payment amount: $35,000.00. Resulting loan amount: $315,000.00. Still needed: $25,000.00 — about 25 months to save.</p>
 </div>
 <h2>Frequently Asked Questions</h2>
 <div>
   <details class="faq-item">
-    <summary>What kinds of debt can I use this for?</summary>
-    <p>Any debt with a balance, a fixed interest rate, and a regular payment — personal loans, medical debt, or credit cards. For a loan with a truly fixed term (like a mortgage or auto loan), the dedicated loan calculators may be more precise.</p>
+    <summary>Is 20% down always required?</summary>
+    <p>No — many loan programs allow much less (some as low as 3-3.5% down), but going below 20% on a conventional loan commonly triggers PMI, an added monthly cost.</p>
   </details>
   <details class="faq-item">
-    <summary>Should I pay off multiple debts with this?</summary>
-    <p>This calculator handles one balance at a time. If you have several debts, common strategies include paying off the highest-rate balance first (saves the most interest) or the smallest balance first (a quick psychological win) — apply this calculator to whichever debt you're focusing extra payments on.</p>
+    <summary>Does a bigger down payment always make sense?</summary>
+    <p>It reduces your loan size, monthly payment, and total interest — but tying up more cash upfront has trade-offs too, like less liquidity for emergencies or other goals. This calculator shows the math, not the trade-off decision.</p>
   </details>
   <details class="faq-item">
-    <summary>Does extra payment amount matter more early or late in the payoff?</summary>
-    <p>Extra payments made earlier reduce the balance interest accrues on sooner, generally producing more total interest savings than the same extra amount applied later — though this calculator assumes a consistent extra payment every month rather than a one-time lump sum.</p>
+    <summary>How is the time-to-save estimate calculated?</summary>
+    <p>It's the remaining amount divided by your monthly savings, assuming no investment growth on those savings and no change in your monthly amount.</p>
   </details>
 </div>
 <p class="disclaimer-note">This calculator provides estimates for informational purposes only and should not be considered financial, tax, or legal advice.</p>
@@ -261,6 +260,6 @@
 </footer>
 <script src="/js/calc-runtime.js"></script>
 <script src="/js/calculators/_lib.js"></script>
-<script src="/js/calculators/debt-payoff-calculator.js"></script>
+<script src="/js/calculators/down-payment-calculator.js"></script>
 </body>
 </html>
