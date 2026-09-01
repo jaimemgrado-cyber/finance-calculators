@@ -69,7 +69,7 @@ module.exports = {
 
   legal: {
     legalEntityName: "ClearSum",
-    contactEmail: "",
+    contactEmail: "support.digitaltools@gmail.com",
     // Optional: a form-backend endpoint (e.g. from Formspree, Getform, or
     // similar) so the Contact page can submit a real message with zero
     // backend code and zero fixed cost. Leave blank to fall back to the
