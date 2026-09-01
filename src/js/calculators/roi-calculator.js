@@ -45,7 +45,23 @@
       return { error: "We couldn't calculate a result with these values." };
     }
 
-    return { rows: rows, note: note };
+    return {
+      rows: rows,
+      note: note,
+      scale: {
+        label: "Return on investment",
+        min: -50,
+        max: 100,
+        value: roiPercent,
+        valueDisplay: lib.fmtNumber(roiPercent) + "%",
+        lowLabel: "Loss",
+        highLabel: "Strong gain",
+        kind: "computed",
+        interpretation: roiPercent >= 0
+          ? "You gained " + lib.fmtNumber(roiPercent) + "% on your initial investment over this period."
+          : "You lost " + lib.fmtNumber(Math.abs(roiPercent)) + "% of your initial investment over this period."
+      }
+    };
   }
 
   if (typeof module !== "undefined" && module.exports) {

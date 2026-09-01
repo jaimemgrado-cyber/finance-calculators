@@ -35,7 +35,18 @@
         { label: "Effective tax rate", value: lib.fmtNumber(effectiveRate) + "%", rawValue: effectiveRate },
         { label: "Estimated federal tax owed", value: lib.fmtCurrency(federalTax), rawValue: federalTax, isTotal: true }
       ],
-      note: "2026 federal brackets, Single/MFJ/Head of Household. Uses the standard deduction — doesn't include credits, itemized deductions, state tax, or FICA."
+      note: "2026 federal brackets, Single/MFJ/Head of Household. Uses the standard deduction — doesn't include credits, itemized deductions, state tax, or FICA.",
+      scale: {
+        label: "Effective federal tax rate",
+        min: 0,
+        max: 37,
+        value: effectiveRate,
+        valueDisplay: lib.fmtNumber(effectiveRate) + "%",
+        lowLabel: "0%",
+        highLabel: "37%",
+        kind: "computed",
+        interpretation: "Your effective rate (" + lib.fmtNumber(effectiveRate) + "%) is the share of your gross income paid in federal tax overall — it's lower than your marginal bracket (" + lib.fmtNumber(marginal * 100) + "%) because only income above each bracket threshold is taxed at that bracket's rate."
+      }
     };
   }
 

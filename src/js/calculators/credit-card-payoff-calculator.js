@@ -28,6 +28,7 @@
     var remaining = balance;
     var totalInterest = 0;
     var months = 0;
+    var history = [balance];
 
     while (remaining > 0 && months < MAX_MONTHS) {
       var interest = remaining * monthlyRate;
@@ -36,11 +37,13 @@
         totalInterest += interest;
         remaining = 0;
         months += 1;
+        history.push(0);
         break;
       }
       remaining -= principalPaid;
       totalInterest += interest;
       months += 1;
+      history.push(remaining);
     }
 
     if (remaining > 0) {
@@ -66,8 +69,32 @@
         { label: "Total interest paid", value: lib.fmtCurrency(totalInterest), rawValue: totalInterest },
         { label: "Total paid (balance + interest)", value: lib.fmtCurrency(totalPaid), rawValue: totalPaid, isTotal: true }
       ],
-      note: "Assumes no new charges are added to the card and the payment is made in full every month."
+      note: "Assumes no new charges are added to the card and the payment is made in full every month.",
+      scale: {
+        label: "Interest as a share of total payoff cost",
+        min: 0,
+        max: 100,
+        value: totalPaid > 0 ? (totalInterest / totalPaid) * 100 : 0,
+        valueDisplay: lib.fmtNumber(totalPaid > 0 ? (totalInterest / totalPaid) * 100 : 0) + "%",
+        lowLabel: "Mostly principal",
+        highLabel: "Mostly interest",
+        kind: "computed",
+        interpretation: "Of the " + lib.fmtCurrency(totalPaid) + " you'll pay in total, " + lib.fmtNumber(totalPaid > 0 ? (totalInterest / totalPaid) * 100 : 0) + "% (" + lib.fmtCurrency(totalInterest) + ") is interest. Credit card APRs are typically high, so this share climbs fast with slow payoffs."
+      },
+      chart: buildBalanceChart(history)
     };
+  }
+
+  function buildBalanceChart(history) {
+    var totalMonths = history.length - 1;
+    var maxPoints = 12;
+    var step = Math.max(1, Math.ceil(totalMonths / maxPoints));
+    var pts = [];
+    for (var m = 0; m < history.length; m += step) pts.push(history[m]);
+    if (pts[pts.length - 1] !== history[history.length - 1]) pts.push(history[history.length - 1]);
+    var usedStep = step;
+    var labels = pts.map(function (_, idx) { return "Mo " + Math.min(idx * usedStep, totalMonths); });
+    return { title: "Balance over time", labels: labels, series: [{ name: "Balance", data: pts, color: "#C1583B" }] };
   }
 
   if (typeof module !== "undefined" && module.exports) {

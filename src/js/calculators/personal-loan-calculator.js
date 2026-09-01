@@ -56,7 +56,15 @@
 
     return {
       rows: rows,
-      note: "The monthly payment is based on the full loan amount — the origination fee reduces what you receive, not what you repay."
+      note: "The monthly payment is based on the full loan amount — the origination fee reduces what you receive, not what you repay.",
+      scale: {
+        label: "Interest as a share of total repayment",
+        min: 0, max: 100,
+        value: totalPaid > 0 ? (totalInterest / totalPaid) * 100 : 0,
+        valueDisplay: lib.fmtNumber(totalPaid > 0 ? (totalInterest / totalPaid) * 100 : 0) + "%",
+        lowLabel: "Mostly principal", highLabel: "Mostly interest", kind: "computed",
+        interpretation: "Of the " + lib.fmtCurrency(totalPaid) + " you'll repay in total, " + lib.fmtNumber(totalPaid > 0 ? (totalInterest / totalPaid) * 100 : 0) + "% (" + lib.fmtCurrency(totalInterest) + ") is interest."
+      }
     };
   }
 

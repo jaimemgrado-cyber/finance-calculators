@@ -18,6 +18,7 @@
     var remaining = balance;
     var totalInterest = 0;
     var months = 0;
+    var history = [balance];
     if (payment <= remaining * monthlyRate) return null;
     while (remaining > 0 && months < MAX_MONTHS) {
       var interest = remaining * monthlyRate;
@@ -26,14 +27,16 @@
         totalInterest += interest;
         remaining = 0;
         months += 1;
+        history.push(0);
         break;
       }
       remaining -= principalPaid;
       totalInterest += interest;
       months += 1;
+      history.push(remaining);
     }
     if (remaining > 0) return null;
-    return { months: months, totalInterest: totalInterest };
+    return { months: months, totalInterest: totalInterest, history: history };
   }
 
   function compute(v) {
@@ -69,7 +72,47 @@
       }
     }
 
-    return { rows: rows, note: note };
+    var totalPaid = base.totalInterest + balance;
+    var interestShare = totalPaid > 0 ? (base.totalInterest / totalPaid) * 100 : 0;
+
+    return {
+      rows: rows,
+      note: note,
+      scale: {
+        label: "Interest as a share of total payoff cost",
+        min: 0,
+        max: 100,
+        value: interestShare,
+        valueDisplay: lib.fmtNumber(interestShare) + "%",
+        lowLabel: "Mostly principal",
+        highLabel: "Mostly interest",
+        kind: "computed",
+        interpretation: "Of the " + lib.fmtCurrency(totalPaid) + " you'll pay in total at this payment, " + lib.fmtNumber(interestShare) + "% (" + lib.fmtCurrency(base.totalInterest) + ") is interest rather than paying down the balance. A higher share generally means a higher rate, a longer payoff, or both."
+      },
+      chart: buildDebtChart(base)
+    };
+  }
+
+  // Builds the "balance over time" chart from month-by-month history,
+  // sampled down to ~12 points so long payoffs stay readable.
+  function buildDebtChart(base) {
+    var sampled = sampleHistory(base.history);
+    var totalMonths = base.history.length - 1;
+    var step = Math.max(1, Math.ceil(totalMonths / (sampled.length - 1 || 1)));
+    var labels = sampled.map(function (_, idx) {
+      return "Mo " + Math.min(idx * step, totalMonths);
+    });
+    return { title: "Balance over time", labels: labels, series: [{ name: "Balance", data: sampled, color: "#C1583B" }] };
+  }
+
+  function sampleHistory(history) {
+    var totalMonths = history.length - 1;
+    var maxPoints = 12;
+    var step = Math.max(1, Math.ceil(totalMonths / maxPoints));
+    var pts = [];
+    for (var m = 0; m < history.length; m += step) pts.push(history[m]);
+    if (pts[pts.length - 1] !== history[history.length - 1]) pts.push(history[history.length - 1]);
+    return pts;
   }
 
   if (typeof module !== "undefined" && module.exports) {
