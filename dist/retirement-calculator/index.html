@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
 <title>Retirement Calculator — Projected Savings at Retirement Age</title>
 <meta name="description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
-<link rel="canonical" href="https://www.clearsum-example.com/retirement-calculator/">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/retirement-calculator/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Retirement Calculator — Projected Savings at Retirement Age">
 <meta property="og:description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
-<meta property="og:url" content="https://www.clearsum-example.com/retirement-calculator/">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/retirement-calculator/">
 <meta property="og:site_name" content="ClearSum">
-<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Retirement Calculator — Projected Savings at Retirement Age">
 <meta name="twitter:description" content="Estimate what your retirement savings could grow to by your target retirement age, based on your current savings, contributions, and expected return.">
-<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#14213D">
+<meta name="theme-color" content="#101B33">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/assets/favicon.ico">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -29,6 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the 4% rule?","acceptedAnswer":{"@type":"Answer","text":"It's a widely referenced guideline from retirement research suggesting that withdrawing about 4% of a portfolio in the first year of retirement, then adjusting for inflation each year after, has historically had a reasonable chance of lasting 30 years. It's a starting point for discussion, not a guarantee or personalized advice — actual sustainable withdrawal rates depend on markets, spending, and how long retirement lasts."}},{"@type":"Question","name":"Does this include Social Security?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator only projects your own contributions and savings growth. Social Security, pensions, or other income sources would be additional."}},{"@type":"Question","name":"What if I don't know what return to expect?","acceptedAnswer":{"@type":"Answer","text":"This calculator doesn't recommend a rate — try a few different assumptions to see how sensitive your projection is to the return you use."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Investing","item":"https://finance-calculators-sooty.vercel.app/#investing"},{"@type":"ListItem","position":3,"name":"Retirement Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -177,6 +180,22 @@
   </form>
   <div class="tape" data-tape aria-live="polite"></div>
   <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
 </div>
   <aside class="sidebar">
   <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>

@@ -30,7 +30,15 @@
         { label: "Total increase", value: lib.fmtNumber(percentIncrease) + "%", rawValue: percentIncrease },
         { label: "Equivalent cost in " + years + " years", value: lib.fmtCurrency(futureCost), rawValue: futureCost, isTotal: true }
       ],
-      note: "Uses the inflation rate you entered, applied evenly every year — real inflation varies year to year and isn't predictable this far out."
+      note: "Uses the inflation rate you entered, applied evenly every year — real inflation varies year to year and isn't predictable this far out.",
+      scale: {
+        label: "Purchasing power lost over the period",
+        min: 0, max: 100,
+        value: futureCost > 0 ? (difference / futureCost) * 100 : 0,
+        valueDisplay: lib.fmtNumber(futureCost > 0 ? (difference / futureCost) * 100 : 0) + "%",
+        lowLabel: "Little change", highLabel: "Major erosion", kind: "computed",
+        interpretation: "At this rate, today's " + lib.fmtCurrency(amount) + " would need to grow to " + lib.fmtCurrency(futureCost) + " in " + years + " years just to buy the same things."
+      }
     };
   }
 

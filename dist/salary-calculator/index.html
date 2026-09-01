@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
 <title>Salary Calculator — Convert Hourly Wage to Annual Salary</title>
 <meta name="description" content="Convert an hourly wage into weekly, biweekly, monthly, and annual gross pay, based on your hours per week and weeks worked per year.">
-<link rel="canonical" href="https://www.clearsum-example.com/salary-calculator/">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/salary-calculator/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Salary Calculator — Convert Hourly Wage to Annual Salary">
 <meta property="og:description" content="Convert an hourly wage into weekly, biweekly, monthly, and annual gross pay, based on your hours per week and weeks worked per year.">
-<meta property="og:url" content="https://www.clearsum-example.com/salary-calculator/">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/salary-calculator/">
 <meta property="og:site_name" content="ClearSum">
-<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Salary Calculator — Convert Hourly Wage to Annual Salary">
 <meta name="twitter:description" content="Convert an hourly wage into weekly, biweekly, monthly, and annual gross pay, based on your hours per week and weeks worked per year.">
-<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#14213D">
+<meta name="theme-color" content="#101B33">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/assets/favicon.ico">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -29,6 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why 50 weeks instead of 52?","acceptedAnswer":{"@type":"Answer","text":"52 weeks assumes no unpaid time off. Using a lower number, like 50, accounts for roughly two weeks of unpaid vacation or leave — adjust it to match your actual situation."}},{"@type":"Question","name":"Does this include overtime?","acceptedAnswer":{"@type":"Answer","text":"No — this calculator uses a flat hourly rate for all hours entered. If you regularly work overtime at a higher rate, calculate that portion separately and add it to the result."}},{"@type":"Question","name":"Why is this gross pay and not take-home pay?","acceptedAnswer":{"@type":"Answer","text":"Gross pay is before taxes and other withholdings, which depend on your filing status, state, and benefit elections — figures that vary too much person-to-person for a general calculator to estimate reliably."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Income","item":"https://finance-calculators-sooty.vercel.app/#income"},{"@type":"ListItem","position":3,"name":"Salary Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -135,6 +138,22 @@
   </form>
   <div class="tape" data-tape aria-live="polite"></div>
   <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
 </div>
   <aside class="sidebar">
   <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>

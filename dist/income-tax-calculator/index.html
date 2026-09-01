@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
 <title>Income Tax Calculator — Estimate Your Federal Tax (2026)</title>
 <meta name="description" content="Estimate your federal income tax liability, marginal tax bracket, and effective tax rate using 2026 IRS tax brackets and the standard deduction.">
-<link rel="canonical" href="https://www.clearsum-example.com/income-tax-calculator/">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/income-tax-calculator/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Income Tax Calculator — Estimate Your Federal Tax (2026)">
 <meta property="og:description" content="Estimate your federal income tax liability, marginal tax bracket, and effective tax rate using 2026 IRS tax brackets and the standard deduction.">
-<meta property="og:url" content="https://www.clearsum-example.com/income-tax-calculator/">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/income-tax-calculator/">
 <meta property="og:site_name" content="ClearSum">
-<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Income Tax Calculator — Estimate Your Federal Tax (2026)">
 <meta name="twitter:description" content="Estimate your federal income tax liability, marginal tax bracket, and effective tax rate using 2026 IRS tax brackets and the standard deduction.">
-<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#14213D">
+<meta name="theme-color" content="#101B33">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/assets/favicon.ico">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -29,6 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where do these tax brackets come from?","acceptedAnswer":{"@type":"Answer","text":"The 2026 tax year brackets and standard deduction published by the IRS in Revenue Procedure 2025-32 (announced October 2025). Tax brackets are adjusted for inflation annually, so these figures are specific to income earned in 2026."}},{"@type":"Question","name":"What's the difference between my marginal and effective tax rate?","acceptedAnswer":{"@type":"Answer","text":"Your marginal rate is the rate on your last dollar of taxable income — the top bracket you reach. Your effective rate is your total tax divided by your income, which is always lower, since earlier dollars are taxed at lower bracket rates first."}},{"@type":"Question","name":"Does this include state income tax?","acceptedAnswer":{"@type":"Answer","text":"No — this calculator only estimates federal income tax. Use the Take-Home Pay Calculator to include an estimated state tax rate alongside federal tax and FICA."}},{"@type":"Question","name":"Why isn't Married Filing Separately included?","acceptedAnswer":{"@type":"Answer","text":"We only publish figures we've directly verified against a primary source, and we haven't yet confirmed the exact Married Filing Separately thresholds against one. We'll add that status once we have."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Taxes","item":"https://finance-calculators-sooty.vercel.app/#taxes"},{"@type":"ListItem","position":3,"name":"Income Tax Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -124,6 +127,22 @@
   </form>
   <div class="tape" data-tape aria-live="polite"></div>
   <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
 </div>
   <aside class="sidebar">
   <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>

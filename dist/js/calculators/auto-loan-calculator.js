@@ -40,6 +40,7 @@
 
     var totalPaid = monthlyPayment * loanTermMonths;
     var totalInterest = totalPaid - principal;
+    var interestShare = totalPaid > 0 ? (totalInterest / totalPaid) * 100 : 0;
 
     return {
       rows: [
@@ -48,7 +49,13 @@
         { label: "Total interest paid", value: lib.fmtCurrency(totalInterest), rawValue: totalInterest },
         { label: "Total of all payments", value: lib.fmtCurrency(totalPaid), rawValue: totalPaid }
       ],
-      note: "Based on a fixed rate over " + loanTermMonths + " months, with no fees or taxes included."
+      note: "Based on a fixed rate over " + loanTermMonths + " months, with no fees or taxes included.",
+      scale: {
+        label: "Interest as a share of total repayment",
+        min: 0, max: 100, value: interestShare, valueDisplay: lib.fmtNumber(interestShare) + "%",
+        lowLabel: "Mostly principal", highLabel: "Mostly interest", kind: "computed",
+        interpretation: "Of the " + lib.fmtCurrency(totalPaid) + " you'll repay in total, " + lib.fmtNumber(interestShare) + "% (" + lib.fmtCurrency(totalInterest) + ") is interest."
+      }
     };
   }
 

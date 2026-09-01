@@ -1,81 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.clearsum-example.com/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/about/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/about/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/contact/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/contact/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/privacy-policy/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/privacy-policy/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/terms-of-service/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/terms-of-service/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/disclaimer/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/disclaimer/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/mortgage-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/mortgage-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/loan-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/loan-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/auto-loan-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/auto-loan-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/compound-interest-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/compound-interest-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/savings-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/savings-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/credit-card-payoff-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/credit-card-payoff-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/salary-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/salary-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/sales-tax-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/sales-tax-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/tip-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/tip-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/percentage-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/percentage-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/personal-loan-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/personal-loan-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/investment-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/investment-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/retirement-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/retirement-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/roi-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/roi-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/debt-payoff-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/debt-payoff-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/salary-to-hourly-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/salary-to-hourly-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/take-home-pay-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/take-home-pay-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/income-tax-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/income-tax-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/discount-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/discount-calculator/</loc>
   </url>
   <url>
-    <loc>https://www.clearsum-example.com/inflation-calculator/</loc>
+    <loc>https://finance-calculators-sooty.vercel.app/inflation-calculator/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-much-house-can-i-afford/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/monthly-mortgage-payment/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/loan-interest-calculator-guide/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-much-should-i-put-down-on-a-house/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-does-compound-interest-work/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-much-money-do-i-need-to-retire/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-to-calculate-sales-tax/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-to-calculate-hourly-rate/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-long-to-pay-off-credit-card-debt/</loc>
+  </url>
+  <url>
+    <loc>https://finance-calculators-sooty.vercel.app/how-to-calculate-a-percentage/</loc>
   </url>
 </urlset>

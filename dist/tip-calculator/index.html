@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
 <title>Tip Calculator — Calculate Tip and Split the Bill</title>
 <meta name="description" content="Calculate how much to tip and split the total bill evenly among any number of people with this free tip calculator.">
-<link rel="canonical" href="https://www.clearsum-example.com/tip-calculator/">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/tip-calculator/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tip Calculator — Calculate Tip and Split the Bill">
 <meta property="og:description" content="Calculate how much to tip and split the total bill evenly among any number of people with this free tip calculator.">
-<meta property="og:url" content="https://www.clearsum-example.com/tip-calculator/">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/tip-calculator/">
 <meta property="og:site_name" content="ClearSum">
-<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tip Calculator — Calculate Tip and Split the Bill">
 <meta name="twitter:description" content="Calculate how much to tip and split the total bill evenly among any number of people with this free tip calculator.">
-<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#14213D">
+<meta name="theme-color" content="#101B33">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/assets/favicon.ico">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -29,6 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should I tip before or after tax?","acceptedAnswer":{"@type":"Answer","text":"Tipping norms vary, but many guides suggest tipping on the pre-tax subtotal. This calculator treats whatever amount you enter as the base — enter the pre-tax subtotal if that's your preference."}},{"@type":"Question","name":"What's a standard tip percentage?","acceptedAnswer":{"@type":"Answer","text":"Common ranges in the U.S. are roughly 15–20% at sit-down restaurants, though this varies by service type, region, and personal preference. This calculator doesn't recommend a specific percentage — enter whatever you intend to tip."}},{"@type":"Question","name":"Does this split the tip evenly even if people ordered different amounts?","acceptedAnswer":{"@type":"Answer","text":"Yes, this calculator splits the total bill and tip evenly by headcount. If people want to pay based on what they individually ordered, they'd need to calculate each person's share separately."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Everyday Finance","item":"https://finance-calculators-sooty.vercel.app/#everyday"},{"@type":"ListItem","position":3,"name":"Tip Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -135,6 +138,22 @@
   </form>
   <div class="tape" data-tape aria-live="polite"></div>
   <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
 </div>
   <aside class="sidebar">
   <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>

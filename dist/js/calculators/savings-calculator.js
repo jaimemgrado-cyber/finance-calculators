@@ -40,6 +40,15 @@
     }
 
     var totalContributed = requiredMonthly * n;
+    var coverageFromCurrent = goal > 0 ? Math.min(100, (growthOfCurrent / goal) * 100) : 0;
+
+    var yearPoints = buildYearPoints(years);
+    var balanceLine = yearPoints.map(function (yr) {
+      var m = Math.round(yr * 12);
+      var g = current * Math.pow(1 + r, m);
+      var gc = r === 0 ? requiredMonthly * m : requiredMonthly * ((Math.pow(1 + r, m) - 1) / r);
+      return g + gc;
+    });
 
     return {
       rows: [
@@ -50,8 +59,34 @@
       ],
       note: remaining <= 0
         ? "Your current savings are on track to reach this goal from growth alone, assuming this rate holds."
-        : "Assumes interest compounds monthly and the rate stays constant, which isn't guaranteed for most accounts."
+        : "Assumes interest compounds monthly and the rate stays constant, which isn't guaranteed for most accounts.",
+      scale: {
+        label: "Goal already covered by current savings",
+        min: 0,
+        max: 100,
+        value: coverageFromCurrent,
+        valueDisplay: lib.fmtNumber(coverageFromCurrent) + "%",
+        lowLabel: "Just starting",
+        highLabel: "Nearly there",
+        kind: "computed",
+        interpretation: "If you added nothing else, your current savings would grow to cover " + lib.fmtNumber(coverageFromCurrent) + "% of your goal by the end of the period, assuming this rate holds."
+      },
+      chart: {
+        title: "Projected savings toward your goal",
+        labels: yearPoints.map(function (yr) { return "Yr " + yr; }),
+        series: [{ name: "Projected savings", data: balanceLine, color: "#12A48C" }],
+        referenceLine: { value: goal, label: "Goal" }
+      }
     };
+  }
+
+  function buildYearPoints(years) {
+    var maxPoints = 12;
+    var step = Math.max(1, Math.ceil(years / maxPoints));
+    var pts = [];
+    for (var yr = 0; yr < years; yr += step) pts.push(yr);
+    pts.push(years);
+    return pts;
   }
 
   if (typeof module !== "undefined" && module.exports) {

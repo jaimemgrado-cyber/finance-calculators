@@ -56,9 +56,22 @@
     }
     rows.push({ label: "Estimated annual take-home pay", value: lib.fmtCurrency(takeHomePay), rawValue: takeHomePay, isTotal: true });
 
+    var totalBurdenPct = grossIncome > 0 ? (totalTax / grossIncome) * 100 : 0;
+
     return {
       rows: rows,
-      note: "2026 federal brackets and standard deduction (Single/MFJ/Head of Household), and 2026 Social Security/Medicare rates. State tax uses the flat rate you entered — real state tax rules vary. Doesn't include local taxes or W-4 elections."
+      note: "2026 federal brackets and standard deduction (Single/MFJ/Head of Household), and 2026 Social Security/Medicare rates. State tax uses the flat rate you entered — real state tax rules vary. Doesn't include local taxes or W-4 elections.",
+      scale: {
+        label: "Total tax burden (federal + FICA + state)",
+        min: 0,
+        max: 50,
+        value: totalBurdenPct,
+        valueDisplay: lib.fmtNumber(totalBurdenPct) + "%",
+        lowLabel: "0%",
+        highLabel: "50%",
+        kind: "computed",
+        interpretation: lib.fmtNumber(totalBurdenPct) + "% of your gross income goes to federal income tax, Social Security, Medicare" + (stateTaxRate > 0 ? ", and state tax" : "") + " combined, based on the figures you entered."
+      }
     };
   }
 

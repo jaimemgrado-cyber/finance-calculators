@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="5uhdB1e1ufSh3UdBy8zC56w5zHmp941j2htDhl9l2GM">
+<meta name="google-adsense-account" content="ca-pub-5422820182709667">
 <title>ROI Calculator — Return on Investment &amp; Annualized Return</title>
 <meta name="description" content="Calculate your return on investment (ROI) and annualized return (CAGR) from an initial investment and its current or final value.">
-<link rel="canonical" href="https://www.clearsum-example.com/roi-calculator/">
+<link rel="canonical" href="https://finance-calculators-sooty.vercel.app/roi-calculator/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ROI Calculator — Return on Investment &amp; Annualized Return">
 <meta property="og:description" content="Calculate your return on investment (ROI) and annualized return (CAGR) from an initial investment and its current or final value.">
-<meta property="og:url" content="https://www.clearsum-example.com/roi-calculator/">
+<meta property="og:url" content="https://finance-calculators-sooty.vercel.app/roi-calculator/">
 <meta property="og:site_name" content="ClearSum">
-<meta property="og:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta property="og:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ROI Calculator — Return on Investment &amp; Annualized Return">
 <meta name="twitter:description" content="Calculate your return on investment (ROI) and annualized return (CAGR) from an initial investment and its current or final value.">
-<meta name="twitter:image" content="https://www.clearsum-example.com/assets/og-image.png">
+<meta name="twitter:image" content="https://finance-calculators-sooty.vercel.app/assets/og-image.png">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#14213D">
+<meta name="theme-color" content="#101B33">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/assets/favicon.ico">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -29,6 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the difference between ROI and CAGR?","acceptedAnswer":{"@type":"Answer","text":"ROI is your total return over the whole period. CAGR spreads that same total return evenly across each year, so you can compare investments held for different lengths of time on equal footing."}},{"@type":"Question","name":"Does ROI account for risk?","acceptedAnswer":{"@type":"Answer","text":"No — ROI only measures the return you got, not how much risk was involved in getting it. Two investments with the same ROI can carry very different levels of risk."}},{"@type":"Question","name":"Can I use this for an investment I still hold?","acceptedAnswer":{"@type":"Answer","text":"Yes — enter its current value as the 'final value' to see your return so far, and how long you've held it for an annualized figure."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://finance-calculators-sooty.vercel.app/"},{"@type":"ListItem","position":2,"name":"Investing","item":"https://finance-calculators-sooty.vercel.app/#investing"},{"@type":"ListItem","position":3,"name":"ROI Calculator"}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -135,6 +138,22 @@
   </form>
   <div class="tape" data-tape aria-live="polite"></div>
   <p class="result-note" data-result-note></p>
+  <div class="insight-scale" data-insight-scale aria-live="polite">
+    <div class="insight-scale__head">
+      <span class="insight-scale__label" data-scale-label></span>
+      <span class="insight-scale__value" data-scale-value></span>
+    </div>
+    <div class="insight-scale__track">
+      <div class="insight-scale__marker" data-scale-marker></div>
+    </div>
+    <div class="insight-scale__ticks">
+      <span data-scale-tick-low></span>
+      <span data-scale-tick-high></span>
+    </div>
+    <p class="insight-scale__interpretation" data-scale-interpretation></p>
+    <p class="insight-scale__source" data-scale-source></p>
+  </div>
+  <div class="result-chart" data-result-chart></div>
 </div>
   <aside class="sidebar">
   <div class="ad-slot ad-slot--sidebar" aria-hidden="true">Ad space</div>
