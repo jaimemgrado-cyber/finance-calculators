@@ -5,7 +5,7 @@ module.exports = {
     "Free, accurate financial calculators for mortgages, loans, savings, debt payoff, salary, sales tax, and everyday money math. Built for U.S. users.",
 
   // Production domain
-  domain: "https://finance-calculators-sooty.vercel.app",
+  domain: "https://clearsumcalc.com",
 
   themeColor: "#101B33",
 
