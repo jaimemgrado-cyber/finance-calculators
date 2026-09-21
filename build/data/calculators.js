@@ -1120,4 +1120,425 @@ module.exports = [
     ],
     related: ["savings-calculator", "debt-to-income-calculator", "take-home-pay-calculator"]
   }
+,
+  {
+    slug: "mortgage-points-calculator",
+    title: "Mortgage Points Calculator — Estimate Your Break-Even",
+    metaDescription: "Estimate how buying mortgage discount points changes your payment and how long it may take to recover the upfront cost.",
+    h1: "Mortgage Points Calculator",
+    category: "loans",
+    jsFile: "mortgage-points-calculator.js",
+    lede: "Estimate the upfront cost, monthly savings, and break-even period from buying mortgage discount points.",
+    fields: [
+      { id: "loanAmount", label: "Loan amount", prefix: "$", min: 0.01, step: "100", default: 280000 },
+      { id: "interestRate", label: "Current interest rate", suffix: "%", min: 0, max: 20, step: "0.01", default: 6.5 },
+      { id: "rateReduction", label: "Rate reduction from points", suffix: "%", min: 0.01, max: 5, step: "0.01", default: 0.25 },
+      { id: "points", label: "Points purchased", suffix: "points", min: 0.01, max: 10, step: "0.01", default: 1 },
+      { id: "termYears", label: "Loan term", suffix: "years", min: 1, max: 40, step: "1", default: 30 }
+    ],
+    notIncluded: "Actual point pricing and rate reductions vary by lender; this is a break-even estimate only.",
+    howItWorks: ["A mortgage point is generally priced as a percentage of the loan amount. This calculator compares the monthly principal-and-interest payment at the current rate with a hypothetical lower rate after purchasing the points.", "The break-even month is the upfront points cost divided by the monthly payment savings. Taxes, refinancing, prepayment, and changing rates are not modeled."],
+    formula: { text: "Break-even months = points cost ÷ monthly payment savings", vars: [["P", "Loan principal"], ["cost", "Loan amount × points ÷ 100"], ["savings", "Payment at current rate − payment at reduced rate"]] },
+    example: { inputs: "Loan $280,000, 6.5% rate, 1 point, 0.25% reduction, 30 years.", result: "Estimated points cost: $2,800. Monthly savings: about $47. Break-even: about 60 months." },
+    faq: [{"q": "Does one point always lower the rate by 0.25%?", "a": "No. The rate reduction associated with a point varies by lender, loan, market conditions, and borrower."}, {"q": "What does break-even mean?", "a": "It is the approximate time required for cumulative monthly payment savings to equal the upfront cost of the points."}],
+    related: ["mortgage-calculator", "mortgage-payoff-calculator"]
+  },
+  {
+    slug: "refinance-break-even-calculator",
+    title: "Refinance Break-Even Calculator — When Will Refinancing Pay Off?",
+    metaDescription: "Estimate how many months it takes for mortgage refinancing savings to recover closing costs.",
+    h1: "Refinance Break-Even Calculator",
+    category: "loans",
+    jsFile: "refinance-break-even-calculator.js",
+    lede: "Compare your current payment with a new estimated payment and calculate the time needed to recover refinance costs.",
+    fields: [
+      { id: "currentBalance", label: "Current loan balance", prefix: "$", min: 0.01, step: "100", default: 280000 },
+      { id: "currentRate", label: "Current interest rate", suffix: "%", min: 0, max: 20, step: "0.01", default: 7 },
+      { id: "remainingYears", label: "Remaining term", suffix: "years", min: 1, max: 40, step: "1", default: 25 },
+      { id: "newRate", label: "New interest rate", suffix: "%", min: 0, max: 20, step: "0.01", default: 6 },
+      { id: "newTermYears", label: "New loan term", suffix: "years", min: 1, max: 40, step: "1", default: 25 },
+      { id: "closingCosts", label: "Refinance closing costs", prefix: "$", min: 0, step: "100", default: 5000 }
+    ],
+    notIncluded: "This simple break-even model ignores taxes, points, prepaid items, future refinancing, and differences caused by resetting the loan term.",
+    howItWorks: ["The calculator estimates the current principal-and-interest payment and compares it with the new loan payment. Closing costs are divided by the monthly savings to find a simple break-even period.", "A lower payment is not automatically a lower total cost if refinancing extends the repayment period."],
+    formula: { text: "Break-even months = closing costs ÷ monthly payment savings", vars: [["M", "Monthly payment"], ["C", "Closing costs"], ["S", "Monthly payment savings"]] },
+    example: { inputs: "Balance $280,000, current 7%, new 6%, 25-year remaining/new term, $5,000 costs.", result: "The result shows the estimated new payment, monthly savings, and months required to recover the closing costs." },
+    faq: [{"q": "Does refinancing always save money?", "a": "No. Closing costs, the new term, rate, and how long you keep the loan all affect the result."}, {"q": "Why does the new loan term matter?", "a": "Resetting to a longer term can lower the payment while increasing the number of months you pay interest."}],
+    related: ["mortgage-calculator", "mortgage-payoff-calculator"]
+  },
+  {
+    slug: "home-equity-calculator",
+    title: "Home Equity Calculator — Estimate Your Home Equity",
+    metaDescription: "Estimate home equity, loan-to-value ratio, and potential equity available based on your home value and mortgage balance.",
+    h1: "Home Equity Calculator",
+    category: "loans",
+    jsFile: "home-equity-calculator.js",
+    lede: "Estimate the portion of your home you own outright and your current loan-to-value ratio.",
+    fields: [
+      { id: "homeValue", label: "Current home value", prefix: "$", min: 0.01, step: "1000", default: 400000 },
+      { id: "mortgageBalance", label: "Mortgage balance", prefix: "$", min: 0, step: "1000", default: 280000 },
+      { id: "otherLiens", label: "Other liens", prefix: "$", min: 0, step: "500", default: 0 }
+    ],
+    notIncluded: "Home value is an estimate you provide. Lenders use their own valuation and underwriting rules to determine how much you can borrow.",
+    howItWorks: ["Home equity is the market value of your home minus the debts secured by it. The loan-to-value ratio compares secured debt with the home value.", "Potential borrowing capacity is not the same as equity: lenders may apply maximum LTV limits, credit requirements, income tests, and other conditions."],
+    formula: { text: "Equity = home value − mortgage balance − other liens", vars: [["V", "Current home value"], ["D", "Mortgage and other secured debt"], ["E", "Home equity"]] },
+    example: { inputs: "Home value $400,000, mortgage balance $280,000.", result: "Estimated home equity: $120,000. Loan-to-value ratio: 70%." },
+    faq: [{"q": "Is home equity the same as cash I can borrow?", "a": "No. Equity is an ownership measure. A lender may allow only part of that equity to support a new loan."}, {"q": "What is LTV?", "a": "Loan-to-value is secured debt divided by the home value."}],
+    related: ["mortgage-affordability-calculator", "mortgage-calculator"]
+  },
+  {
+    slug: "student-loan-calculator",
+    title: "Student Loan Calculator — Monthly Payment and Total Interest",
+    metaDescription: "Estimate monthly payments and total interest for a fixed-rate student loan.",
+    h1: "Student Loan Calculator",
+    category: "loans",
+    jsFile: "student-loan-calculator.js",
+    lede: "Estimate the payment, total interest, and total repayment for a fixed-rate student loan.",
+    fields: [
+      { id: "loanAmount", label: "Loan balance", prefix: "$", min: 0.01, step: "100", default: 30000 },
+      { id: "interestRate", label: "Interest rate", suffix: "%", min: 0, max: 30, step: "0.01", default: 6.5 },
+      { id: "termYears", label: "Repayment term", suffix: "years", min: 1, max: 30, step: "1", default: 10 }
+    ],
+    notIncluded: "This models a standard fixed-payment loan. Federal income-driven plans, deferment, forbearance, capitalization, forgiveness, and changing rates are not modeled.",
+    howItWorks: ["The calculator applies standard amortization to a starting student-loan balance. Actual federal or private student-loan repayment can use different rules."],
+    formula: { text: "Standard fixed-rate amortization", vars: [["P", "Loan principal"], ["i", "Monthly interest rate"], ["n", "Number of monthly payments"]] },
+    example: { inputs: "Balance $30,000, rate 6.5%, 10-year term.", result: "Estimated payment: about $341/month; total interest depends on the exact amortization schedule." },
+    faq: [{"q": "Does this model federal income-driven repayment?", "a": "No. It models a standard fixed-payment schedule and does not estimate eligibility or payments under federal income-driven plans."}],
+    related: ["loan-calculator", "debt-payoff-calculator"]
+  },
+  {
+    slug: "balloon-payment-calculator",
+    title: "Balloon Payment Calculator — Estimate the Final Lump-Sum Payment",
+    metaDescription: "Estimate the remaining balance due at the end of a loan with a shorter payment period than the full amortization term.",
+    h1: "Balloon Payment Calculator",
+    category: "loans",
+    jsFile: "balloon-payment-calculator.js",
+    lede: "See the regular payment and estimated balloon balance when a loan ends before it is fully amortized.",
+    fields: [
+      { id: "loanAmount", label: "Loan amount", prefix: "$", min: 0.01, step: "100", default: 100000 },
+      { id: "interestRate", label: "Interest rate", suffix: "%", min: 0, max: 30, step: "0.01", default: 7 },
+      { id: "amortizationYears", label: "Amortization term", suffix: "years", min: 1, max: 40, step: "1", default: 20 },
+      { id: "balloonYears", label: "Balloon due after", suffix: "years", min: 1, max: 39, step: "1", default: 5 }
+    ],
+    notIncluded: "A balloon loan can create a large final payment. This calculator assumes a fixed rate and equal payments before the balloon date.",
+    howItWorks: ["The regular payment is calculated using the full amortization term. The balloon balance is the remaining principal after the specified number of payments."],
+    formula: { text: "Remaining balance = principal after scheduled payments", vars: [["P", "Original loan amount"], ["M", "Scheduled monthly payment"], ["B", "Remaining balance at balloon date"]] },
+    example: { inputs: "Loan $100,000, 7%, amortized over 20 years with a balloon after 5 years.", result: "The calculator reports the regular monthly payment and the estimated balloon balance due after 5 years." },
+    faq: [{"q": "What is a balloon payment?", "a": "It is a large final payment that remains because the loan has not fully amortized by its maturity date."}],
+    related: ["loan-calculator", "mortgage-payoff-calculator"]
+  },
+  {
+    slug: "future-value-calculator",
+    title: "Future Value Calculator — Project Savings Growth",
+    metaDescription: "Calculate the future value of a starting amount plus regular contributions at a hypothetical rate of return.",
+    h1: "Future Value Calculator",
+    category: "investing",
+    jsFile: "future-value-calculator.js",
+    lede: "Project how a lump sum and regular contributions could grow over time under a constant assumed return.",
+    fields: [
+      { id: "initialAmount", label: "Starting amount", prefix: "$", min: 0, step: "100", default: 5000 },
+      { id: "monthlyContribution", label: "Monthly contribution", prefix: "$", min: 0, step: "25", default: 300 },
+      { id: "annualRate", label: "Estimated annual return", suffix: "%", min: -20, max: 30, step: "0.01", default: 7 },
+      { id: "years", label: "Time period", suffix: "years", min: 1, max: 60, step: "1", default: 20 }
+    ],
+    notIncluded: "This is a mathematical projection, not a forecast. Actual investment returns vary and may be negative.",
+    howItWorks: ["The calculator compounds the assumed annual rate monthly and adds contributions at the end of each month.", "The result separates your contributions from projected growth so you can see the effect of compounding."],
+    formula: { text: "FV = P(1+r)^n + C[((1+r)^n−1)/r]", vars: [["P", "Starting amount"], ["C", "Monthly contribution"], ["r", "Monthly rate"], ["n", "Number of months"]] },
+    example: { inputs: "Starting $5,000, $300/month, 7% annual return, 20 years.", result: "Projected value is approximately $166,000 under the stated constant-return assumption." },
+    faq: [{"q": "Is this guaranteed?", "a": "No. Investment returns fluctuate, and a constant rate is only an illustrative assumption."}],
+    related: ["compound-interest-calculator", "savings-calculator"]
+  },
+  {
+    slug: "dollar-cost-averaging-calculator",
+    title: "Dollar-Cost Averaging Calculator — Model Regular Investing",
+    metaDescription: "Model regular investments over time and compare contributions with projected growth under a constant assumed return.",
+    h1: "Dollar-Cost Averaging Calculator",
+    category: "investing",
+    jsFile: "dollar-cost-averaging-calculator.js",
+    lede: "See how regular contributions could accumulate over time without requiring a lump-sum investment.",
+    fields: [
+      { id: "monthlyInvestment", label: "Monthly investment", prefix: "$", min: 0.01, step: "25", default: 300 },
+      { id: "years", label: "Investment period", suffix: "years", min: 1, max: 60, step: "1", default: 20 },
+      { id: "annualReturn", label: "Estimated annual return", suffix: "%", min: -20, max: 30, step: "0.01", default: 7 }
+    ],
+    notIncluded: "This does not simulate actual market prices, volatility, taxes, or trading costs. It is a constant-return accumulation model.",
+    howItWorks: ["Dollar-cost averaging describes investing a fixed amount at regular intervals. This tool models the cash-flow accumulation at a constant assumed return; it does not predict the number of shares purchased or future prices."],
+    formula: { text: "Future value of a regular monthly contribution", vars: [["C", "Monthly contribution"], ["r", "Monthly assumed return"], ["n", "Number of months"]] },
+    example: { inputs: "Invest $300 monthly for 20 years at a hypothetical 7% annual return.", result: "The result shows total contributions and the projected value under the assumption." },
+    faq: [{"q": "Does this predict market returns?", "a": "No. It only models a constant assumed return to illustrate the accumulation mechanics."}],
+    related: ["compound-interest-calculator", "future-value-calculator"]
+  },
+  {
+    slug: "asset-allocation-calculator",
+    title: "Asset Allocation Calculator — Compare Portfolio Weights",
+    metaDescription: "Calculate how much money corresponds to each target portfolio allocation and how far current weights are from your targets.",
+    h1: "Asset Allocation Calculator",
+    category: "investing",
+    jsFile: "asset-allocation-calculator.js",
+    lede: "Translate portfolio percentages into dollar amounts for a given portfolio size.",
+    fields: [
+      { id: "portfolioValue", label: "Portfolio value", prefix: "$", min: 0.01, step: "1000", default: 100000 },
+      { id: "stocksPercent", label: "Stocks allocation", suffix: "%", min: 0, max: 100, step: "1", default: 70 },
+      { id: "bondsPercent", label: "Bonds allocation", suffix: "%", min: 0, max: 100, step: "1", default: 20 },
+      { id: "cashPercent", label: "Cash allocation", suffix: "%", min: 0, max: 100, step: "1", default: 10 }
+    ],
+    notIncluded: "This tool does not recommend an allocation. Your percentages must add to 100%.",
+    howItWorks: ["The calculator converts each target percentage into a dollar amount and verifies that the allocation totals 100%.", "Asset allocation is a portfolio construction choice; this tool performs the arithmetic without recommending a strategy."],
+    formula: { text: "Target amount = portfolio value × allocation percentage", vars: [["V", "Portfolio value"], ["w", "Allocation percentage"], ["A", "Target dollar amount"]] },
+    example: { inputs: "Portfolio $100,000 with 70% stocks, 20% bonds, 10% cash.", result: "Target amounts: $70,000 stocks, $20,000 bonds, $10,000 cash." },
+    faq: [{"q": "Does this tell me what allocation to use?", "a": "No. It only calculates dollar amounts from percentages you choose."}],
+    related: ["investment-calculator", "retirement-calculator"]
+  },
+  {
+    slug: "bond-yield-calculator",
+    title: "Bond Yield Calculator — Estimate Current Yield",
+    metaDescription: "Estimate a bond’s current yield from its annual coupon payment and current market price.",
+    h1: "Bond Yield Calculator",
+    category: "investing",
+    jsFile: "bond-yield-calculator.js",
+    lede: "Calculate current yield from annual coupon income and the bond’s current market price.",
+    fields: [
+      { id: "faceValue", label: "Face value", prefix: "$", min: 0.01, step: "100", default: 1000 },
+      { id: "couponRate", label: "Coupon rate", suffix: "%", min: 0, max: 30, step: "0.01", default: 5 },
+      { id: "marketPrice", label: "Current market price", prefix: "$", min: 0.01, step: "1", default: 950 }
+    ],
+    notIncluded: "This calculates current yield only. It does not calculate yield to maturity, duration, taxes, call features, or reinvestment risk.",
+    howItWorks: ["Annual coupon income equals face value multiplied by coupon rate. Current yield divides that annual income by the current market price."],
+    formula: { text: "Current yield = annual coupon income ÷ market price", vars: [["F", "Face value"], ["c", "Coupon rate"], ["P", "Market price"]] },
+    example: { inputs: "Face value $1,000, coupon 5%, market price $950.", result: "Annual coupon: $50. Current yield: about 5.26%." },
+    faq: [{"q": "Is current yield the same as yield to maturity?", "a": "No. Yield to maturity incorporates the purchase price, coupon payments, time to maturity, and repayment of face value."}],
+    related: ["roi-calculator", "investment-calculator"]
+  },
+  {
+    slug: "debt-snowball-calculator",
+    title: "Debt Snowball Calculator — Order Debts by Balance",
+    metaDescription: "Estimate a payoff sequence using the debt snowball method, where extra payments are directed toward the smallest balance first.",
+    h1: "Debt Snowball Calculator",
+    category: "debt",
+    jsFile: "debt-snowball-calculator.js",
+    lede: "Estimate payoff time using a simplified debt snowball sequence for up to three debts.",
+    fields: [
+      { id: "balance1", label: "Smallest debt balance", prefix: "$", min: 0, step: "100", default: 1500 },
+      { id: "rate1", label: "Smallest debt APR", suffix: "%", min: 0, max: 100, step: "0.01", default: 20 },
+      { id: "balance2", label: "Second debt balance", prefix: "$", min: 0, step: "100", default: 5000 },
+      { id: "rate2", label: "Second debt APR", suffix: "%", min: 0, max: 100, step: "0.01", default: 15 },
+      { id: "balance3", label: "Third debt balance", prefix: "$", min: 0, step: "100", default: 10000 },
+      { id: "rate3", label: "Third debt APR", suffix: "%", min: 0, max: 100, step: "0.01", default: 10 },
+      { id: "monthlyBudget", label: "Total monthly debt budget", prefix: "$", min: 0.01, step: "25", default: 700 }
+    ],
+    notIncluded: "This simplified model assumes the full monthly budget is available for these three debts and uses monthly interest. Real minimum payments, fees, and lender rules can change the schedule.",
+    howItWorks: ["The snowball method prioritizes the smallest balance. When that debt is cleared, its payment capacity rolls into the next debt.", "The calculator is an estimate rather than a lender payoff quote."],
+    formula: { text: "Each month: interest accrues, then the available debt budget is applied in snowball order", vars: [["B", "Balance"], ["r", "Monthly interest rate"], ["P", "Monthly debt budget"]] },
+    example: { inputs: "Three debts of $1,500, $5,000, and $10,000 with a $700 monthly budget.", result: "The result estimates total months to clear the three balances using the snowball order." },
+    faq: [{"q": "Does snowball always minimize interest?", "a": "No. It prioritizes the smallest balance, while other methods such as avalanche prioritize interest rate."}],
+    related: ["debt-avalanche-calculator", "debt-payoff-calculator"]
+  },
+  {
+    slug: "debt-avalanche-calculator",
+    title: "Debt Avalanche Calculator — Order Debts by APR",
+    metaDescription: "Estimate a payoff sequence using the debt avalanche method, directing extra payment capacity toward the highest APR first.",
+    h1: "Debt Avalanche Calculator",
+    category: "debt",
+    jsFile: "debt-avalanche-calculator.js",
+    lede: "Estimate payoff time using a simplified debt avalanche sequence for up to three debts.",
+    fields: [
+      { id: "balance1", label: "Debt 1 balance", prefix: "$", min: 0, step: "100", default: 1500 },
+      { id: "rate1", label: "Debt 1 APR", suffix: "%", min: 0, max: 100, step: "0.01", default: 20 },
+      { id: "balance2", label: "Debt 2 balance", prefix: "$", min: 0, step: "100", default: 5000 },
+      { id: "rate2", label: "Debt 2 APR", suffix: "%", min: 0, max: 100, step: "0.01", default: 15 },
+      { id: "balance3", label: "Debt 3 balance", prefix: "$", min: 0, step: "100", default: 10000 },
+      { id: "rate3", label: "Debt 3 APR", suffix: "%", min: 0, max: 100, step: "0.01", default: 10 },
+      { id: "monthlyBudget", label: "Total monthly debt budget", prefix: "$", min: 0.01, step: "25", default: 700 }
+    ],
+    notIncluded: "This simplified model assumes the full monthly budget is available for these three debts and ignores lender-specific minimum payment rules and fees.",
+    howItWorks: ["The avalanche method prioritizes the highest interest rate. Once it is paid, the available payment capacity rolls into the next-highest rate."],
+    formula: { text: "Each month: interest accrues, then available debt budget is applied in highest-APR order", vars: [["B", "Balance"], ["r", "Monthly interest rate"], ["P", "Monthly debt budget"]] },
+    example: { inputs: "Three debts of $1,500 at 20%, $5,000 at 15%, and $10,000 at 10% with a $700 monthly budget.", result: "The result estimates total months to clear the balances using the highest-APR-first order." },
+    faq: [{"q": "Why use avalanche?", "a": "It directs extra payment capacity toward higher-rate debt first, which can reduce interest in many scenarios."}],
+    related: ["debt-snowball-calculator", "debt-payoff-calculator"]
+  },
+  {
+    slug: "credit-utilization-calculator",
+    title: "Credit Utilization Calculator — Calculate Your Usage Ratio",
+    metaDescription: "Calculate credit utilization from your card balances and credit limits.",
+    h1: "Credit Utilization Calculator",
+    category: "debt",
+    jsFile: "credit-utilization-calculator.js",
+    lede: "Calculate overall and per-card credit utilization from balances and limits.",
+    fields: [
+      { id: "balance1", label: "Card 1 balance", prefix: "$", min: 0, step: "50", default: 500 },
+      { id: "limit1", label: "Card 1 credit limit", prefix: "$", min: 0.01, step: "100", default: 5000 },
+      { id: "balance2", label: "Card 2 balance", prefix: "$", min: 0, step: "50", default: 1000 },
+      { id: "limit2", label: "Card 2 credit limit", prefix: "$", min: 0.01, step: "100", default: 5000 }
+    ],
+    notIncluded: "Credit utilization is one component of credit scoring and is not a guarantee of a particular credit score.",
+    howItWorks: ["Utilization is calculated as revolving balance divided by revolving credit limit. The calculator shows both individual and combined utilization."],
+    formula: { text: "Utilization = revolving balance ÷ revolving credit limit × 100", vars: [["B", "Revolving balance"], ["L", "Credit limit"]] },
+    example: { inputs: "Balances of $500 and $1,000 on limits of $5,000 and $5,000.", result: "Combined utilization: 15%." },
+    faq: [{"q": "Does utilization determine my credit score?", "a": "No. Credit scoring models consider multiple factors, and lenders may use different models."}],
+    related: ["debt-to-income-calculator", "credit-card-payoff-calculator"]
+  },
+  {
+    slug: "overtime-pay-calculator",
+    title: "Overtime Pay Calculator — Estimate Weekly Overtime Earnings",
+    metaDescription: "Estimate regular pay, overtime pay, and gross weekly earnings from an hourly wage and overtime hours.",
+    h1: "Overtime Pay Calculator",
+    category: "income",
+    jsFile: "overtime-pay-calculator.js",
+    lede: "Estimate gross weekly pay when some hours are paid at an overtime multiplier.",
+    fields: [
+      { id: "hourlyRate", label: "Hourly rate", prefix: "$", min: 0.01, step: "0.25", default: 20 },
+      { id: "regularHours", label: "Regular hours", suffix: "hours", min: 0, max: 168, step: "0.25", default: 40 },
+      { id: "overtimeHours", label: "Overtime hours", suffix: "hours", min: 0, max: 128, step: "0.25", default: 5 },
+      { id: "overtimeMultiplier", label: "Overtime pay multiplier", suffix: "×", min: 1, max: 5, step: "0.1", default: 1.5 }
+    ],
+    notIncluded: "This is a gross-pay estimate. Overtime eligibility and required rates vary by law, employment agreement, and worker classification.",
+    howItWorks: ["Regular pay equals hourly rate times regular hours. Overtime pay equals hourly rate times the selected overtime multiplier times overtime hours."],
+    formula: { text: "Gross weekly pay = regular pay + overtime pay", vars: [["R", "Hourly rate"], ["H", "Regular hours"], ["O", "Overtime hours"], ["m", "Overtime multiplier"]] },
+    example: { inputs: "$20/hour, 40 regular hours, 5 overtime hours at 1.5×.", result: "Regular pay: $800. Overtime pay: $150. Gross weekly pay: $950." },
+    faq: [{"q": "Is 1.5× always legally required?", "a": "No. The applicable overtime rules depend on jurisdiction, worker classification, and circumstances."}],
+    related: ["salary-calculator", "salary-to-hourly-calculator"]
+  },
+  {
+    slug: "raise-calculator",
+    title: "Raise Calculator — Calculate Your New Salary",
+    metaDescription: "Calculate the new salary and dollar increase from a percentage raise.",
+    h1: "Raise Calculator",
+    category: "income",
+    jsFile: "raise-calculator.js",
+    lede: "See your new salary, annual increase, and monthly increase after a percentage raise.",
+    fields: [
+      { id: "currentSalary", label: "Current annual salary", prefix: "$", min: 0.01, step: "500", default: 60000 },
+      { id: "raisePercent", label: "Raise percentage", suffix: "%", min: 0, max: 100, step: "0.1", default: 5 }
+    ],
+    notIncluded: "This calculates gross salary only and does not estimate taxes, benefits, bonuses, or take-home pay.",
+    howItWorks: ["The raise amount is current salary multiplied by the raise percentage. The new salary is current salary plus the raise amount."],
+    formula: { text: "Raise = current salary × raise percentage", vars: [["S", "Current salary"], ["r", "Raise percentage"], ["N", "New salary"]] },
+    example: { inputs: "$60,000 salary with a 5% raise.", result: "Raise: $3,000. New annual salary: $63,000. Monthly gross increase: $250." },
+    faq: [{"q": "Does a raise change take-home pay by the same amount?", "a": "No. Taxes and other payroll deductions can change the amount that reaches your bank account."}],
+    related: ["salary-calculator", "take-home-pay-calculator"]
+  },
+  {
+    slug: "commission-calculator",
+    title: "Commission Calculator — Calculate Sales Commission",
+    metaDescription: "Calculate commission income from sales and a commission rate.",
+    h1: "Commission Calculator",
+    category: "income",
+    jsFile: "commission-calculator.js",
+    lede: "Calculate commission earnings and total sales income from a sales amount and commission rate.",
+    fields: [
+      { id: "salesAmount", label: "Sales amount", prefix: "$", min: 0, step: "100", default: 10000 },
+      { id: "commissionRate", label: "Commission rate", suffix: "%", min: 0, max: 100, step: "0.1", default: 5 }
+    ],
+    notIncluded: "This assumes a simple percentage commission. Real plans can include tiers, thresholds, caps, draws, chargebacks, or different rates by product.",
+    howItWorks: ["Commission is calculated by multiplying the sales amount by the commission percentage."],
+    formula: { text: "Commission = sales × commission rate", vars: [["S", "Sales amount"], ["r", "Commission rate"], ["C", "Commission"]] },
+    example: { inputs: "$10,000 sales at 5% commission.", result: "$500 commission on $10,000 in sales." },
+    faq: [{"q": "Do all commission plans use a flat rate?", "a": "No. Employers may use tiered or quota-based plans with different rules."}],
+    related: ["salary-calculator", "percentage-calculator"]
+  },
+  {
+    slug: "markup-margin-calculator",
+    title: "Markup & Margin Calculator — Compare Cost, Price, Markup, and Margin",
+    metaDescription: "Calculate selling price, markup percentage, and profit margin from cost and selling price.",
+    h1: "Markup & Margin Calculator",
+    category: "everyday",
+    jsFile: "markup-margin-calculator.js",
+    lede: "See the difference between markup on cost and margin on selling price.",
+    fields: [
+      { id: "cost", label: "Cost", prefix: "$", min: 0.01, step: "1", default: 60 },
+      { id: "sellingPrice", label: "Selling price", prefix: "$", min: 0.01, step: "1", default: 100 }
+    ],
+    notIncluded: "Markup and margin are different measures. This calculator does not include taxes, shipping, overhead, or other business costs.",
+    howItWorks: ["Markup measures profit relative to cost. Margin measures profit relative to selling price. Both describe the same gross profit dollars from different bases."],
+    formula: { text: "Markup % = profit ÷ cost × 100; Margin % = profit ÷ selling price × 100", vars: [["C", "Cost"], ["P", "Selling price"], ["G", "Gross profit"]] },
+    example: { inputs: "Cost $60 and selling price $100.", result: "Gross profit: $40. Markup: 66.67%. Margin: 40%." },
+    faq: [{"q": "What is the difference between markup and margin?", "a": "Markup uses cost as the denominator; margin uses selling price as the denominator."}],
+    related: ["percentage-calculator", "discount-calculator"]
+  },
+  {
+    slug: "break-even-calculator",
+    title: "Break-Even Calculator — Find Units Needed to Cover Costs",
+    metaDescription: "Calculate the number of units and sales revenue needed to cover fixed costs at a given selling price and variable cost.",
+    h1: "Break-Even Calculator",
+    category: "everyday",
+    jsFile: "break-even-calculator.js",
+    lede: "Find the unit and revenue break-even point from fixed costs, price, and variable cost per unit.",
+    fields: [
+      { id: "fixedCosts", label: "Fixed costs", prefix: "$", min: 0, step: "100", default: 10000 },
+      { id: "sellingPrice", label: "Selling price per unit", prefix: "$", min: 0.01, step: "1", default: 50 },
+      { id: "variableCost", label: "Variable cost per unit", prefix: "$", min: 0, step: "1", default: 20 }
+    ],
+    notIncluded: "This is a simple contribution-margin model and does not include taxes, financing, multiple products, step costs, or changes in pricing.",
+    howItWorks: ["Each unit contributes selling price minus variable cost toward fixed costs. Break-even units equal fixed costs divided by contribution margin per unit."],
+    formula: { text: "Break-even units = fixed costs ÷ (selling price − variable cost)", vars: [["F", "Fixed costs"], ["P", "Selling price per unit"], ["V", "Variable cost per unit"]] },
+    example: { inputs: "Fixed costs $10,000, price $50, variable cost $20.", result: "Break-even: about 334 units and $16,700 in sales." },
+    faq: [{"q": "What if variable cost equals selling price?", "a": "There is no contribution margin, so the fixed costs cannot be recovered through unit sales at that price."}],
+    related: ["markup-margin-calculator", "percentage-calculator"]
+  },
+  {
+    slug: "net-worth-calculator",
+    title: "Net Worth Calculator — Assets Minus Liabilities",
+    metaDescription: "Calculate net worth by totaling assets and subtracting debts and other liabilities.",
+    h1: "Net Worth Calculator",
+    category: "everyday",
+    jsFile: "net-worth-calculator.js",
+    lede: "Calculate a simple snapshot of your net worth from assets and liabilities.",
+    fields: [
+      { id: "cash", label: "Cash and checking", prefix: "$", min: 0, step: "100", default: 5000 },
+      { id: "investments", label: "Investments", prefix: "$", min: 0, step: "100", default: 25000 },
+      { id: "homeValue", label: "Home value", prefix: "$", min: 0, step: "1000", default: 300000 },
+      { id: "otherAssets", label: "Other assets", prefix: "$", min: 0, step: "100", default: 5000 },
+      { id: "debts", label: "Debts and liabilities", prefix: "$", min: 0, step: "100", default: 220000 }
+    ],
+    notIncluded: "Net worth is a snapshot based on the values you enter. It is not a valuation or financial plan.",
+    howItWorks: ["Net worth equals total assets minus total liabilities. A positive net worth means assets exceed liabilities; a negative net worth means liabilities exceed assets."],
+    formula: { text: "Net worth = total assets − total liabilities", vars: [["A", "Total assets"], ["L", "Total liabilities"], ["N", "Net worth"]] },
+    example: { inputs: "Cash $5,000, investments $25,000, home $300,000, other assets $5,000, debts $220,000.", result: "Total assets: $335,000. Net worth: $115,000." },
+    faq: [{"q": "Does net worth include income?", "a": "No. Net worth measures what you own minus what you owe at a point in time."}],
+    related: ["debt-to-income-calculator", "emergency-fund-calculator"]
+  },
+  {
+    slug: "401k-calculator",
+    title: "401(k) Calculator — Project Retirement Account Growth",
+    metaDescription: "Project how employee contributions, employer matching, and an assumed return could grow a 401(k) balance over time.",
+    h1: "401(k) Calculator",
+    category: "investing",
+    jsFile: "401k-calculator.js",
+    lede: "Estimate future 401(k) value from your current balance, contributions, employer match, and assumed return.",
+    fields: [
+      { id: "currentBalance", label: "Current 401(k) balance", prefix: "$", min: 0, step: "100", default: 20000 },
+      { id: "annualSalary", label: "Annual salary", prefix: "$", min: 0, step: "1000", default: 70000 },
+      { id: "employeePercent", label: "Employee contribution", suffix: "%", min: 0, max: 100, step: "0.1", default: 8 },
+      { id: "employerMatchPercent", label: "Employer match", suffix: "%", min: 0, max: 100, step: "0.1", default: 4 },
+      { id: "annualReturn", label: "Estimated annual return", suffix: "%", min: -20, max: 30, step: "0.01", default: 7 },
+      { id: "years", label: "Years to retirement", suffix: "years", min: 1, max: 60, step: "1", default: 30 }
+    ],
+    notIncluded: "Employer matching formulas, vesting, contribution limits, taxes, fees, and plan rules vary. This projection uses a simplified full-salary match assumption.",
+    howItWorks: ["The model converts annual salary contributions and the assumed employer match into monthly contributions, then compounds the account monthly at the assumed return.", "The result is illustrative and should not be treated as a retirement-income forecast."],
+    formula: { text: "Future value of current balance plus monthly employee and employer contributions", vars: [["B", "Current balance"], ["C", "Monthly combined contribution"], ["r", "Monthly assumed return"], ["n", "Months"]] },
+    example: { inputs: "Balance $20,000, salary $70,000, 8% employee contribution, 4% match, 7% return, 30 years.", result: "The calculator estimates the projected account value and separates your contributions from employer contributions and growth." },
+    faq: [{"q": "Does this model contribution limits?", "a": "No. It uses the percentages you enter and does not enforce annual IRS or plan-specific limits."}],
+    related: ["retirement-calculator", "compound-interest-calculator"]
+  },
+  {
+    slug: "capital-gains-calculator",
+    title: "Capital Gains Calculator — Estimate Investment Gain",
+    metaDescription: "Calculate a simple capital gain or loss and estimate tax from an assumed capital-gains tax rate.",
+    h1: "Capital Gains Calculator",
+    category: "taxes",
+    jsFile: "capital-gains-calculator.js",
+    lede: "Estimate investment gain or loss and an illustrative tax amount using a rate you provide.",
+    fields: [
+      { id: "purchasePrice", label: "Purchase price / cost basis", prefix: "$", min: 0, step: "100", default: 10000 },
+      { id: "salePrice", label: "Sale proceeds", prefix: "$", min: 0, step: "100", default: 15000 },
+      { id: "taxRate", label: "Assumed capital-gains tax rate", suffix: "%", min: 0, max: 100, step: "0.1", default: 15 }
+    ],
+    notIncluded: "This is an illustrative estimate, not a tax calculation. Actual U.S. capital-gains tax depends on holding period, income, filing status, basis adjustments, deductions, state taxes, and other rules.",
+    howItWorks: ["The calculator subtracts cost basis from sale proceeds to find the gain or loss. For a positive gain, it multiplies the gain by the assumed tax rate you enter."],
+    formula: { text: "Gain = sale proceeds − cost basis; illustrative tax = gain × assumed rate", vars: [["S", "Sale proceeds"], ["B", "Cost basis"], ["G", "Capital gain"], ["t", "Assumed tax rate"]] },
+    example: { inputs: "Cost basis $10,000, sale proceeds $15,000, assumed tax rate 15%.", result: "Capital gain: $5,000. Illustrative tax at 15%: $750." },
+    faq: [{"q": "Is 15% the capital-gains tax rate for everyone?", "a": "No. The actual rate depends on circumstances including income, filing status, holding period, and applicable federal and state rules."}],
+    related: ["roi-calculator", "investment-calculator"]
+  }
 ];
