@@ -1,0 +1,4 @@
+(function(global){"use strict";
+var lib = (typeof module !== "undefined" && module.exports) ? require("./_lib.js") : {fmtCurrency:fmtCurrency,fmtNumber:fmtNumber,isSafe:isSafe};
+function compute(v){var b=v.balance1+v.balance2,l=v.limit1+v.limit2;if(l<=0)return {error:"Credit limits must be greater than zero."};var u=b/l*100;return {rows:[{label:"Overall utilization",value:lib.fmtNumber(u)+"%",rawValue:u,isTotal:true},{label:"Card 1 utilization",value:lib.fmtNumber(v.balance1/v.limit1*100)+"%",rawValue:v.balance1/v.limit1*100},{label:"Card 2 utilization",value:lib.fmtNumber(v.balance2/v.limit2*100)+"%",rawValue:v.balance2/v.limit2*100}]};}
+if(typeof module!=="undefined"&&module.exports){module.exports=compute;}else{global.CalcCompute=compute;}})(typeof window!=="undefined"?window:globalThis);

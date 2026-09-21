@@ -1,0 +1,4 @@
+(function(global){"use strict";
+var lib = (typeof module !== "undefined" && module.exports) ? require("./_lib.js") : {fmtCurrency:fmtCurrency,fmtNumber:fmtNumber,isSafe:isSafe};
+function compute(v){var r=v.annualRate/100/12,n=v.years*12;var fv;if(r===0)fv=v.initialAmount+v.monthlyContribution*n;else fv=v.initialAmount*Math.pow(1+r,n)+v.monthlyContribution*(Math.pow(1+r,n)-1)/r;var contrib=v.initialAmount+v.monthlyContribution*n;return {rows:[{label:"Projected future value",value:lib.fmtCurrency(fv),rawValue:fv,isTotal:true},{label:"Total contributed",value:lib.fmtCurrency(contrib),rawValue:contrib},{label:"Projected growth",value:lib.fmtCurrency(fv-contrib),rawValue:fv-contrib}],note:"Projection assumes a constant monthly rate."};}
+if(typeof module!=="undefined"&&module.exports){module.exports=compute;}else{global.CalcCompute=compute;}})(typeof window!=="undefined"?window:globalThis);

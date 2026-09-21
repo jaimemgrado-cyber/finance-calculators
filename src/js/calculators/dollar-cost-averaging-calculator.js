@@ -1,0 +1,4 @@
+(function(global){"use strict";
+var lib = (typeof module !== "undefined" && module.exports) ? require("./_lib.js") : {fmtCurrency:fmtCurrency,fmtNumber:fmtNumber,isSafe:isSafe};
+function compute(v){var r=v.annualReturn/100/12,n=v.years*12,fv=r===0?v.monthlyInvestment*n:v.monthlyInvestment*(Math.pow(1+r,n)-1)/r;var c=v.monthlyInvestment*n;return {rows:[{label:"Total contributions",value:lib.fmtCurrency(c),rawValue:c},{label:"Projected value",value:lib.fmtCurrency(fv),rawValue:fv,isTotal:true},{label:"Projected growth",value:lib.fmtCurrency(fv-c),rawValue:fv-c}],note:"This models regular contributions at a constant assumed return; it does not simulate market prices."};}
+if(typeof module!=="undefined"&&module.exports){module.exports=compute;}else{global.CalcCompute=compute;}})(typeof window!=="undefined"?window:globalThis);

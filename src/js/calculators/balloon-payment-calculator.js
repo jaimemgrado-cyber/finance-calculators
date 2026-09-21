@@ -1,0 +1,5 @@
+(function(global){"use strict";
+var lib = (typeof module !== "undefined" && module.exports) ? require("./_lib.js") : {fmtCurrency:fmtCurrency,fmtNumber:fmtNumber,isSafe:isSafe};
+function payment(p, rate, months) { var i=rate/100/12; if(i===0) return p/months; var f=Math.pow(1+i,months); return p*i*f/(f-1); }
+function compute(v){if(v.balloonYears>=v.amortizationYears)return {error:"Balloon date must be before the full amortization term."};var m=payment(v.loanAmount,v.interestRate,v.amortizationYears*12),i=v.interestRate/100/12,b=v.loanAmount,months=v.balloonYears*12;for(var n=0;n<months;n++){var interest=b*i;b=Math.max(0,b-(m-interest));}return {rows:[{label:"Scheduled monthly payment",value:lib.fmtCurrency(m),rawValue:m},{label:"Estimated balloon balance",value:lib.fmtCurrency(b),rawValue:b,isTotal:true},{label:"Payments before balloon",value:String(months),rawValue:months}]};}
+if(typeof module!=="undefined"&&module.exports){module.exports=compute;}else{global.CalcCompute=compute;}})(typeof window!=="undefined"?window:globalThis);

@@ -1,0 +1,4 @@
+(function(global){"use strict";
+var lib = (typeof module !== "undefined" && module.exports) ? require("./_lib.js") : {fmtCurrency:fmtCurrency,fmtNumber:fmtNumber,isSafe:isSafe};
+function compute(v){var total=v.stocksPercent+v.bondsPercent+v.cashPercent;if(Math.abs(total-100)>0.001)return {error:"Stocks, bonds, and cash allocations must add up to 100%."};var a=v.portfolioValue;return {rows:[{label:"Stocks target",value:lib.fmtCurrency(a*v.stocksPercent/100),rawValue:a*v.stocksPercent/100},{label:"Bonds target",value:lib.fmtCurrency(a*v.bondsPercent/100),rawValue:a*v.bondsPercent/100},{label:"Cash target",value:lib.fmtCurrency(a*v.cashPercent/100),rawValue:a*v.cashPercent/100},{label:"Total portfolio",value:lib.fmtCurrency(a),rawValue:a,isTotal:true}]};}
+if(typeof module!=="undefined"&&module.exports){module.exports=compute;}else{global.CalcCompute=compute;}})(typeof window!=="undefined"?window:globalThis);

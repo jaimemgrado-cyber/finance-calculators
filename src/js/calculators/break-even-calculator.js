@@ -1,0 +1,4 @@
+(function(global){"use strict";
+var lib = (typeof module !== "undefined" && module.exports) ? require("./_lib.js") : {fmtCurrency:fmtCurrency,fmtNumber:fmtNumber,isSafe:isSafe};
+function compute(v){var cm=v.sellingPrice-v.variableCost;if(cm<=0)return {error:"Selling price must be greater than variable cost per unit."};var units=v.fixedCosts/cm,revenue=units*v.sellingPrice;return {rows:[{label:"Break-even units",value:lib.fmtNumber(Math.ceil(units)),rawValue:Math.ceil(units),isTotal:true},{label:"Break-even sales revenue",value:lib.fmtCurrency(revenue),rawValue:revenue},{label:"Contribution margin per unit",value:lib.fmtCurrency(cm),rawValue:cm}]};}
+if(typeof module!=="undefined"&&module.exports){module.exports=compute;}else{global.CalcCompute=compute;}})(typeof window!=="undefined"?window:globalThis);

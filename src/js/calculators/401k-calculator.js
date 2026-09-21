@@ -1,0 +1,4 @@
+(function(global){"use strict";
+var lib = (typeof module !== "undefined" && module.exports) ? require("./_lib.js") : {fmtCurrency:fmtCurrency,fmtNumber:fmtNumber,isSafe:isSafe};
+function compute(v){var r=v.annualReturn/100/12,n=v.years*12,employee=v.annualSalary*v.employeePercent/100/12,match=v.annualSalary*v.employerMatchPercent/100/12,c=employee+match;var fv=r===0?v.currentBalance+c*n:v.currentBalance*Math.pow(1+r,n)+c*(Math.pow(1+r,n)-1)/r;return {rows:[{label:"Projected 401(k) value",value:lib.fmtCurrency(fv),rawValue:fv,isTotal:true},{label:"Employee contributions",value:lib.fmtCurrency(employee*n),rawValue:employee*n},{label:"Employer contributions",value:lib.fmtCurrency(match*n),rawValue:match*n},{label:"Projected growth",value:lib.fmtCurrency(fv-v.currentBalance-c*n),rawValue:fv-v.currentBalance-c*n}]};}
+if(typeof module!=="undefined"&&module.exports){module.exports=compute;}else{global.CalcCompute=compute;}})(typeof window!=="undefined"?window:globalThis);
