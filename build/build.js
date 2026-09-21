@@ -27,6 +27,22 @@ const categoriesWithCalcs = site.categories.map((cat) => ({
 // ---------------------------------------------------------------------
 // Home page
 // ---------------------------------------------------------------------
+function render404() {
+  const body = `<main class="container article" style="padding-top:4rem;padding-bottom:5rem;text-align:center">
+    <p class="hero__eyebrow">404</p>
+    <h1>Page not found</h1>
+    <p class="lede">The page you are looking for does not exist or may have moved.</p>
+    <p><a class="button" href="/">Back to ClearSum</a> &nbsp; <a href="/calculators/">Browse all calculators</a></p>
+  </main>`;
+  return C.pageShell({
+    title: `Page Not Found — ${site.siteName}`,
+    description: `The requested page could not be found on ${site.siteName}.`,
+    canonicalPath: "/404.html",
+    bodyHtml: body,
+    robots: "noindex, nofollow"
+  });
+}
+
 function renderHome() {
   // "Popular" is a curated, honest pick of one flagship calculator per
   // category (not an unverifiable traffic ranking) so every category is
@@ -39,7 +55,7 @@ function renderHome() {
   <p class="hero__eyebrow">100% Free &middot; No Sign-Up &middot; Runs in Your Browser</p>
   <h1>Clear numbers for every money decision</h1>
   <p class="hero__sub">${calculators.length} free calculators for mortgages, loans, investing, debt payoff, income, and taxes — with visual results and plain-English explanations, not just a number.</p>
-  <form class="search-form" role="search" aria-label="Search calculators">
+  <form class="search-form" action="/search/" method="get" role="search" aria-label="Search calculators">
     <label class="visually-hidden" for="calc-search">Search calculators</label>
     <input type="search" id="calc-search" placeholder="Search calculators, e.g. \u2018mortgage\u2019" data-calc-search>
     <button type="submit">Search</button>
@@ -75,7 +91,7 @@ function renderHome() {
     <div class="cat-icon-grid">
       ${categoriesWithCalcs
         .map(
-          (cat) => `<a class="cat-icon-card" href="#${cat.slug}">
+          (cat) => `<a class="cat-icon-card" href="/category/${cat.slug}/">
         <span class="cat-icon cat-icon--${cat.accent}" aria-hidden="true">${renderCategoryIcon(cat.icon)}</span>
         <span>
           <h3>${C.esc(cat.name)}</h3>
@@ -100,7 +116,7 @@ function renderHome() {
     <div class="calc-grid">
       ${cat.calcs
         .map(
-          (calc) => `<a class="calc-card" href="/${calc.slug}/" data-searchable="${C.esc(calc.h1 + " " + cat.name)}">
+          (calc) => `<a class="calc-card" href="/${calc.slug}/" data-searchable="${C.esc([calc.h1, calc.lede, calc.slug, cat.name].join(" "))}">
         <span class="calc-card__cat">${C.esc(cat.name)}</span>
         <span class="calc-card__title">${C.esc(calc.h1)}</span>
         <p class="calc-card__desc">${C.esc(calc.lede)}</p>
@@ -145,11 +161,13 @@ function renderHome() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${site.domain}/#website`,
     name: site.siteName,
     url: site.domain + "/",
+    publisher: { "@id": `${site.domain}/#organization` },
     potentialAction: {
       "@type": "SearchAction",
-      target: site.domain + "/?q={search_term_string}",
+      target: site.domain + "/search/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -165,6 +183,50 @@ function renderHome() {
 }
 
 // ---------------------------------------------------------------------
+// Search page
+// ---------------------------------------------------------------------
+function renderSearchPage() {
+  const cards = calculators
+    .map((calc) => {
+      const cat = site.categories.find((c) => c.slug === calc.category);
+      const searchable = [calc.h1, calc.lede, calc.slug, cat.name].join(" ");
+      return `<article class="search-result" data-searchable="${C.esc(searchable)}">
+  <a href="/${calc.slug}/">
+    <span class="calc-card__cat">${C.esc(cat.name)}</span>
+    <h2>${C.esc(calc.h1)}</h2>
+    <p>${C.esc(calc.lede)}</p>
+  </a>
+</article>`;
+    })
+    .join("\n");
+
+  const body = `<div class="container calc-page-head">
+  <h1>Search calculators</h1>
+  <p class="lede">Find a ClearSum calculator by name, topic, or what you are trying to calculate.</p>
+  <form class="search-form search-form--page" action="/search/" method="get" role="search" aria-label="Search calculators">
+    <label class="visually-hidden" for="search-page-input">Search calculators</label>
+    <input type="search" id="search-page-input" name="q" placeholder="Try mortgage, refinance, salary, debt, savings..." autocomplete="off" data-calc-search-page>
+    <button type="submit">Search</button>
+  </form>
+  <p class="search-status" data-search-status aria-live="polite">Showing all ${calculators.length} calculators.</p>
+</div>
+<div class="container">
+  <div class="search-results" data-search-results>
+    ${cards}
+  </div>
+  <p class="search-empty search-empty--page" data-search-empty-page>No calculators match your search. Try a broader term such as mortgage, loan, savings, debt, salary, or tax.</p>
+</div>`;
+
+  return C.pageShell({
+    title: `Search Financial Calculators — ${site.siteName}`,
+    description: `Search ${site.siteName}'s free financial calculators by topic, name, or financial task.`,
+    canonicalPath: "/search/",
+    bodyHtml: body,
+    robots: "noindex, follow"
+  });
+}
+
+// ---------------------------------------------------------------------
 // Calculator page
 // ---------------------------------------------------------------------
 function renderCalculatorPage(calc) {
@@ -172,7 +234,7 @@ function renderCalculatorPage(calc) {
 
   const breadcrumb = [
     { label: "Home", href: "/" },
-    { label: cat.name, href: "/#" + cat.slug },
+    { label: cat.name, href: "/category/" + cat.slug + "/" },
     { label: calc.h1 }
   ];
 
@@ -245,7 +307,19 @@ ${disclaimer}
     canonicalPath: `/${calc.slug}/`,
     bodyHtml: body,
     breadcrumb,
-    jsonLd: [C.faqJsonLd(calc.faq), C.breadcrumbJsonLd(breadcrumb)],
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `${site.domain}/${calc.slug}/#webpage`,
+        name: calc.title,
+        url: `${site.domain}/${calc.slug}/`,
+        isPartOf: { "@id": `${site.domain}/#website` },
+        about: { "@type": "WebApplication", name: calc.h1, applicationCategory: "FinanceApplication", operatingSystem: "Web" }
+      },
+      C.faqJsonLd(calc.faq),
+      C.breadcrumbJsonLd(breadcrumb)
+    ],
     extraScripts: scripts
   });
 }
@@ -357,6 +431,13 @@ function legalPage({ title, description, canonicalPath, h1, bodyHtml }) {
   <p class="legal-updated">Last updated: ${C.esc(
     site.legal.lastUpdated
   )}</p>
+  <div class="legal-identification">
+    <h2>Site operator</h2>
+    <p><strong>Responsible party:</strong> ${C.esc(site.legal.legalEntityName)}</p>
+    <p><strong>NIF:</strong> ${C.esc(site.legal.taxId)}</p>
+    <p><strong>Address:</strong> ${C.esc(site.legal.mailingAddress)}</p>
+    <p><strong>Email:</strong> <a href="mailto:${C.esc(site.legal.contactEmail)}">${C.esc(site.legal.contactEmail)}</a></p>
+  </div>
   ${bodyHtml}
 </div>`;
 
@@ -425,7 +506,7 @@ function renderContact() {
 
 ${formHtml}
 
-<p class="result-note">We don't publish a personal mailing address or phone number for privacy reasons. We use messages sent here only to respond to your inquiry and to improve the site.</p>`
+<p class="result-note">Messages sent to the contact address are used to respond to inquiries, corrections, and suggestions relating to the website.</p>`
   });
 }
 
@@ -549,6 +630,78 @@ function renderDisclaimer() {
   });
 }
 
+
+// ---------------------------------------------------------------------
+// Directory and category pages
+// ---------------------------------------------------------------------
+function renderCalculatorsDirectory() {
+  const body = `<div class="container calc-page-head">
+  <h1>All Financial Calculators</h1>
+  <p class="lede">Browse all ${calculators.length} free ClearSum calculators by category.</p>
+</div>
+<div class="container">
+  ${categoriesWithCalcs.map((cat) => `<section class="section" aria-labelledby="dir-${cat.slug}">
+    <div class="section__head"><h2 id="dir-${cat.slug}">${C.esc(cat.name)}</h2></div>
+    <div class="calc-grid">${cat.calcs.map((calc) => `<a class="calc-card" href="/${calc.slug}/"><span class="calc-card__cat">${C.esc(cat.name)}</span><span class="calc-card__title">${C.esc(calc.h1)}</span><p class="calc-card__desc">${C.esc(calc.lede)}</p></a>`).join("\n")}</div>
+  </section>`).join("\n")}
+</div>`;
+  return C.pageShell({
+    title: `All Financial Calculators — ${site.siteName}`,
+    description: `Browse all ${calculators.length} free financial calculators from ${site.siteName}.`,
+    canonicalPath: "/calculators/",
+    bodyHtml: body,
+    breadcrumb: [{label:"Home",href:"/"},{label:"All Calculators"}],
+    jsonLd: [{
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": `${site.domain}/calculators/#collection`,
+      name: "All Financial Calculators",
+      url: `${site.domain}/calculators/`,
+      isPartOf: { "@id": `${site.domain}/#website` },
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: calculators.length,
+        itemListElement: calculators.map((calc, i) => ({
+          "@type": "ListItem", position: i + 1, name: calc.h1, item: `${site.domain}/${calc.slug}/`
+        }))
+      }
+    }]
+  });
+}
+
+function renderCategoryPage(cat) {
+  const calcs = categoriesWithCalcs.find((c) => c.slug === cat.slug).calcs;
+  const body = `<div class="container calc-page-head">
+  <h1>${C.esc(cat.name)} Calculators</h1>
+  <p class="lede">${C.esc(cat.desc)} Browse ${calcs.length} free ${C.esc(cat.name.toLowerCase())} calculators from ClearSum.</p>
+</div>
+<div class="container">
+  <div class="calc-grid">${calcs.map((calc) => `<a class="calc-card" href="/${calc.slug}/"><span class="calc-card__cat">${C.esc(cat.name)}</span><span class="calc-card__title">${C.esc(calc.h1)}</span><p class="calc-card__desc">${C.esc(calc.lede)}</p></a>`).join("\n")}</div>
+</div>`;
+  return C.pageShell({
+    title: `${cat.name} Calculators — ${site.siteName}`,
+    description: `Free ${cat.name.toLowerCase()} calculators from ${site.siteName}.`,
+    canonicalPath: `/category/${cat.slug}/`,
+    bodyHtml: body,
+    breadcrumb: [{label:"Home",href:"/"},{label:cat.name}],
+    jsonLd: [{
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": `${site.domain}/category/${cat.slug}/#collection`,
+      name: `${cat.name} Calculators`,
+      url: `${site.domain}/category/${cat.slug}/`,
+      isPartOf: { "@id": `${site.domain}/#website` },
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: calcs.length,
+        itemListElement: calcs.map((calc, i) => ({
+          "@type": "ListItem", position: i + 1, name: calc.h1, item: `${site.domain}/${calc.slug}/`
+        }))
+      }
+    }]
+  });
+}
+
 // ---------------------------------------------------------------------
 // Sitemap & robots
 // ---------------------------------------------------------------------
@@ -559,7 +712,9 @@ function renderSitemap() {
     "/contact/",
     "/privacy-policy/",
     "/terms-of-service/",
-    "/disclaimer/"
+    "/disclaimer/",
+    "/calculators/",
+    ...site.categories.map((c) => `/category/${c.slug}/`)
   ];
 
   const calcPaths = calculators.map((c) => `/${c.slug}/`);
@@ -639,6 +794,10 @@ function build() {
   copyDir(path.join(SRC, "assets"), path.join(DIST, "assets"));
 
   write("index.html", renderHome());
+  write("404.html", render404());
+  write("calculators/index.html", renderCalculatorsDirectory());
+  write("search/index.html", renderSearchPage());
+  site.categories.forEach((cat) => write(`category/${cat.slug}/index.html`, renderCategoryPage(cat)));
 
   calculators.forEach((calc) => {
     write(`${calc.slug}/index.html`, renderCalculatorPage(calc));
@@ -657,9 +816,10 @@ function build() {
   write("sitemap.xml", renderSitemap());
   write("robots.txt", renderRobots());
   write("site.webmanifest", renderManifest());
+  write("ads.txt", "google.com, pub-5422820182709667, DIRECT, f08c47fec0942fa0\n");
 
   console.log(
-    `Built ${calculators.length} calculator pages + ${seoPages.length} SEO pages + 6 static pages to dist/`
+    `Built ${calculators.length} calculator pages + ${seoPages.length} SEO pages + 8 static pages + ${site.categories.length} category pages to dist/`
   );
 }
 

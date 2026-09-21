@@ -68,7 +68,9 @@ module.exports = {
   ],
 
   legal: {
-    legalEntityName: "ClearSum",
+    legalEntityName: "Jaime Muñoz de Morales",
+    taxId: "06644150W",
+    mailingAddress: "Calle Real 20, 2D, El Molar, Madrid, España",
     contactEmail: "support.digitaltools@gmail.com",
     // Optional: a form-backend endpoint (e.g. from Formspree, Getform, or
     // similar) so the Contact page can submit a real message with zero
@@ -76,7 +78,6 @@ module.exports = {
     // mailto: link above (once contactEmail is set) or a "no method
     // configured yet" notice — the page never publishes a personal inbox.
     contactFormAction: "",
-    mailingAddress: "United States",
     lastUpdated: "August 24, 2026"
   }
 };

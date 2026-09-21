@@ -14,16 +14,34 @@ function esc(str) {
   return String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-function pageShell({ title, description, canonicalPath, bodyHtml, activePath, breadcrumb, jsonLd, extraScripts }) {
+function siteStructuredData() {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${site.domain}/#organization`,
+      name: site.siteName,
+      url: site.domain + "/"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${site.domain}/#website`,
+      name: site.siteName,
+      url: site.domain + "/",
+      publisher: { "@id": `${site.domain}/#organization` }
+    }
+  ];
+}
+
+function pageShell({ title, description, canonicalPath, bodyHtml, activePath, breadcrumb, jsonLd, extraScripts, robots = "index, follow" }) {
   const canonical = site.domain + canonicalPath;
   const desc = description || site.description;
   const ogImage = site.domain + site.logo.ogImage;
-  const jsonLdBlock = jsonLd
-    ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd])
-        .filter(Boolean)
-        .map((obj) => `<script type="application/ld+json">${JSON.stringify(obj)}</script>`)
-        .join("\n")
-    : "";
+  const allJsonLd = [...siteStructuredData(), ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])].filter(Boolean);
+  const jsonLdBlock = allJsonLd
+    .map((obj) => `<script type="application/ld+json">${JSON.stringify(obj)}</script>`)
+    .join("\n");
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +62,7 @@ function pageShell({ title, description, canonicalPath, bodyHtml, activePath, br
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${ogImage}">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="${esc(robots)}">
 <meta name="theme-color" content="${site.themeColor}">
 <link rel="icon" href="${site.logo.faviconSvg}" type="image/svg+xml">
 <link rel="alternate icon" href="${site.logo.faviconIco}">
@@ -60,19 +78,24 @@ ${jsonLdBlock}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-${renderHeader(activePath)}
+${renderHeader(activePath || canonicalPath)}
 <main id="main">
 ${breadcrumb ? renderBreadcrumb(breadcrumb) : ""}
 ${bodyHtml}
 </main>
 ${renderFooter()}
-<script src="/js/calc-runtime.js"></script>
-${(extraScripts || []).map((s) => `<script src="${s}"></script>`).join("\n")}
+<script src="/js/calc-runtime.js" defer></script>
+${(extraScripts || []).map((s) => `<script src="${s}" defer></script>`).join("\n")}
 </body>
 </html>`;
 }
 
-function renderHeader() {
+function renderHeader(activePath = "") {
+  const normalized = String(activePath || "").replace(/\/$/, "") || "/";
+  const navLink = (href, label) => {
+    const active = normalized === href.replace(/\/$/, "") || (href !== "/" && normalized.startsWith(href.replace(/\/$/, "") + "/"));
+    return `<a href="${href}"${active ? ` class="is-active" aria-current="page"` : ""}>${esc(label)}</a>`;
+  };
   return `<header class="site-header">
   <div class="container site-header__bar">
     <a class="brand" href="/">
@@ -80,8 +103,9 @@ function renderHeader() {
     </a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">&#9776;</button>
     <nav class="main-nav" id="main-nav" aria-label="Primary">
-      ${site.categories.map((c) => `<a href="/#${c.slug}">${esc(c.name)}</a>`).join("\n      ")}
-      <a href="/about/">About</a>
+      ${site.categories.map((c) => navLink(`/category/${c.slug}/`, c.name)).join("\n      ")}
+      ${navLink("/calculators/", "All Calculators")}
+      ${navLink("/about/", "About")}
     </nav>
   </div>
 </header>`;
@@ -99,11 +123,11 @@ function renderFooter() {
       </div>
       <div>
         <h4>Categories</h4>
-        <ul>${col1.map((c) => `<li><a href="/#${c.slug}">${esc(c.name)}</a></li>`).join("")}</ul>
+        <ul>${col1.map((c) => `<li><a href="/category/${c.slug}/">${esc(c.name)}</a></li>`).join("")}</ul>
       </div>
       <div>
         <h4>&nbsp;</h4>
-        <ul>${col2.map((c) => `<li><a href="/#${c.slug}">${esc(c.name)}</a></li>`).join("")}</ul>
+        <ul>${col2.map((c) => `<li><a href="/category/${c.slug}/">${esc(c.name)}</a></li>`).join("")}</ul>
       </div>
       <div>
         <h4>Company</h4>
@@ -287,5 +311,6 @@ module.exports = {
   renderFAQ,
   faqJsonLd,
   breadcrumbJsonLd,
+  siteStructuredData,
   site
 };

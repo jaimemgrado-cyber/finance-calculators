@@ -372,22 +372,79 @@
       });
     }
 
-    // Directory / calculator search filter (home page)
-    var searchInput = document.querySelector("[data-calc-search]");
-    if (searchInput) {
-      var cards = $all("[data-searchable]");
-      var empty = document.querySelector("[data-search-empty]");
-      searchInput.addEventListener("input", function () {
-        var q = searchInput.value.trim().toLowerCase();
-        var visibleCount = 0;
-        cards.forEach(function (card) {
-          var text = card.getAttribute("data-searchable").toLowerCase();
-          var match = text.indexOf(q) !== -1;
-          card.style.display = match ? "" : "none";
-          if (match) visibleCount++;
-        });
-        if (empty) empty.style.display = q && visibleCount === 0 ? "block" : "none";
+    // Home search: submit to the dedicated, shareable search page.
+    var homeSearch = document.querySelector(".hero .search-form");
+    if (homeSearch) {
+      homeSearch.addEventListener("submit", function (event) {
+        var input = homeSearch.querySelector("input[type=search]");
+        if (!input || !input.value.trim()) {
+          event.preventDefault();
+          input && input.focus();
+        }
       });
+    }
+
+    // Dedicated search page: query the URL, rank matches, and keep the URL shareable.
+    var searchPageInput = document.querySelector("[data-calc-search-page]");
+    if (searchPageInput) {
+      var resultCards = $all("[data-search-results] .search-result");
+      var searchStatus = document.querySelector("[data-search-status]");
+      var searchEmpty = document.querySelector("[data-search-empty-page]");
+      var params = new URLSearchParams(window.location.search);
+      var initialQuery = (params.get("q") || "").trim();
+      searchPageInput.value = initialQuery;
+
+      function normalize(value) {
+        return value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+
+      function runSearch(rawQuery, updateUrl) {
+        var query = normalize(rawQuery.trim());
+        var terms = query.split(/\s+/).filter(Boolean);
+        var scored = resultCards.map(function (card, index) {
+          var text = normalize(card.getAttribute("data-searchable") || "");
+          var title = normalize(card.querySelector("h2") ? card.querySelector("h2").textContent : "");
+          var score = 0;
+          if (query && title === query) score += 100;
+          if (query && title.indexOf(query) !== -1) score += 40;
+          if (query && text.indexOf(query) !== -1) score += 20;
+          terms.forEach(function (term) {
+            if (title.indexOf(term) !== -1) score += 10;
+            else if (text.indexOf(term) !== -1) score += 3;
+          });
+          return { card: card, score: score, index: index };
+        });
+
+        if (!query) {
+          scored.sort(function (a, b) { return a.index - b.index; });
+        } else {
+          scored.sort(function (a, b) { return b.score - a.score || a.index - b.index; });
+        }
+
+        var visible = 0;
+        scored.forEach(function (item) {
+          var match = !query || item.score > 0;
+          item.card.style.display = match ? "" : "none";
+          if (match) visible++;
+        });
+
+        var container = document.querySelector("[data-search-results]");
+        if (container) scored.forEach(function (item) { container.appendChild(item.card); });
+        if (searchEmpty) searchEmpty.style.display = query && visible === 0 ? "block" : "none";
+        if (searchStatus) searchStatus.textContent = query
+          ? (visible + " calculator" + (visible === 1 ? "" : "s") + " found for \"" + rawQuery.trim() + "\".")
+          : (resultCards.length + " calculators available.");
+
+        if (updateUrl) {
+          var url = new URL(window.location.href);
+          if (rawQuery.trim()) url.searchParams.set("q", rawQuery.trim());
+          else url.searchParams.delete("q");
+          window.history.replaceState({}, "", url.pathname + (url.searchParams.toString() ? "?" + url.searchParams.toString() : ""));
+        }
+      }
+
+      searchPageInput.addEventListener("input", function () { runSearch(searchPageInput.value, true); });
+      runSearch(initialQuery, false);
     }
   });
 })();
